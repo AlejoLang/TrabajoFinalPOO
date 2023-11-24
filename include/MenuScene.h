@@ -5,8 +5,14 @@
 
 class MenuScene : public Scene{
   private:
+    sf::Text titleText;
+    sf::Text subtitleText;
+    sf::Clock timer;
+    int countdownHours = 24;
+    int countdownMinutes = 0;
+    int countdownSeconds = 0;
   public:
-    MenuScene();
+    MenuScene(sf::Font &gameFont);
     void update() override;
     void drawIn(sf::RenderWindow &window) override;
 };
