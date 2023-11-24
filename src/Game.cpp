@@ -5,6 +5,8 @@ Game::Game()
 {
   window.setFramerateLimit(60);
   window.setVerticalSyncEnabled(true);
+  currentScene = new MenuScene;
+  nextScene = nullptr;
 }
 
 void Game::Run() {
@@ -25,13 +27,13 @@ void Game::handleEvents() {
 }
 
 void Game::Update() {
-  
+  currentScene->update();
 }
 
 void Game::Draw() {
   window.clear();
   /*Draw Section*/
-  
+  currentScene->drawIn(window);
   window.display();
 }
 
