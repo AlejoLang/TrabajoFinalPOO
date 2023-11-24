@@ -1,0 +1,49 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+      {
+          "label": "build-windows",
+          "type": "shell",
+          "command": "g++",
+          "args": [
+              "-std=c++11",
+              "-Wall",
+              "-lsfml-graphics",
+              "-lsfml-window",
+              "-lsfml-system",
+              "${workspaceFolder}/src/*.cpp",
+              "-o",
+              "main.exe"
+          ],
+          "group": {
+              "kind": "build",
+              "isDefault": true
+          },
+          "options": {
+              "cwd": "${workspaceFolder}"
+          }
+      },
+      {
+          "label": "build-linux",
+          "type": "shell",
+          "command": "g++",
+          "args": [
+              "-std=c++11",
+              "-Wall",
+              "-lsfml-graphics",
+              "-lsfml-window",
+              "-lsfml-system",
+              "${workspaceFolder}/src/*.cpp",
+              "-o",
+              "main"
+          ],
+          "group": {
+              "kind": "build",
+              "isDefault": true
+          },
+          "options": {
+              "cwd": "${workspaceFolder}"
+          }
+      }
+  ]
+}
