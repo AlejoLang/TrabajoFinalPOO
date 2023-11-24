@@ -1,11 +1,12 @@
 #include "Game.h"
 
 Game::Game() 
-    : window(sf::VideoMode(1280, 720), "Juego")
+    : window(sf::VideoMode(1920, 1080), "Juego")
 {
   window.setFramerateLimit(60);
   window.setVerticalSyncEnabled(true);
-  currentScene = new MenuScene;
+  if(!gameFont.loadFromFile("./resources/fonts/Roboto-Regular.ttf")){exit(1);}
+  currentScene = new MenuScene(gameFont);
   nextScene = nullptr;
 }
 
