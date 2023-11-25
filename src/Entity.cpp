@@ -13,3 +13,7 @@ void Entity::setTexture(sf::Texture &entityTexture) {
 void Entity::drawIn(sf::RenderWindow &window) {
   window.draw(entitySprite);
 }
+
+sf::Vector2f Entity::getCenter() {
+  return entitySprite.getPosition();
+}

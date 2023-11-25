@@ -11,6 +11,7 @@ class Entity {
     Entity();
     void drawIn(sf::RenderWindow &window);
     void setTexture(sf::Texture &entityTexture);
+    sf::Vector2f getCenter();
 };
 
 #endif
