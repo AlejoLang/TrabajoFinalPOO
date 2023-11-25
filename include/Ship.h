@@ -2,6 +2,7 @@
 #define SHIP_H
 #include <SFML/Graphics.hpp>
 #include "Entity.h"
+#include "Map.h"
 
 class Ship : public Entity {
   private:
@@ -11,7 +12,7 @@ class Ship : public Entity {
     float fuel;
   public:
     Ship();
-    void update();
+    void update(Map &mainMap);
     sf::Vector2f calculateDirection();
 };
 

@@ -7,27 +7,33 @@ Ship::Ship () {
   fuel = 100;
   acceleration = 0;
   gravityAcceleration = 0;
+  velocity = {0, 0};
 }
 
-void Ship::update() {
-  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) && fuel > 0) {
-    entitySprite.rotate(-0.5);
-  }
-  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right) && fuel > 0) {
-    entitySprite.rotate(0.5);
-  }
-  velocity = calculateDirection();
+void Ship::update(Map &mainMap) {
   if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W) && fuel > 0) {
     fuel -= 0;
-    acceleration += 0.2;
-    entitySprite.rotate(velocity.x * 0.5);
+    acceleration += 0.3;
+    gravityAcceleration -= 0.2;
+    entitySprite.rotate(velocity.x / acceleration / 2);
   }
-  acceleration -= 0.1;
-  gravityAcceleration += 0.135;
-  gravityAcceleration > 10 ? gravityAcceleration = 10 : gravityAcceleration = gravityAcceleration;
+  acceleration -= 0.2;
   acceleration < 0 ? acceleration = 0 : acceleration = acceleration;
-  velocity *= acceleration;
-  velocity.y += gravityAcceleration;
+  velocity -= {velocity.x - acceleration, velocity.y - acceleration};
+  velocity = {velocity.x * calculateDirection().x, velocity.y * calculateDirection().y};
+
+  if(!mainMap.checkCollision(entitySprite)) {
+    gravityAcceleration += 0.135;
+    gravityAcceleration > 100 ? gravityAcceleration = 100 : gravityAcceleration = gravityAcceleration;
+    velocity.y += gravityAcceleration;
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) && fuel > 0) {
+      entitySprite.rotate(-0.5);
+    }
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right) && fuel > 0) {
+      entitySprite.rotate(0.5);
+    }
+  } else {
+  }
   entitySprite.move(velocity);
 }
 
