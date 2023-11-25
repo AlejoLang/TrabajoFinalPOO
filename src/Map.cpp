@@ -7,8 +7,8 @@ Map::Map(sf::RenderWindow &window) {
   groundTexture.setRepeated(true);
   ground.setTexture(groundTexture);
   launchPad.setTexture(launchPadTexture);
-  ground.setTextureRect({0, 0, window.getSize().x, 100});
-  ground.setPosition(0, window.getSize().y - 100);
+  ground.setTextureRect({0, 0, window.getSize().x * 5, 100});
+  ground.setPosition(-ground.getTextureRect().getSize().x / 2.0f, window.getSize().y - 100);
   launchPad.setOrigin(launchPadTexture.getSize().x / 2.0f, launchPadTexture.getSize().y);
   launchPad.setPosition(window.getSize().x / 2.0f, window.getSize().y - 100);
 }
