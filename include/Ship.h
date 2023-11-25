@@ -9,11 +9,15 @@ class Ship : public Entity {
     sf::Vector2f velocity;
     float acceleration;
     float gravityAcceleration;
-    float fuel;
+    float fuelLOX;
+    float fuelCH4;
   public:
     Ship();
     void update(Map &mainMap);
-    sf::Vector2f calculateDirection();
+    void handleTrust();
+    void handleRotation();
+    void handleGravity(Map &mainMap);
+    void calculateDirection();
 };
 
 #endif

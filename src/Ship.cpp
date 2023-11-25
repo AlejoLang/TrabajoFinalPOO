@@ -4,15 +4,32 @@
 
 Ship::Ship () {
   entitySprite.setPosition(200, 200);
-  fuel = 100;
+  fuelLOX = 350;
+  fuelCH4 = 100;
   acceleration = 0;
   gravityAcceleration = 0;
   velocity = {0, 0};
 }
 
 void Ship::update(Map &mainMap) {
-  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W) && fuel > 0) {
-    fuel -= 0;
+  handleTrust();
+  calculateDirection();
+  handleGravity(mainMap);
+  
+  entitySprite.move(velocity);
+}
+
+void Ship::calculateDirection() {
+  sf::Vector2f direction;
+  direction.y = -1 * cos((entitySprite.getRotation()) * M_PI / 180);
+  direction.x = 1 * sin((entitySprite.getRotation()) * M_PI / 180);
+  velocity = {velocity.x * direction.x, velocity.y * direction.y};
+}
+
+void Ship::handleTrust() {
+  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W) && fuelLOX > 0 && fuelCH4 > 0) {
+    fuelLOX -= 0.35;
+    fuelCH4 -= 0.1;
     acceleration += 0.3;
     gravityAcceleration -= 0.2;
     entitySprite.rotate(velocity.x / acceleration / 2);
@@ -20,26 +37,22 @@ void Ship::update(Map &mainMap) {
   acceleration -= 0.2;
   acceleration < 0 ? acceleration = 0 : acceleration = acceleration;
   velocity -= {velocity.x - acceleration, velocity.y - acceleration};
-  velocity = {velocity.x * calculateDirection().x, velocity.y * calculateDirection().y};
+}
 
+void Ship::handleRotation() {
+  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) && fuelLOX > 0 && fuelCH4 > 0) {
+      entitySprite.rotate(-0.5);
+    }
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right) && fuelLOX > 0 && fuelCH4 > 0) {
+      entitySprite.rotate(0.5);
+    }
+}
+
+void Ship::handleGravity(Map &mainMap) {
   if(!mainMap.checkCollision(entitySprite)) {
     gravityAcceleration += 0.135;
     gravityAcceleration > 100 ? gravityAcceleration = 100 : gravityAcceleration = gravityAcceleration;
     velocity.y += gravityAcceleration;
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) && fuel > 0) {
-      entitySprite.rotate(-0.5);
-    }
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right) && fuel > 0) {
-      entitySprite.rotate(0.5);
-    }
-  } else {
+    handleRotation();
   }
-  entitySprite.move(velocity);
-}
-
-sf::Vector2f Ship::calculateDirection() {
-  sf::Vector2f direction;
-  direction.y = -1 * cos((entitySprite.getRotation()) * M_PI / 180);
-  direction.x = 1 * sin((entitySprite.getRotation()) * M_PI / 180);
-  return direction;
 }
