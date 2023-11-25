@@ -12,7 +12,7 @@ class Ship : public Entity {
     float fuelLOX;
     float fuelCH4;
   public:
-    Ship();
+    Ship(sf::RenderWindow &window);
     void update(Map &mainMap);
     void handleTrust();
     void handleRotation();

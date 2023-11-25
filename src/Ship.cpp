@@ -2,8 +2,8 @@
 #include "Ship.h"
 #include <math.h>
 
-Ship::Ship () {
-  entitySprite.setPosition(200, 200);
+Ship::Ship (sf::RenderWindow &window) {
+  entitySprite.setPosition({window.getSize().x / 2.0f, window.getSize().y - 300});
   fuelLOX = 350;
   fuelCH4 = 100;
   acceleration = 0;
