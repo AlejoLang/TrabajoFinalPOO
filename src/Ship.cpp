@@ -15,7 +15,6 @@ void Ship::update(Map &mainMap) {
   handleTrust();
   calculateDirection();
   handleGravity(mainMap);
-  
   entitySprite.move(velocity);
 }
 
