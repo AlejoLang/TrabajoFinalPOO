@@ -4,6 +4,7 @@
 PlayScene::PlayScene(sf::RenderWindow &window) 
           : mainMap(window)
           , mainView(window.getDefaultView())
+          , playerShip(window)
 {
   if(!playerTexture.loadFromFile("./resources/textures/Starship.png")){ exit(1); }
   playerShip.setTexture(playerTexture);
@@ -16,6 +17,6 @@ void PlayScene::update() {
 
 void PlayScene::drawIn(sf::RenderWindow &window) {
   window.setView(mainView);
-  mainMap.drawIn(window);
   playerShip.drawIn(window);
+  mainMap.drawIn(window);
 }
