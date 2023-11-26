@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "Scene.h"
 #include "Ship.h"
+#include "Hud.h"
 #include "Map.h"
 
 class PlayScene : public Scene {
@@ -12,8 +13,9 @@ class PlayScene : public Scene {
     sf::Texture asteroidTexture;
     Ship playerShip;
     Map mainMap;
+    Hud mainHud;
   public:
-    PlayScene(sf::RenderWindow &window);
+    PlayScene(sf::RenderWindow &window, sf::Font &gameFont);
     void update() override;
     void drawIn(sf::RenderWindow &window) override;
 };
