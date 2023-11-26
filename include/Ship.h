@@ -12,6 +12,7 @@ class Ship : public Entity {
     float fuelLOX;
     float fuelCH4;
     float altitudKm;
+    float angularMomentum;
   public:
     Ship(sf::RenderWindow &window);
     void update(Map &mainMap);
