@@ -11,6 +11,8 @@ class PlayScene : public Scene {
     sf::View mainView;
     sf::Texture playerTexture;
     sf::Texture asteroidTexture;
+    sf::Texture backgroundTexture;
+    sf::Sprite background;
     Ship playerShip;
     Map mainMap;
     Hud mainHud;
