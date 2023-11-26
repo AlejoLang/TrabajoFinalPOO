@@ -30,20 +30,30 @@ void Ship::handleTrust() {
     fuelLOX -= 0.35;
     fuelCH4 -= 0.1;
     acceleration += 0.3;
-    entitySprite.rotate(velocity.x / acceleration * 0.5);
+    angularMomentum += velocity.x / acceleration * 0.25;
   }
+  angularMomentum += velocity.x / 30.0;
   acceleration -= 0.1;
   acceleration = std::max(0.0f, acceleration);
   velocity -= {velocity.x - acceleration, velocity.y - acceleration};
 }
 
 void Ship::handleRotation() {
-  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) && fuelLOX > 0 && fuelCH4 > 0) {
-      entitySprite.rotate(-0.5);
+  const float maxRotationSpeed = 2.0;
+    float rotationSpeed = angularMomentum / 10.0;
+
+    rotationSpeed = std::min(rotationSpeed, maxRotationSpeed);
+    rotationSpeed = std::max(rotationSpeed, -maxRotationSpeed);
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) && fuelLOX > 0 && fuelCH4 > 0) {
+        rotationSpeed -= 0.5;
     }
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right) && fuelLOX > 0 && fuelCH4 > 0) {
-      entitySprite.rotate(0.5);
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right) && fuelLOX > 0 && fuelCH4 > 0) {
+        rotationSpeed += 0.5;
     }
+
+    entitySprite.rotate(rotationSpeed);
+    angularMomentum *= 0.1;
 }
 
 void Ship::handleGravity(Map &mainMap) {
