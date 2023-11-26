@@ -55,3 +55,15 @@ void Ship::handleGravity(Map &mainMap) {
     handleRotation();
   }
 }
+
+float Ship::getCH4() {
+  return this->fuelCH4;
+}
+
+float Ship::getLOX() {
+  return this->fuelLOX;
+}
+
+float Ship::getAltitude() {
+  return this->altitudKm;
+}

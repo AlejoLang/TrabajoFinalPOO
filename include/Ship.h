@@ -11,6 +11,7 @@ class Ship : public Entity {
     float gravityAcceleration;
     float fuelLOX;
     float fuelCH4;
+    float altitudKm;
   public:
     Ship(sf::RenderWindow &window);
     void update(Map &mainMap);
@@ -18,6 +19,9 @@ class Ship : public Entity {
     void handleRotation();
     void handleGravity(Map &mainMap);
     void calculateDirection();
+    float getLOX();
+    float getCH4();
+    float getAltitude();
 };
 
 #endif
