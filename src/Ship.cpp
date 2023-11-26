@@ -30,11 +30,10 @@ void Ship::handleTrust() {
     fuelLOX -= 0.35;
     fuelCH4 -= 0.1;
     acceleration += 0.3;
-    gravityAcceleration -= 0.2;
-    entitySprite.rotate(velocity.x / acceleration / 2);
+    entitySprite.rotate(velocity.x / acceleration * 0.5);
   }
-  acceleration -= 0.2;
-  acceleration < 0 ? acceleration = 0 : acceleration = acceleration;
+  acceleration -= 0.1;
+  acceleration = std::max(0.0f, acceleration);
   velocity -= {velocity.x - acceleration, velocity.y - acceleration};
 }
 
@@ -53,6 +52,9 @@ void Ship::handleGravity(Map &mainMap) {
     gravityAcceleration > 100 ? gravityAcceleration = 100 : gravityAcceleration = gravityAcceleration;
     velocity.y += gravityAcceleration;
     handleRotation();
+  } else {
+    gravityAcceleration = 0;
+    acceleration = 0;
   }
 }
 
