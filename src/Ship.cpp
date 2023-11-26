@@ -27,14 +27,15 @@ void Ship::calculateDirection() {
 
 void Ship::handleTrust() {
   if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W) && fuelLOX > 0 && fuelCH4 > 0) {
-    fuelLOX -= 0.35;
-    fuelCH4 -= 0.1;
+    fuelLOX -= 0;
+    fuelCH4 -= 0;
     acceleration += 0.3;
     angularMomentum += velocity.x / acceleration * 0.25;
+  } else {
+    acceleration -= 0.3;  
   }
   angularMomentum += velocity.x / 30.0;
-  acceleration -= 0.1;
-  acceleration = std::max(0.0f, acceleration);
+  acceleration = std::max(0.0f, std::min(acceleration, 40.0f));
   velocity -= {velocity.x - acceleration, velocity.y - acceleration};
 }
 
@@ -59,7 +60,7 @@ void Ship::handleRotation() {
 void Ship::handleGravity(Map &mainMap) {
   if(!mainMap.checkCollision(entitySprite)) {
     gravityAcceleration += 0.135;
-    gravityAcceleration > 100 ? gravityAcceleration = 100 : gravityAcceleration = gravityAcceleration;
+    gravityAcceleration > 20 ? gravityAcceleration = 20 : gravityAcceleration = gravityAcceleration;
     velocity.y += gravityAcceleration;
     handleRotation();
   } else {
