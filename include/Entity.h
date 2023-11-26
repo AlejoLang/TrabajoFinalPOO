@@ -7,11 +7,12 @@ class Entity {
   protected:
     sf::Sprite entitySprite;
     sf::Texture entityTexture;
+    sf::RectangleShape collisionBox;
   public:
-    Entity();
-    void drawIn(sf::RenderWindow &window);
-    void setTexture(sf::Texture &entityTexture);
+    Entity(sf::Texture &texture);
+    virtual void drawIn(sf::RenderWindow &window);
     sf::Vector2f getCenter();
+    sf::RectangleShape getCollisionBox();
 };
 
 #endif

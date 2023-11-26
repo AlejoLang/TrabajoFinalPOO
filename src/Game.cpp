@@ -6,7 +6,7 @@ Game::Game()
   window.setFramerateLimit(60);
   window.setVerticalSyncEnabled(true);
   if(!gameFont.loadFromFile("./resources/fonts/Roboto-Regular.ttf")){exit(1);}
-  currentScene = new PlayScene();
+  currentScene = new PlayScene(window, gameFont);
   nextScene = nullptr;
 }
 

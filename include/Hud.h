@@ -10,7 +10,7 @@ class Hud {
     Indicator fuelCH4Indicator;
   public:
     Hud(sf::Font &font);
-    void update(Ship &ship, sf::View &view);
+    void update(Ship *ship, sf::View &view);
     void draw(sf::RenderWindow &window);
 };
 

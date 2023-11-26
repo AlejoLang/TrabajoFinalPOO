@@ -15,7 +15,7 @@ class Ship : public Entity {
     float altitudKm;
     float angularMomentum;
   public:
-    Ship(sf::RenderWindow &window);
+    Ship(sf::Texture &playerTexture, sf::RenderWindow &window);
     void update(Map &mainMap);
     void handleTrust();
     void handleRotation();
@@ -25,6 +25,7 @@ class Ship : public Entity {
     float getCH4();
     float getAltitude();
     sf::Sprite getSprite();
+    sf::RectangleShape getRect();
 };
 
 #endif

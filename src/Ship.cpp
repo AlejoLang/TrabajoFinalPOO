@@ -2,7 +2,7 @@
 #include "Ship.h"
 #include <math.h>
 
-Ship::Ship (sf::RenderWindow &window) {
+Ship::Ship (sf::Texture &playerTexture, sf::RenderWindow &window) : Entity(playerTexture){
   entitySprite.setPosition({window.getSize().x / 2.0f, window.getSize().y - 300});
   fuelLOX = 350;
   fuelCH4 = 100;
@@ -16,6 +16,8 @@ void Ship::update(Map &mainMap) {
   calculateDirection();
   handleGravity(mainMap);
   entitySprite.move(velocity);
+  collisionBox.setRotation(entitySprite.getRotation());
+  collisionBox.setPosition(entitySprite.getPosition());
 }
 
 void Ship::calculateDirection() {
@@ -81,6 +83,6 @@ float Ship::getAltitude() {
   return this->altitudKm;
 }
 
-sf::Sprite Ship::getSprite() {
-  return this->entitySprite;
+sf::RectangleShape Ship::getRect() {
+  return this->collisionBox;
 }

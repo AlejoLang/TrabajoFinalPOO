@@ -6,11 +6,9 @@
 class Asteroid : public Entity {
   private:
     sf::Vector2f asteroidVelocity;
-    sf::CircleShape asteroidCollisionBox;
   public:
     Asteroid(sf::Texture &astText, sf::View &view);
-    sf::CircleShape getCollisionBox();
-    bool checkCollisionWithObject(sf::Sprite &sprite);
+    bool checkCollisionWithObject(sf::RectangleShape &collisionBox);
     void update();
 };
 
