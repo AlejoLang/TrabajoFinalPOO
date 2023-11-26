@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "Entity.h"
 #include "Map.h"
+#include "Asteroid.h"
 
 class Ship : public Entity {
   private:
@@ -23,6 +24,7 @@ class Ship : public Entity {
     float getLOX();
     float getCH4();
     float getAltitude();
+    sf::Sprite getSprite();
 };
 
 #endif

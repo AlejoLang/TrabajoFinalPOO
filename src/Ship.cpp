@@ -27,12 +27,12 @@ void Ship::calculateDirection() {
 
 void Ship::handleTrust() {
   if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W) && fuelLOX > 0 && fuelCH4 > 0) {
-    fuelLOX -= 0;
-    fuelCH4 -= 0;
+    fuelLOX -= 0.035;
+    fuelCH4 -= 0.01;
     acceleration += 0.3;
     angularMomentum += velocity.x / acceleration * 0.25;
   } else {
-    acceleration -= 0.3;  
+    acceleration -= 0.5;  
   }
   angularMomentum += velocity.x / 30.0;
   acceleration = std::max(0.0f, std::min(acceleration, 40.0f));
@@ -79,4 +79,8 @@ float Ship::getLOX() {
 
 float Ship::getAltitude() {
   return this->altitudKm;
+}
+
+sf::Sprite Ship::getSprite() {
+  return this->entitySprite;
 }
