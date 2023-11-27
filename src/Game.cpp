@@ -1,4 +1,5 @@
 #include "Game.h"
+#include <ctime>
 
 Game::Game() 
     : window(sf::VideoMode(1920, 1080), "Juego")
@@ -8,6 +9,7 @@ Game::Game()
   if(!gameFont.loadFromFile("./resources/fonts/Roboto-Regular.ttf")){exit(1);}
   currentScene = new PlayScene(window, gameFont);
   nextScene = nullptr;
+  srand(time(NULL));
 }
 
 void Game::Run() {
