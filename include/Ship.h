@@ -21,6 +21,8 @@ class Ship : public Entity {
     void handleRotation();
     void handleGravity(Map &mainMap);
     void calculateDirection();
+    void increaseLOX(float val);
+    void increaseCH4(float val);
     float getLOX();
     float getCH4();
     float getAltitude();
