@@ -24,8 +24,6 @@ class Ship : public Entity {
     float getLOX();
     float getCH4();
     float getAltitude();
-    sf::Sprite getSprite();
-    sf::RectangleShape getRect();
 };
 
 #endif
