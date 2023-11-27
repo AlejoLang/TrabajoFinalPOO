@@ -1,6 +1,6 @@
 #include "AsteroidCollection.h"
 
-AsteroidCollection::AsteroidCollection() : asteroidGenerationTime(0.5) {
+AsteroidCollection::AsteroidCollection() : asteroidGenerationTime(0.25) {
   for (size_t i = 0; i < 2; i++) {
     sf::Texture aux;
     asteroidTexures.push_back(aux);
