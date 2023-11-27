@@ -10,16 +10,9 @@ Asteroid::Asteroid(sf::Texture &astText, sf::View &view) : Entity(astText) {
   entitySprite.setPosition(minX + rand()%(maxX - minX + 1), view.getCenter().y - view.getSize().y / 2 - astText.getSize().y);
   float scale = static_cast<int>(std::round(rand() % 4 + 1));
   entitySprite.setScale(scale, scale);
-  collisionBox.setSize({entitySprite.getGlobalBounds().width / 1.5f , entitySprite.getGlobalBounds().height / 1.5f});
-  collisionBox.setOrigin(collisionBox.getSize() / 2.0f);
   asteroidVelocity = {velocityMin + rand()%(velocityMax - velocityMin + 1), velocityMin + rand()%(velocityMax - velocityMin + 1)};
 }
 
 void Asteroid::update() {
   entitySprite.move(asteroidVelocity);
-  collisionBox.setPosition(entitySprite.getPosition());
-}
-
-bool Asteroid::checkCollisionWithObject(sf::RectangleShape &objectCollisionBox) {
-  return collisionBox.getGlobalBounds().intersects(objectCollisionBox.getGlobalBounds());
 }

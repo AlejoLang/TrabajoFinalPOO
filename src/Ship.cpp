@@ -1,11 +1,10 @@
 #include <SFML/Graphics.hpp>
 #include "Ship.h"
 #include <math.h>
+#include "Collision.h"
 
 Ship::Ship (sf::Texture &playerTexture, sf::RenderWindow &window) : Entity(playerTexture){
   entitySprite.setPosition({window.getSize().x / 2.0f, window.getSize().y - 300});
-  collisionBox.setSize({collisionBox.getSize().x - 20, collisionBox.getSize().y - 15});
-  collisionBox.setOrigin(collisionBox.getSize() / 2.0f);
   fuelLOX = 350;
   fuelCH4 = 100;
   acceleration = 0;
@@ -18,8 +17,6 @@ void Ship::update(Map &mainMap) {
   calculateDirection();
   handleGravity(mainMap);
   entitySprite.move(velocity);
-  collisionBox.setRotation(entitySprite.getRotation());
-  collisionBox.setPosition(entitySprite.getPosition());
 }
 
 void Ship::calculateDirection() {
@@ -62,7 +59,7 @@ void Ship::handleRotation() {
 }
 
 void Ship::handleGravity(Map &mainMap) {
-  if(!mainMap.checkCollision(entitySprite)) {
+  if(!entitySprite.getGlobalBounds().intersects(mainMap.getGroundSprite().getGlobalBounds()) && !Collision::pixelPerfectTest(entitySprite, mainMap.getLaunchPadSprite())){
     gravityAcceleration += 0.135;
     gravityAcceleration > 20 ? gravityAcceleration = 20 : gravityAcceleration = gravityAcceleration;
     velocity.y += gravityAcceleration;
@@ -83,8 +80,4 @@ float Ship::getLOX() {
 
 float Ship::getAltitude() {
   return this->altitudKm;
-}
-
-sf::RectangleShape Ship::getRect() {
-  return this->collisionBox;
 }

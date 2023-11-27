@@ -14,7 +14,8 @@ class Map
   public:
     Map(sf::RenderWindow &window);
     void drawIn(sf::RenderWindow &window);
-    bool checkCollision(sf::Sprite &sprite);
+    sf::Sprite getGroundSprite();
+    sf::Sprite getLaunchPadSprite();
 };
 
 
