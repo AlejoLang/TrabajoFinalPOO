@@ -8,7 +8,6 @@ class Asteroid : public Entity {
     sf::Vector2f asteroidVelocity;
   public:
     Asteroid(sf::Texture &astText, sf::View &view);
-    bool checkCollisionWithObject(sf::RectangleShape &collisionBox);
     void update();
 };
 

@@ -27,7 +27,7 @@ void AsteroidCollection::handleAsteroidGeneration(sf::View &mainView) {
 
 void AsteroidCollection::handleAsteroidCollision(Ship *playerShip) {
   for (Asteroid *a: asteroidsVector) {
-    if(Collision::pixelPerfectTest(a->getSprite(), playerShip->getSprite())){
+    if(a->collides(playerShip->getSprite())){
       exit(1);
     }
   }
