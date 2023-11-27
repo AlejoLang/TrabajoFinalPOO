@@ -10,7 +10,7 @@ PlayScene::PlayScene(sf::RenderWindow &window, sf::Font &gameFont)
 {
   if(!playerTexture.loadFromFile("./resources/textures/Starship.png")){ exit(1); }
   if(!backgroundTexture.loadFromFile("./resources/textures/Background.png")) { exit(1); }
-  playerShip = new Ship(playerTexture, window);
+  playerShip = new Ship(playerTexture, mainMap, window);
   background.setTexture(backgroundTexture);
   background.setOrigin(backgroundTexture.getSize().x / 2.0f, backgroundTexture.getSize().y / 2.0f);
 }

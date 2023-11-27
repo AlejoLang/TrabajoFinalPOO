@@ -3,8 +3,8 @@
 #include <math.h>
 #include "Collision.h"
 
-Ship::Ship (sf::Texture &playerTexture, sf::RenderWindow &window) : Entity(playerTexture){
-  entitySprite.setPosition({window.getSize().x / 2.0f, window.getSize().y - 300});
+Ship::Ship (sf::Texture &playerTexture, Map &mainMap,sf::RenderWindow &window) : Entity(playerTexture){
+  entitySprite.setPosition({mainMap.getLaunchPadSprite().getPosition().x, mainMap.getLaunchPadSprite().getPosition().y - mainMap.getLaunchPadSprite().getGlobalBounds().height - entitySprite.getGlobalBounds().height / 2.0f});
   fuelLOX = 350;
   fuelCH4 = 100;
   acceleration = 0;

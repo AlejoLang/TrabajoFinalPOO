@@ -15,7 +15,7 @@ class Ship : public Entity {
     float altitudKm;
     float angularMomentum;
   public:
-    Ship(sf::Texture &playerTexture, sf::RenderWindow &window);
+    Ship(sf::Texture &playerTexture, Map &mainMap, sf::RenderWindow &window);
     void update(Map &mainMap);
     void handleTrust();
     void handleRotation();
