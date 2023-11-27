@@ -10,10 +10,14 @@ void Entity::drawIn(sf::RenderWindow &window) {
   window.draw(entitySprite);
 }
 
+bool Entity::collides(sf::Sprite &sprite) {
+  return Collision::pixelPerfectTest(entitySprite, sprite);
+}
+
 sf::Vector2f Entity::getCenter() {
   return entitySprite.getPosition();
 }
 
-sf::Sprite Entity::getSprite() {
+sf::Sprite& Entity::getSprite() {
   return this->entitySprite;
 }
