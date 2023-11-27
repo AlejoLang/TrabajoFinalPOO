@@ -7,7 +7,7 @@
 #include "Ship.h"
 #include "Hud.h"
 #include "Map.h"
-#include "Asteroid.h"
+#include "AsteroidCollection.h"
 
 class PlayScene : public Scene {
   private:
@@ -18,15 +18,10 @@ class PlayScene : public Scene {
     Ship *playerShip;
     Map mainMap;
     Hud mainHud;
-    std::vector<Asteroid *> asteroidsVector;
-    std::vector<sf::Texture> asteroidTexures;
-    sf::Clock asteroidGenerationClock; 
-    float asteroidGenerationTime;
+    AsteroidCollection mainAsteroidCollection;
   public:
     PlayScene(sf::RenderWindow &window, sf::Font &gameFont);
     void update() override;
-    void handleAsteroidsGeneration();
-    void handleAsteroidsDraw(sf::RenderWindow &window);
     void drawIn(sf::RenderWindow &window) override;
     ~PlayScene();
 };
