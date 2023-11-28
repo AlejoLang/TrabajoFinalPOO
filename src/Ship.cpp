@@ -28,8 +28,8 @@ void Ship::calculateDirection() {
 
 void Ship::handleTrust() {
   if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W) && fuelLOX > 0 && fuelCH4 > 0) {
-    fuelLOX -= 0.035;
-    fuelCH4 -= 0.01;
+    fuelLOX -= 0.175;
+    fuelCH4 -= 0.05;
     acceleration += 0.3;
     angularMomentum += velocity.x / acceleration * 0.25;
   } else {
