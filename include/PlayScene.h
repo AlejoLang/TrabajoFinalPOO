@@ -8,6 +8,7 @@
 #include "Hud.h"
 #include "Map.h"
 #include "AsteroidCollection.h"
+#include "FuelRefillerCollection.h"
 
 class PlayScene : public Scene {
   private:
@@ -19,6 +20,7 @@ class PlayScene : public Scene {
     Map mainMap;
     Hud mainHud;
     AsteroidCollection mainAsteroidCollection;
+    fuelRefillerCollection mainRefillerCollection;
   public:
     PlayScene(sf::RenderWindow &window, sf::Font &gameFont);
     void update() override;

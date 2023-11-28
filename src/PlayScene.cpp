@@ -19,6 +19,7 @@ void PlayScene::update() {
   playerShip->update(mainMap);
   mainView.setCenter(playerShip->getCenter().x, playerShip->getCenter().y - 350.f);
   mainAsteroidCollection.update(mainView, playerShip);
+  mainRefillerCollection.update(mainView, playerShip);
   mainHud.update(playerShip, mainView);
   background.setPosition(mainView.getCenter());
 }
@@ -28,6 +29,7 @@ void PlayScene::drawIn(sf::RenderWindow &window) {
   window.draw(background);
   playerShip->drawIn(window);
   mainAsteroidCollection.drawIn(window);
+  mainRefillerCollection.drawIn(window);
   mainMap.drawIn(window);
   mainHud.draw(window);
 }
