@@ -59,7 +59,7 @@ void Ship::handleRotation() {
 }
 
 void Ship::handleGravity(Map &mainMap) {
-  if(!entitySprite.getGlobalBounds().intersects(mainMap.getGroundSprite().getGlobalBounds()) && !Collision::pixelPerfectTest(entitySprite, mainMap.getLaunchPadSprite())){
+  if(!entitySprite.getGlobalBounds().intersects(mainMap.getGroundSprite().getGlobalBounds()) && !this->collides(mainMap.getLaunchPadSprite())){
     gravityAcceleration += 0.135;
     gravityAcceleration > 20 ? gravityAcceleration = 20 : gravityAcceleration = gravityAcceleration;
     velocity.y += gravityAcceleration;

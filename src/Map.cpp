@@ -28,6 +28,6 @@ sf::Sprite Map::getGroundSprite() {
   return this->ground;
 }
 
-sf::Sprite Map::getLaunchPadSprite() {
+sf::Sprite& Map::getLaunchPadSprite() {
   return this->launchPad;
 }

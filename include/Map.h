@@ -15,7 +15,7 @@ class Map
     Map(sf::RenderWindow &window);
     void drawIn(sf::RenderWindow &window);
     sf::Sprite getGroundSprite();
-    sf::Sprite getLaunchPadSprite();
+    sf::Sprite& getLaunchPadSprite();
 };
 
 
