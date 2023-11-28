@@ -11,7 +11,7 @@ class FuelRefiller : public Entity {
     std::string type;
   public:
     FuelRefiller(sf::Texture &texture, std::string fuelType, sf::View &view);
-    virtual void update(Ship *player);
+    bool checkAndHandleCollision(Ship *player);
 };
 
 #endif
