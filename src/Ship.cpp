@@ -70,6 +70,16 @@ void Ship::handleGravity(Map &mainMap) {
   }
 }
 
+void Ship::increaseCH4(float val) {
+  this->fuelCH4 += val;
+  if(fuelCH4 > 100) {fuelCH4 = 100;}
+}
+
+void Ship::increaseLOX(float val) {
+  this->fuelLOX += val;
+  if(fuelLOX > 350) {fuelLOX = 350;}
+}
+
 float Ship::getCH4() {
   return this->fuelCH4;
 }
