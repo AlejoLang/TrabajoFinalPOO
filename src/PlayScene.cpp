@@ -15,7 +15,7 @@ PlayScene::PlayScene(sf::RenderWindow &window, sf::Font &gameFont)
   background.setOrigin(backgroundTexture.getSize().x / 2.0f, backgroundTexture.getSize().y / 2.0f);
 }
 
-void PlayScene::update() {
+void PlayScene::update(Game &game, sf::RenderWindow &window) {
   playerShip->update(mainMap);
   mainView.setCenter(playerShip->getCenter().x, playerShip->getCenter().y - 350.f);
   mainAsteroidCollection.update(mainView, playerShip);

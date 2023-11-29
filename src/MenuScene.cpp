@@ -3,8 +3,9 @@
 #include <string>
 
 MenuScene::MenuScene(sf::Font &gameFont) {
-  titleText.setFont(gameFont);
-  subtitleText.setFont(gameFont);
+  menuFont = gameFont;
+  titleText.setFont(menuFont);
+  subtitleText.setFont(menuFont);
   titleText.setString("T-24:00:00");
   subtitleText.setString("Presiona <Enter> para jugar");
   titleText.setCharacterSize(72);
@@ -16,7 +17,7 @@ MenuScene::MenuScene(sf::Font &gameFont) {
   subtitleText.setPosition(960, 740);
 }
 
-void MenuScene::update() {
+void MenuScene::update (Game &game, sf::RenderWindow &window) {
   sf::Time timeElapsed = timer.getElapsedTime();
   if(timeElapsed.asSeconds() >= 1.0) {
     countdownSeconds--;
@@ -38,6 +39,9 @@ void MenuScene::update() {
                           + (countdownSeconds >= 10 ? std::to_string(countdownSeconds) : "0" + std::to_string(countdownSeconds));
     titleText.setString(title);
     timer.restart();
+  }
+  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter)){
+    game.changeScene(new PlayScene(window, menuFont));
   }
 }
 

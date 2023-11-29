@@ -7,7 +7,7 @@ Game::Game()
   window.setFramerateLimit(60);
   window.setVerticalSyncEnabled(true);
   if(!gameFont.loadFromFile("./resources/fonts/Roboto-Regular.ttf")){exit(1);}
-  currentScene = new PlayScene(window, gameFont);
+  currentScene = new MenuScene(gameFont);
   nextScene = nullptr;
   srand(time(NULL));
 }
@@ -17,6 +17,11 @@ void Game::Run() {
     handleEvents();
     Update();
     Draw();
+    if(nextScene != nullptr) {
+      delete currentScene;
+      currentScene = nextScene;
+      nextScene = nullptr;
+    }
   }
 }
 
@@ -30,16 +35,19 @@ void Game::handleEvents() {
 }
 
 void Game::Update() {
-  currentScene->update();
+  currentScene->update(*this, window);
 }
 
 void Game::Draw() {
   window.clear();
-  /*Draw Section*/
   currentScene->drawIn(window);
   window.display();
 }
 
+void Game::changeScene(Scene *newScene) {
+  nextScene = newScene;
+}
+
 Game::~Game() {
-  
+  delete currentScene;
 }

@@ -3,12 +3,15 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <math.h>
+#include "Game.h"
 #include "Scene.h"
 #include "Ship.h"
 #include "Hud.h"
 #include "Map.h"
 #include "AsteroidCollection.h"
 #include "FuelRefillerCollection.h"
+
+class Game;
 
 class PlayScene : public Scene {
   private:
@@ -23,7 +26,7 @@ class PlayScene : public Scene {
     fuelRefillerCollection mainRefillerCollection;
   public:
     PlayScene(sf::RenderWindow &window, sf::Font &gameFont);
-    void update() override;
+    void update(Game &game, sf::RenderWindow &window) override;
     void drawIn(sf::RenderWindow &window) override;
     ~PlayScene();
 };
