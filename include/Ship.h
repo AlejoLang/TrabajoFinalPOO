@@ -12,11 +12,12 @@ class Ship : public Entity {
     float gravityAcceleration;
     float fuelLOX;
     float fuelCH4;
-    float altitudKm;
+    float altitudeKm;
     float angularMomentum;
   public:
     Ship(sf::Texture &playerTexture, Map &mainMap, sf::RenderWindow &window);
     void update(Map &mainMap);
+    void updateAltitude();
     void handleTrust();
     void handleRotation();
     void handleGravity(Map &mainMap);

@@ -2,6 +2,7 @@
 #include "Ship.h"
 #include <math.h>
 #include "Collision.h"
+#include <iostream>
 
 Ship::Ship (sf::Texture &playerTexture, Map &mainMap,sf::RenderWindow &window) : Entity(playerTexture){
   entitySprite.setPosition({mainMap.getLaunchPadSprite().getPosition().x, mainMap.getLaunchPadSprite().getPosition().y - mainMap.getLaunchPadSprite().getGlobalBounds().height - entitySprite.getGlobalBounds().height / 2.0f});
@@ -16,7 +17,12 @@ void Ship::update(Map &mainMap) {
   handleTrust();
   calculateDirection();
   handleGravity(mainMap);
+  updateAltitude();
   entitySprite.move(velocity);
+}
+
+void Ship::updateAltitude() {
+  altitudeKm = -(entitySprite.getPosition().y / 2.0f) / 1000.0f;
 }
 
 void Ship::calculateDirection() {
@@ -89,5 +95,5 @@ float Ship::getLOX() {
 }
 
 float Ship::getAltitude() {
-  return this->altitudKm;
+  return this->altitudeKm;
 }
