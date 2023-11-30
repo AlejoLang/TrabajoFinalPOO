@@ -4,13 +4,30 @@
 #include "Collision.h"
 #include <iostream>
 
-Ship::Ship (sf::Texture &playerTexture, Map &mainMap,sf::RenderWindow &window) : Entity(playerTexture){
+Ship::Ship (sf::Texture &playerTexture, Map &mainMap,sf::RenderWindow &window) 
+    : Entity(playerTexture) 
+    , trustAnimationSprite(sf::seconds(0.016), false, false)
+    , explostionAnimationSprite(sf::seconds(0.016), false, true){
   entitySprite.setPosition({mainMap.getLaunchPadSprite().getPosition().x, mainMap.getLaunchPadSprite().getPosition().y - mainMap.getLaunchPadSprite().getGlobalBounds().height - entitySprite.getGlobalBounds().height / 2.0f});
   fuelLOX = 350;
   fuelCH4 = 100;
   acceleration = 0;
   gravityAcceleration = 0;
   velocity = {0, 0};
+
+  if(!animationTextures.loadFromFile("./resources/textures/playerTextures.png")) {exit(1);};
+  trustAnimation.setSpriteSheet(animationTextures);
+  for (int i = 0; i < 12; i++) {
+    trustAnimation.addFrame(sf::IntRect(i * 240, 0, 240, 240));
+    std::cout<<trustAnimation.getFrame(i).left<<std::endl;
+  }
+  explosionAnimation.setSpriteSheet(animationTextures);
+  for (int i = 0; i < 12; i++) {
+    explosionAnimation.addFrame(sf::IntRect(i * 240, 240, 240, 240));
+    std::cout<<explosionAnimation.getFrame(i).getSize().x<<std::endl;
+  }
+
+  trustAnimationSprite.setOrigin({120,120});
 }
 
 void Ship::update(Map &mainMap) {
@@ -19,6 +36,7 @@ void Ship::update(Map &mainMap) {
   handleGravity(mainMap);
   updateAltitude();
   entitySprite.move(velocity);
+  handleTrustAnimation();
 }
 
 void Ship::updateAltitude() {
@@ -38,12 +56,25 @@ void Ship::handleTrust() {
     fuelCH4 -= 0.05;
     acceleration += 0.3;
     angularMomentum += velocity.x / acceleration * 0.25;
+    trustAnimationSprite.play(trustAnimation);
   } else {
-    acceleration -= 0.5;  
+    acceleration -= 0.5;
+    trustAnimationSprite.stop();
+    trustAnimationSprite.setFrame(0);
   }
   angularMomentum += velocity.x / 30.0;
   acceleration = std::max(0.0f, std::min(acceleration, 40.0f));
   velocity -= {velocity.x - acceleration, velocity.y - acceleration};
+}
+
+void Ship::handleTrustAnimation() {
+  float rotationAngle = entitySprite.getRotation() * M_PI / 180;
+  float deltaX = -sin(rotationAngle) * (entitySprite.getTexture()->getSize().y / 2);
+  float deltaY = cos(rotationAngle) * (entitySprite.getTexture()->getSize().y / 2);
+  std::cout<<"ROT: "<<rotationAngle<<" DX: "<<deltaX<<" DY: "<<deltaY<<std::endl;
+  trustAnimationSprite.setPosition(entitySprite.getPosition().x + deltaX, entitySprite.getPosition().y + deltaY);
+  trustAnimationSprite.setRotation(entitySprite.getRotation());
+  trustAnimationSprite.update(sf::seconds(0.016));
 }
 
 void Ship::handleRotation() {
@@ -96,4 +127,9 @@ float Ship::getLOX() {
 
 float Ship::getAltitude() {
   return this->altitudeKm;
+}
+
+void Ship::drawIn(sf::RenderWindow &window) {
+  window.draw(trustAnimationSprite);
+  window.draw(entitySprite);
 }

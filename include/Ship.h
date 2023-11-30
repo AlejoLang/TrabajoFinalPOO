@@ -4,6 +4,7 @@
 #include "Entity.h"
 #include "Map.h"
 #include "Asteroid.h"
+#include "AnimatedSprite.h"
 
 class Ship : public Entity {
   private:
@@ -14,6 +15,12 @@ class Ship : public Entity {
     float fuelCH4;
     float altitudeKm;
     float angularMomentum;
+    sf::Texture animationTextures;
+    Animation trustAnimation;
+    AnimatedSprite trustAnimationSprite;
+    Animation explosionAnimation;
+    Animation* currentAnimation;
+    AnimatedSprite explostionAnimationSprite;
   public:
     Ship(sf::Texture &playerTexture, Map &mainMap, sf::RenderWindow &window);
     void update(Map &mainMap);
@@ -21,12 +28,14 @@ class Ship : public Entity {
     void handleTrust();
     void handleRotation();
     void handleGravity(Map &mainMap);
+    void handleTrustAnimation();
     void calculateDirection();
     void increaseLOX(float val);
     void increaseCH4(float val);
     float getLOX();
     float getCH4();
     float getAltitude();
+    void drawIn(sf::RenderWindow &window) override;
 };
 
 #endif
