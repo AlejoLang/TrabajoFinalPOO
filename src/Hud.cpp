@@ -44,7 +44,7 @@ void Hud::updateAltitudeText(Ship *playerShip, sf::View &view) {
   stream << std::fixed << std::setprecision(2) << std::setw(7) << std::setfill('0') << playerShip->getAltitudeKm();
   std::string alt = stream.str();
   altitudeText.setString("Altitude: " + alt);
-  altitudeText.setPosition({view.getCenter().x - view.getSize().x / 2.0f + 100, view.getCenter().y + view.getSize().y / 2.0f - 100});
+  altitudeText.setPosition({view.getCenter().x - view.getSize().x / 2.0f + 30, view.getCenter().y + view.getSize().y / 2.0f - 100});
   altitudeUnitsText.setPosition(altitudeText.getPosition().x + altitudeTextPadd + 10, altitudeText.getPosition().y);
 }
 
@@ -53,7 +53,7 @@ void Hud::updateVelocityText(Ship *playerShip, sf::View &view) {
   stream << std::fixed << std::setprecision(2) << std::setw(7) << std::setfill('0') << playerShip->getVelocityKm_H();
   std::string alt = stream.str();
   velocityText.setString("Velocity: " + alt);
-  velocityText.setPosition({view.getCenter().x - view.getSize().x / 2.0f + 100, view.getCenter().y + view.getSize().y / 2.0f - 150});
+  velocityText.setPosition({view.getCenter().x - view.getSize().x / 2.0f + 30, view.getCenter().y + view.getSize().y / 2.0f - 150});
   velocityUnitsText.setPosition(velocityText.getPosition().x + velocityTextPadd + 10, velocityText.getPosition().y);
 }
 

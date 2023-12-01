@@ -8,9 +8,9 @@ Indicator::Indicator(sf::Font &textFont, std::string text, float base) {
   indicatorRect.setFillColor(sf::Color::White);
   indicatorRect.setSize({-200, 10});
   indicatorRect.setOrigin({0, indicatorRect.getSize().y / 2.0f});
-  indicatorRectOut.setOutlineColor(sf::Color::Red);
+  indicatorRectOut.setOutlineColor(sf::Color::Blue);
   indicatorRectOut.setFillColor(sf::Color::Transparent);
-  indicatorRectOut.setOutlineThickness(2);
+  indicatorRectOut.setOutlineThickness(3);
   indicatorRectOut.setSize({-200, 10});
   indicatorRectOut.setOrigin({0, indicatorRectOut.getSize().y / 2.0f});
   baseMagnitude = base;
@@ -22,7 +22,7 @@ void Indicator::update(float val) {
 
 void Indicator::setPos(sf::Vector2f pos) {
   indicatorText.setPosition(pos);
-  indicatorRect.setPosition(pos.x -= 10, pos.y - indicatorText.getGlobalBounds().height / 2.0f + 5);
+  indicatorRect.setPosition(pos.x -= 10, pos.y - indicatorText.getGlobalBounds().height / 2.0f - 2);
   indicatorRectOut.setPosition(indicatorRect.getPosition().x, indicatorRect.getPosition().y);
 }
 
