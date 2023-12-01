@@ -2,8 +2,8 @@
 #include "MenuScene.h"
 #include <string>
 
-MenuScene::MenuScene(sf::Font &gameFont) {
-  menuFont = gameFont;
+MenuScene::MenuScene() {
+  menuFont.loadFromFile("./resources/fonts/Roboto-Regular.ttf");
   titleText.setFont(menuFont);
   subtitleText.setFont(menuFont);
   titleText.setString("T-24:00:00");
@@ -46,6 +46,7 @@ void MenuScene::update (Game &game, sf::RenderWindow &window) {
 }
 
 void MenuScene::drawIn(sf::RenderWindow &window) {
+  window.setView(window.getDefaultView());
   window.draw(titleText);
   window.draw(subtitleText);
 }
