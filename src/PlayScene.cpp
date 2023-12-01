@@ -44,7 +44,7 @@ void PlayScene::drawIn(sf::RenderWindow &window) {
 }
 
 void PlayScene::updatePoints() {
-  points = (playerShip->getAltitude() * 100) + ((playerShip->getCH4() + playerShip->getLOX()) * 0.5);
+  points = (playerShip->getAltitudeKm() * 100) + ((playerShip->getCH4() + playerShip->getLOX()) * 0.5);
 }
 
 PlayScene::~PlayScene() {
