@@ -23,6 +23,7 @@ class PlayScene : public Scene {
     Hud mainHud;
     AsteroidCollection mainAsteroidCollection;
     fuelRefillerCollection mainRefillerCollection;
+    int deadFrameCount;
   public:
     PlayScene(sf::RenderWindow &window, sf::Font &gameFont);
     void update(Game &game, sf::RenderWindow &window) override;

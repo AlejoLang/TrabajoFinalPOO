@@ -31,11 +31,6 @@ Ship::Ship (sf::Texture &playerTexture, Map &mainMap,sf::RenderWindow &window)
 void Ship::update(Map &mainMap) {
   if(!isAlive) {
     explostionAnimationSprite.update(sf::seconds(0.016));
-    if(deadFrameCount < 12){
-
-    } else {
-      deadFrameCount++;
-    }
   } else {
     handleTrust();
     calculateDirection();

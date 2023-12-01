@@ -22,7 +22,6 @@ class Ship : public Entity {
     Animation* currentAnimation;
     AnimatedSprite explostionAnimationSprite;
     bool isAlive;
-    int deadFrameCount;
   public:
     Ship(sf::Texture &playerTexture, Map &mainMap, sf::RenderWindow &window);
     void update(Map &mainMap);

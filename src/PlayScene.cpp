@@ -13,6 +13,7 @@ PlayScene::PlayScene(sf::RenderWindow &window, sf::Font &gameFont)
   playerShip = new Ship(playerTexture, mainMap, window);
   background.setTexture(backgroundTexture);
   background.setOrigin(backgroundTexture.getSize().x / 2.0f, backgroundTexture.getSize().y / 2.0f);
+  deadFrameCount = 0;
 }
 
 void PlayScene::update(Game &game, sf::RenderWindow &window) {
@@ -23,7 +24,11 @@ void PlayScene::update(Game &game, sf::RenderWindow &window) {
   mainHud.update(playerShip, mainView);
   background.setPosition(mainView.getCenter());
   if(!playerShip->getStatus()){
-    game.changeScene(new DeathScene());
+    if(deadFrameCount > 12) {
+      game.changeScene(new DeathScene());
+    } else {
+      deadFrameCount++;
+    }
   }
 }
 
