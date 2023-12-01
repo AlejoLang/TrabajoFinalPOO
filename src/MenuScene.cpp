@@ -3,7 +3,7 @@
 #include <string>
 
 MenuScene::MenuScene() {
-  menuFont.loadFromFile("./resources/fonts/Roboto-Regular.ttf");
+  menuFont.loadFromFile("./resources/fonts/RetroGaming.ttf");
   titleText.setFont(menuFont);
   subtitleText.setFont(menuFont);
   titleText.setString("T-24:00:00");
