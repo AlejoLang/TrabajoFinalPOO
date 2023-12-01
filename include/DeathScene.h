@@ -10,10 +10,9 @@ class DeathScene : public Scene{
   private:
     sf::Font sceneFont;
     sf::Text mainText;
-    sf::Text backText;
-    sf::RectangleShape button;
+    sf::Text pointsText;
   public:
-    DeathScene();
+    DeathScene(sf::RenderWindow &window, int points);
     void update(Game &game, sf::RenderWindow &window) override;
     void drawIn(sf::RenderWindow &window) override;
 };

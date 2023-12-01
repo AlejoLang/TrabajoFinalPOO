@@ -23,9 +23,10 @@ void PlayScene::update(Game &game, sf::RenderWindow &window) {
   mainRefillerCollection.update(mainView, playerShip);
   mainHud.update(playerShip, mainView);
   background.setPosition(mainView.getCenter());
+  updatePoints();
   if(!playerShip->getStatus()){
     if(deadFrameCount > 12) {
-      game.changeScene(new DeathScene());
+      game.changeScene(new DeathScene(window, points));
     } else {
       deadFrameCount++;
     }
@@ -42,6 +43,9 @@ void PlayScene::drawIn(sf::RenderWindow &window) {
   mainHud.draw(window);
 }
 
+void PlayScene::updatePoints() {
+  points = (playerShip->getAltitude() * 100) + ((playerShip->getCH4() + playerShip->getLOX()) * 0.5);
+}
 
 PlayScene::~PlayScene() {
   delete playerShip;

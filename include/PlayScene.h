@@ -24,10 +24,13 @@ class PlayScene : public Scene {
     AsteroidCollection mainAsteroidCollection;
     fuelRefillerCollection mainRefillerCollection;
     int deadFrameCount;
+    int points;
   public:
     PlayScene(sf::RenderWindow &window, sf::Font &gameFont);
     void update(Game &game, sf::RenderWindow &window) override;
     void drawIn(sf::RenderWindow &window) override;
+    void updatePoints();
+    void reducePoints(float val);
     ~PlayScene();
 };
 
