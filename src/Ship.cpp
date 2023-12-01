@@ -7,36 +7,43 @@
 Ship::Ship (sf::Texture &playerTexture, Map &mainMap,sf::RenderWindow &window) 
     : Entity(playerTexture) 
     , trustAnimationSprite(sf::seconds(0.016), false, false)
-    , explostionAnimationSprite(sf::seconds(0.016), false, true){
+    , explostionAnimationSprite(sf::seconds(0.016), false, false){
   entitySprite.setPosition({mainMap.getLaunchPadSprite().getPosition().x, mainMap.getLaunchPadSprite().getPosition().y - mainMap.getLaunchPadSprite().getGlobalBounds().height - entitySprite.getGlobalBounds().height / 2.0f});
   fuelLOX = 350;
   fuelCH4 = 100;
   acceleration = 0;
   gravityAcceleration = 0;
   velocity = {0, 0};
-
+  isAlive = true;
   if(!animationTextures.loadFromFile("./resources/textures/playerTextures.png")) {exit(1);};
   trustAnimation.setSpriteSheet(animationTextures);
   for (int i = 0; i < 12; i++) {
     trustAnimation.addFrame(sf::IntRect(i * 240, 0, 240, 240));
-    std::cout<<trustAnimation.getFrame(i).left<<std::endl;
   }
   explosionAnimation.setSpriteSheet(animationTextures);
   for (int i = 0; i < 12; i++) {
     explosionAnimation.addFrame(sf::IntRect(i * 240, 240, 240, 240));
-    std::cout<<explosionAnimation.getFrame(i).getSize().x<<std::endl;
   }
 
   trustAnimationSprite.setOrigin({120,120});
 }
 
 void Ship::update(Map &mainMap) {
-  handleTrust();
-  calculateDirection();
-  handleGravity(mainMap);
-  updateAltitude();
-  entitySprite.move(velocity);
-  handleTrustAnimation();
+  if(!isAlive) {
+    explostionAnimationSprite.update(sf::seconds(0.016));
+    if(deadFrameCount < 12){
+
+    } else {
+      deadFrameCount++;
+    }
+  } else {
+    handleTrust();
+    calculateDirection();
+    handleGravity(mainMap);
+    updateAltitude();
+    entitySprite.move(velocity);
+    handleTrustAnimation();
+  }
 }
 
 void Ship::updateAltitude() {
@@ -71,7 +78,6 @@ void Ship::handleTrustAnimation() {
   float rotationAngle = entitySprite.getRotation() * M_PI / 180;
   float deltaX = -sin(rotationAngle) * (entitySprite.getTexture()->getSize().y / 2);
   float deltaY = cos(rotationAngle) * (entitySprite.getTexture()->getSize().y / 2);
-  std::cout<<"ROT: "<<rotationAngle<<" DX: "<<deltaX<<" DY: "<<deltaY<<std::endl;
   trustAnimationSprite.setPosition(entitySprite.getPosition().x + deltaX, entitySprite.getPosition().y + deltaY);
   trustAnimationSprite.setRotation(entitySprite.getRotation());
   trustAnimationSprite.update(sf::seconds(0.016));
@@ -130,6 +136,21 @@ float Ship::getAltitude() {
 }
 
 void Ship::drawIn(sf::RenderWindow &window) {
-  window.draw(trustAnimationSprite);
-  window.draw(entitySprite);
+  if(!isAlive) {
+    window.draw(explostionAnimationSprite);
+  } else {
+    window.draw(trustAnimationSprite);
+    window.draw(entitySprite);
+  }
+}
+
+void Ship::explode() {
+  isAlive = false;
+  explostionAnimationSprite.play(explosionAnimation);
+  explostionAnimationSprite.setOrigin({120, 120});
+  explostionAnimationSprite.setPosition(entitySprite.getPosition());
+}
+
+bool Ship::getStatus() {
+  return this->isAlive;
 }

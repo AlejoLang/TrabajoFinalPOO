@@ -21,6 +21,8 @@ class Ship : public Entity {
     Animation explosionAnimation;
     Animation* currentAnimation;
     AnimatedSprite explostionAnimationSprite;
+    bool isAlive;
+    int deadFrameCount;
   public:
     Ship(sf::Texture &playerTexture, Map &mainMap, sf::RenderWindow &window);
     void update(Map &mainMap);
@@ -35,7 +37,9 @@ class Ship : public Entity {
     float getLOX();
     float getCH4();
     float getAltitude();
+    bool getStatus();
     void drawIn(sf::RenderWindow &window) override;
+    void explode();
 };
 
 #endif
