@@ -8,9 +8,18 @@ class Hud {
   private:
     Indicator fuelLOXIndicator;
     Indicator fuelCH4Indicator;
+    sf::Text velocityText;
+    sf::Text velocityUnitsText;
+    float velocityTextPadd;
+    sf::Text altitudeText;
+    sf::Text altitudeUnitsText;
+    float altitudeTextPadd;
   public:
     Hud(sf::Font &font);
-    void update(Ship *ship, sf::View &view);
+    void update(Ship *playerShip, sf::View &view);
+    void updateIndicators(Ship *playerShip, sf::View &view);
+    void updateAltitudeText(Ship *playerShip, sf::View &view);
+    void updateVelocityText(Ship *playerShip, sf::View &view);
     void draw(sf::RenderWindow &window);
 };
 
