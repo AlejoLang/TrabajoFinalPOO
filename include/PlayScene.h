@@ -5,13 +5,12 @@
 #include <math.h>
 #include "Game.h"
 #include "Scene.h"
+#include "DeathScene.h"
 #include "Ship.h"
 #include "Hud.h"
 #include "Map.h"
 #include "AsteroidCollection.h"
 #include "FuelRefillerCollection.h"
-
-class Game;
 
 class PlayScene : public Scene {
   private:
