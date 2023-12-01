@@ -128,8 +128,16 @@ float Ship::getLOX() {
   return this->fuelLOX;
 }
 
-float Ship::getAltitude() {
+float Ship::getAltitudeKm() {
   return this->currentAltitudeKm;
+}
+
+float Ship::getVelocityKm_H() {
+  float velocity = std::sqrt(std::pow(this->velocity.x, 2) + std::pow(this->velocity.y, 2));
+  velocity /= 0.016; /*Convert to pixels / seconds */
+  velocity /= 2; /*Convert to m/s (1m = 2px)*/
+  velocity *= 3.6; /*Convert to Km/h*/
+  return velocity;
 }
 
 void Ship::drawIn(sf::RenderWindow &window) {

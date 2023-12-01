@@ -37,7 +37,8 @@ class Ship : public Entity {
     void checkForDeath(Map &mainMap);
     float getLOX();
     float getCH4();
-    float getAltitude();
+    float getAltitudeKm();
+    float getVelocityKm_H();
     bool getStatus();
     void drawIn(sf::RenderWindow &window) override;
     void explode();
