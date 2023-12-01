@@ -22,6 +22,9 @@ void PlayScene::update(Game &game, sf::RenderWindow &window) {
   mainRefillerCollection.update(mainView, playerShip);
   mainHud.update(playerShip, mainView);
   background.setPosition(mainView.getCenter());
+  if(!playerShip->getStatus()){
+    game.changeScene(new DeathScene());
+  }
 }
 
 void PlayScene::drawIn(sf::RenderWindow &window) {
