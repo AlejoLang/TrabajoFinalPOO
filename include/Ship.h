@@ -13,7 +13,8 @@ class Ship : public Entity {
     float gravityAcceleration;
     float fuelLOX;
     float fuelCH4;
-    float altitudeKm;
+    float currentAltitudeKm;
+    float maxAltitudeKm;
     float angularMomentum;
     sf::Texture animationTextures;
     Animation trustAnimation;
@@ -33,6 +34,7 @@ class Ship : public Entity {
     void calculateDirection();
     void increaseLOX(float val);
     void increaseCH4(float val);
+    void checkForDeath(Map &mainMap);
     float getLOX();
     float getCH4();
     float getAltitude();

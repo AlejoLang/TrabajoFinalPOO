@@ -36,13 +36,15 @@ void Ship::update(Map &mainMap) {
     calculateDirection();
     handleGravity(mainMap);
     updateAltitude();
+    checkForDeath(mainMap);
     entitySprite.move(velocity);
     handleTrustAnimation();
   }
 }
 
 void Ship::updateAltitude() {
-  altitudeKm = -(entitySprite.getPosition().y / 2.0f) / 1000.0f;
+  currentAltitudeKm = -(entitySprite.getPosition().y / 2.0f) / 1000.0f;
+  maxAltitudeKm = std::max(currentAltitudeKm, maxAltitudeKm);
 }
 
 void Ship::calculateDirection() {
@@ -127,7 +129,7 @@ float Ship::getLOX() {
 }
 
 float Ship::getAltitude() {
-  return this->altitudeKm;
+  return this->currentAltitudeKm;
 }
 
 void Ship::drawIn(sf::RenderWindow &window) {
@@ -148,4 +150,13 @@ void Ship::explode() {
 
 bool Ship::getStatus() {
   return this->isAlive;
+}
+
+void Ship::checkForDeath(Map &mainMap){
+  if(entitySprite.getGlobalBounds().intersects(mainMap.getGroundSprite().getGlobalBounds())){
+    this->explode();
+  }
+  if(maxAltitudeKm - currentAltitudeKm > 0.5) {
+    this->explode();
+  }
 }
