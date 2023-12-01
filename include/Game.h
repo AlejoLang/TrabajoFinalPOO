@@ -8,10 +8,10 @@
 class Game {
   private:
     sf::RenderWindow window;
-    sf::Font gameFont;
     Scene *currentScene;
     Scene *nextScene;
   public:
+    sf::Font gameFont;
     Game();
     void Run();
     void handleEvents();
