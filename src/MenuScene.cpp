@@ -1,11 +1,15 @@
 #include <SFML/Graphics.hpp>
 #include "MenuScene.h"
 #include <string>
+#include <iostream>
 
-MenuScene::MenuScene() {
-  menuFont.loadFromFile("./resources/fonts/RetroGaming.ttf");
-  titleText.setFont(menuFont);
-  subtitleText.setFont(menuFont);
+MenuScene::MenuScene(sf::RenderWindow &window) 
+          : goToPlayButton("Play") 
+          , exitButton("Exit")
+{
+  this->sceneFont.loadFromFile("./resources/fonts/RetroGaming.ttf");
+  titleText.setFont(sceneFont);
+  subtitleText.setFont(sceneFont);
   titleText.setString("T-24:00:00");
   subtitleText.setString("Presiona <Enter> para jugar");
   titleText.setCharacterSize(72);
@@ -14,7 +18,8 @@ MenuScene::MenuScene() {
   titleText.setFillColor(sf::Color::White);
   subtitleText.setFillColor(sf::Color::White);
   titleText.setPosition(960, 540);
-  subtitleText.setPosition(960, 740);
+  goToPlayButton.setPos({960, 640});
+  exitButton.setPos({960, 740});
 }
 
 void MenuScene::update (Game &game, sf::RenderWindow &window) {
@@ -40,8 +45,13 @@ void MenuScene::update (Game &game, sf::RenderWindow &window) {
     titleText.setString(title);
     timer.restart();
   }
-  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter)){
-    game.changeScene(new PlayScene(window, menuFont));
+  goToPlayButton.update(window);
+  exitButton.update(window);
+  if(goToPlayButton.isClicked(window)) {
+    game.changeScene(new PlayScene(window));
+  }
+  if(exitButton.isClicked(window)) {
+    window.close();
   }
 }
 
@@ -49,4 +59,6 @@ void MenuScene::drawIn(sf::RenderWindow &window) {
   window.setView(window.getDefaultView());
   window.draw(titleText);
   window.draw(subtitleText);
+  goToPlayButton.drawIn(window);
+  exitButton.drawIn(window);
 }
