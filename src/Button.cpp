@@ -4,7 +4,7 @@
 Button::Button(std::string btnText){
   this->buttonFont.loadFromFile("./resources/fonts/RetroGaming.ttf");
   this->buttonText.setFont(buttonFont);
-  this->buttonText.setCharacterSize(24);
+  this->buttonText.setCharacterSize(36);
   this->buttonText.setString(btnText);
   this->buttonText.setColor(sf::Color::White);
   this->buttonText.setOrigin(this->buttonText.getGlobalBounds().width / 2.0f, this->buttonText.getGlobalBounds().height / 2.0f);
@@ -25,7 +25,7 @@ void Button::update(sf::RenderWindow &window) {
 
 void Button::setPos(sf::Vector2f pos) {
   this->buttonText.setPosition(pos);
-  this->buttonBox.setPosition(pos);
+  this->buttonBox.setPosition({pos.x, pos.y + 10});
 }
 
 bool Button::isClicked(sf::RenderWindow &window) {
