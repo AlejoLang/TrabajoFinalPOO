@@ -26,7 +26,7 @@ class PlayScene : public Scene {
     int deadFrameCount;
     int points;
   public:
-    PlayScene(sf::RenderWindow &window, sf::Font &gameFont);
+    PlayScene(sf::RenderWindow &window);
     void update(Game &game, sf::RenderWindow &window) override;
     void drawIn(sf::RenderWindow &window) override;
     void updatePoints();

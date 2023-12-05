@@ -3,24 +3,25 @@
 #include <sstream>
 #include <iomanip>
 
-Hud::Hud (sf::Font &font)
-    : fuelCH4Indicator(font, "CH4", 100)
-    , fuelLOXIndicator(font, "LOX", 350) {
+Hud::Hud ()
+    : fuelCH4Indicator("CH4", 100)
+    , fuelLOXIndicator("LOX", 350) {
+  hudFont.loadFromFile("./resources/fonts/RetroGaming.ttf");
   altitudeText.setString("Altitude: 0000.00");
-  altitudeText.setFont(font);
+  altitudeText.setFont(hudFont);
   altitudeText.setCharacterSize(24);
   altitudeText.setOrigin({0, altitudeText.getGlobalBounds().height / 2.0f});
   altitudeUnitsText.setString("Km");
-  altitudeUnitsText.setFont(font);
+  altitudeUnitsText.setFont(hudFont);
   altitudeUnitsText.setCharacterSize(24);
   altitudeUnitsText.setOrigin({0, altitudeUnitsText.getGlobalBounds().height / 2.0f});
   altitudeTextPadd = altitudeText.getGlobalBounds().width;
   velocityText.setString("Velocity: 0000.00");
-  velocityText.setFont(font);
+  velocityText.setFont(hudFont);
   velocityText.setCharacterSize(24);
   velocityText.setOrigin({0, velocityText.getGlobalBounds().height / 2.0f});
   velocityUnitsText.setString("Km/H");
-  velocityUnitsText.setFont(font);
+  velocityUnitsText.setFont(hudFont);
   velocityUnitsText.setCharacterSize(24);
   velocityUnitsText.setOrigin({0, velocityText.getGlobalBounds().height / 2.0f});
   velocityTextPadd = velocityText.getGlobalBounds().width;

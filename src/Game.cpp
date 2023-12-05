@@ -6,7 +6,7 @@ Game::Game()
     : window(sf::VideoMode(1920, 1080), "Juego")
 {
   window.setFramerateLimit(60);
-  currentScene = new MenuScene();
+  currentScene = new MenuScene(window);
   nextScene = nullptr;
   srand(time(NULL));
 }

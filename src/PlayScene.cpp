@@ -2,12 +2,13 @@
 #include "PlayScene.h"
 #include <random>
 #include "Collision.h"
+#include <iostream>
 
-PlayScene::PlayScene(sf::RenderWindow &window, sf::Font &gameFont) 
+PlayScene::PlayScene(sf::RenderWindow &window) 
           : mainMap(window)
           , mainView(window.getDefaultView())
-          , mainHud(gameFont)
-{
+{ 
+  this->sceneFont.loadFromFile("./resources/fonts/RetroGaming.ttf");
   if(!playerTexture.loadFromFile("./resources/textures/Starship.png")){ exit(1); }
   if(!backgroundTexture.loadFromFile("./resources/textures/Background.png")) { exit(1); }
   playerShip = new Ship(playerTexture, mainMap, window);
@@ -48,6 +49,8 @@ void PlayScene::updatePoints() {
 }
 
 PlayScene::~PlayScene() {
-  delete playerShip;
-  
+  if (playerShip != nullptr) {
+    delete playerShip;
+    playerShip = nullptr;  // Evitar problemas de doble eliminación
+  }
 }

@@ -11,7 +11,6 @@ class Game {
     Scene *currentScene;
     Scene *nextScene;
   public:
-    sf::Font gameFont;
     Game();
     void Run();
     void handleEvents();

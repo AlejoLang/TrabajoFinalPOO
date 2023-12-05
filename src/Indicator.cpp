@@ -1,8 +1,9 @@
 #include "Indicator.h"
 #include <iostream>
 
-Indicator::Indicator(sf::Font &textFont, std::string text, float base) {
-  indicatorText.setFont(textFont);
+Indicator::Indicator(std::string text, float base) {
+  indicatorFont.loadFromFile("./resources/fonts/RetroGaming.ttf");
+  indicatorText.setFont(indicatorFont);
   indicatorText.setString(text);
   indicatorText.setOrigin({0, indicatorText.getGlobalBounds().width / 2.0f});
   indicatorRect.setFillColor(sf::Color::White);

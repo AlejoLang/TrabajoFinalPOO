@@ -18,7 +18,7 @@ DeathScene::DeathScene(sf::RenderWindow &window, int points) {
 
 void DeathScene::update(Game &game, sf::RenderWindow &window) {
   if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape)){
-    game.changeScene(new MenuScene());
+    game.changeScene(new MenuScene(window));
   }
 }
 

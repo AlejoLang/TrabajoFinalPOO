@@ -6,6 +6,8 @@
 class Game;
 
 class Scene {
+  protected:
+    sf::Font sceneFont;
   public:
     virtual void update(Game &game, sf::RenderWindow &window) = 0;
     virtual void drawIn(sf::RenderWindow &window) = 0;
