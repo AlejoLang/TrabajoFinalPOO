@@ -16,7 +16,10 @@ class PlayScene : public Scene {
   private:
     sf::View mainView;
     sf::Texture playerTexture;
-    sf::Texture backgroundTexture;
+    sf::Texture lowAltitudeBackgroundTexture;
+    sf::Texture midAltitudeBackgroundTexture;
+    sf::Texture highAltitudeBackgroundTexture;
+    sf::Texture spaceBackgroundTexture;
     sf::Sprite background;
     Ship *playerShip;
     Map mainMap;
@@ -29,6 +32,7 @@ class PlayScene : public Scene {
     PlayScene(sf::RenderWindow &window);
     void update(Game &game, sf::RenderWindow &window) override;
     void drawIn(sf::RenderWindow &window) override;
+    void updateBackground(sf::RenderWindow &window, float altitude);
     void updatePoints();
     void reducePoints(float val);
     ~PlayScene();

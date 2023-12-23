@@ -10,10 +10,13 @@ PlayScene::PlayScene(sf::RenderWindow &window)
 { 
   this->sceneFont.loadFromFile("./resources/fonts/RetroGaming.ttf");
   if(!playerTexture.loadFromFile("./resources/textures/Starship.png")){ exit(1); }
-  if(!backgroundTexture.loadFromFile("./resources/textures/Background.png")) { exit(1); }
+  if(!lowAltitudeBackgroundTexture.loadFromFile("./resources/textures/lowAltitudeSky.png")) { exit(1); }
+  if(!midAltitudeBackgroundTexture.loadFromFile("./resources/textures/midAltitudeSky.png")) { exit(1); }
+  if(!highAltitudeBackgroundTexture.loadFromFile("./resources/textures/highAltitudeSky.png")) { exit(1); }
+  if(!spaceBackgroundTexture.loadFromFile("./resources/textures/spaceSky.png")) { exit(1); }
   playerShip = new Ship(playerTexture, mainMap, window);
-  background.setTexture(backgroundTexture);
-  background.setOrigin(backgroundTexture.getSize().x / 2.0f, backgroundTexture.getSize().y / 2.0f);
+  background.setTexture(lowAltitudeBackgroundTexture);
+  background.setOrigin(lowAltitudeBackgroundTexture.getSize().x / 2.0f, lowAltitudeBackgroundTexture.getSize().y / 2.0f);
   deadFrameCount = 0;
 }
 
@@ -23,7 +26,7 @@ void PlayScene::update(Game &game, sf::RenderWindow &window) {
   mainAsteroidCollection.update(mainView, playerShip);
   mainRefillerCollection.update(mainView, playerShip);
   mainHud.update(playerShip, mainView);
-  background.setPosition(mainView.getCenter());
+  updateBackground(window, playerShip->getAltitudeKm());
   updatePoints();
   if(!playerShip->getStatus()){
     if(deadFrameCount > 12) {
@@ -32,6 +35,19 @@ void PlayScene::update(Game &game, sf::RenderWindow &window) {
       deadFrameCount++;
     }
   }
+}
+
+void PlayScene::updateBackground(sf::RenderWindow &window, float altitude) {
+  if(altitude < 0.5) {
+    background.setTexture(lowAltitudeBackgroundTexture);
+  } else if( altitude < 2) {
+    background.setTexture(midAltitudeBackgroundTexture);
+  } else if (altitude < 3) {
+    background.setTexture(highAltitudeBackgroundTexture);
+  } else if(altitude < 4){
+    background.setTexture(spaceBackgroundTexture);
+  }
+  background.setPosition(mainView.getCenter());
 }
 
 void PlayScene::drawIn(sf::RenderWindow &window) {
@@ -51,6 +67,6 @@ void PlayScene::updatePoints() {
 PlayScene::~PlayScene() {
   if (playerShip != nullptr) {
     delete playerShip;
-    playerShip = nullptr;  // Evitar problemas de doble eliminación
+    playerShip = nullptr;
   }
 }
