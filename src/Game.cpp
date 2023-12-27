@@ -4,11 +4,13 @@
 
 Game::Game() 
     : window(sf::VideoMode(1920, 1080), "Juego")
+    , gameHighscores ("./Highscores.dat")
 {
   window.setFramerateLimit(60);
   currentScene = new MenuScene(window);
   nextScene = nullptr;
   srand(time(NULL));
+  std::strcpy(username, "Player");
 }
 
 void Game::Run() {

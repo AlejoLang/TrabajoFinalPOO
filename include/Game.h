@@ -4,6 +4,8 @@
 #include "Scene.h"
 #include "PlayScene.h"
 #include "MenuScene.h"
+#include "Highscore.h"
+#include <cstring>
 
 class Game {
   private:
@@ -11,6 +13,8 @@ class Game {
     Scene *currentScene;
     Scene *nextScene;
   public:
+    Highscore gameHighscores;
+    char username[20];
     Game();
     void Run();
     void handleEvents();
