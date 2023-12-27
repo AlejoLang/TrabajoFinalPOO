@@ -30,7 +30,7 @@ void PlayScene::update(Game &game, sf::RenderWindow &window) {
   updatePoints();
   if(!playerShip->getStatus()){
     if(deadFrameCount > 12) {
-      game.changeScene(new DeathScene(window, points));
+      game.changeScene(new DeathScene(game, window, points));
     } else {
       deadFrameCount++;
     }
