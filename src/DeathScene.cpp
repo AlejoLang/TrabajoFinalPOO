@@ -1,7 +1,8 @@
 #include "DeathScene.h"
+#include <vector>
 #include <iostream>
 
-DeathScene::DeathScene(sf::RenderWindow &window, int points) 
+DeathScene::DeathScene(Game &game, sf::RenderWindow &window, int points) 
           : backToMenu("Menu")
           , restartGame("Restart")
 {
@@ -19,17 +20,29 @@ DeathScene::DeathScene(sf::RenderWindow &window, int points)
   pointsText.setPosition(mainText.getPosition().x, mainText.getPosition().y + mainText.getGlobalBounds().height + pointsText.getGlobalBounds().height);
   backToMenu.setPos({pointsText.getPosition().x, pointsText.getPosition().y + 100});
   restartGame.setPos({pointsText.getPosition().x, pointsText.getPosition().y + 180});
+  updateHighscores(game, points);
 }
 
 void DeathScene::update(Game &game, sf::RenderWindow &window) {
   backToMenu.update(window);
   restartGame.update(window);
   if(backToMenu.isClicked(window)){
+    std::vector <HighscoreStruct> aux = game.gameHighscores.getHighscores();
+    for (int i = 0; i < aux.size(); i++)
+    {
+      std::cout<<aux[i].username<<" "<<aux[i].points<<std::endl;
+    }
+    
     game.changeScene(new MenuScene(window));
   }
   if(restartGame.isClicked(window)){
     game.changeScene(new PlayScene(window));
   }
+}
+
+void DeathScene::updateHighscores(Game &game, int points) {
+  HighscoreStruct newHs(game.username, points);
+  game.gameHighscores.addScore(newHs);
 }
 
 void DeathScene::drawIn(sf::RenderWindow &window) {
