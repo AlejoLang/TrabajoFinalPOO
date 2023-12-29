@@ -4,6 +4,10 @@ bool operator < (HighscoreStruct hs1, HighscoreStruct hs2) {
   return hs1.points < hs2.points;
 }
 
+bool cmp (HighscoreStruct hs1, HighscoreStruct hs2) {
+  return hs1.points > hs2.points;
+}
+
 Highscore::Highscore(std::string filePath) {
   this->path = filePath;
   std::ifstream highscoreFile(filePath, std::ios::binary | std::ios::in | std::ios::ate);
@@ -24,7 +28,7 @@ Highscore::Highscore(std::string filePath) {
 
 void Highscore::addScore(HighscoreStruct toAdd) {
   highscoreVector.push_back(toAdd);
-  std::sort(highscoreVector.begin(), highscoreVector.end());
+  std::sort(highscoreVector.begin(), highscoreVector.end(), cmp);
   if(highscoreVector.size() > 10) { highscoreVector.resize(10); }
   this->saveFile();
 }
