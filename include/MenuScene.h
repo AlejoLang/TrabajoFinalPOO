@@ -4,6 +4,7 @@
 #include "Game.h"
 #include "Scene.h"
 #include "PlayScene.h"
+#include "HighscoresScene.h"
 #include "Button.h"
 
 class MenuScene : public Scene{
@@ -17,6 +18,7 @@ class MenuScene : public Scene{
     int countdownSeconds = 0;
     Button goToPlayButton;
     Button exitButton;
+    Button goToHighscoresButton;
   public:
     MenuScene(sf::RenderWindow &window);
     void update(Game &game, sf::RenderWindow &window) override;

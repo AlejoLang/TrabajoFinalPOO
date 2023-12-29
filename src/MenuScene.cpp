@@ -6,6 +6,7 @@
 MenuScene::MenuScene(sf::RenderWindow &window) 
           : goToPlayButton("Play") 
           , exitButton("Exit")
+          , goToHighscoresButton("Highscores")
 {
   this->sceneFont.loadFromFile("./resources/fonts/RetroGaming.ttf");
   titleText.setFont(sceneFont);
@@ -19,7 +20,8 @@ MenuScene::MenuScene(sf::RenderWindow &window)
   subtitleText.setFillColor(sf::Color::White);
   titleText.setPosition(960, 540);
   goToPlayButton.setPos({960, 640});
-  exitButton.setPos({960, 740});
+  goToHighscoresButton.setPos({960, 740});
+  exitButton.setPos({960, 840});
 }
 
 void MenuScene::update (Game &game, sf::RenderWindow &window) {
@@ -46,12 +48,16 @@ void MenuScene::update (Game &game, sf::RenderWindow &window) {
     timer.restart();
   }
   goToPlayButton.update(window);
+  goToHighscoresButton.update(window);
   exitButton.update(window);
   if(goToPlayButton.isClicked(window)) {
     game.changeScene(new PlayScene(window));
   }
   if(exitButton.isClicked(window)) {
     window.close();
+  }
+  if(goToHighscoresButton.isClicked(window)) {
+    game.changeScene(new HighscoresScene(window, game.gameHighscores));
   }
 }
 
@@ -61,4 +67,5 @@ void MenuScene::drawIn(sf::RenderWindow &window) {
   window.draw(subtitleText);
   goToPlayButton.drawIn(window);
   exitButton.drawIn(window);
+  goToHighscoresButton.drawIn(window);
 }
