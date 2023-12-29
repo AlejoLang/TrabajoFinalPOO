@@ -8,7 +8,7 @@ Button::Button(std::string btnText){
   this->buttonText.setString(btnText);
   this->buttonText.setColor(sf::Color::White);
   this->buttonText.setOrigin(this->buttonText.getGlobalBounds().width / 2.0f, this->buttonText.getGlobalBounds().height / 2.0f);
-  this->buttonBox.setSize({200, 50});
+  this->buttonBox.setSize({280, 50});
   this->buttonBox.setFillColor(sf::Color::Transparent);
   this->buttonBox.setOutlineThickness(2);
   this->buttonBox.setOutlineColor(sf::Color::White);
