@@ -18,5 +18,6 @@ class HighscoresScene : public Scene{
     HighscoresScene(sf::RenderWindow &window, Highscore &highscores, sf::Font* gameFont);
     void setUpHighscoresText(sf::RenderWindow &window, Highscore &highscores);
     void update(Game &game, sf::RenderWindow &window) override;
+    void processEvent(sf::Event &ev) override;
     void drawIn(sf::RenderWindow &window) override;
 };

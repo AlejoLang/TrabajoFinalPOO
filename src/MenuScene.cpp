@@ -5,6 +5,7 @@
 
 MenuScene::MenuScene(sf::RenderWindow &window, sf::Font* gameFont)
           :Scene(gameFont)
+          , nameInput(*gameFont, 20, sf::Color::White)
           , goToPlayButton("Play", gameFont) 
           , exitButton("Exit", gameFont)
           , goToHighscoresButton("Highscores", gameFont)
@@ -59,6 +60,14 @@ void MenuScene::update (Game &game, sf::RenderWindow &window) {
   if(goToHighscoresButton.isClicked(window)) {
     game.changeScene(new HighscoresScene(window, game.gameHighscores, sceneFont));
   }
+  if (sceneEvent.key.code == sf::Keyboard::Escape) {
+    window.close();
+  }
+}
+
+void MenuScene::processEvent(sf::Event &ev){
+  nameInput.processEvent(ev);
+  sceneEvent = ev;
 }
 
 void MenuScene::drawIn(sf::RenderWindow &window) {

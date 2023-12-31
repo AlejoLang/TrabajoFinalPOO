@@ -19,6 +19,7 @@ class DeathScene : public Scene{
   public:
     DeathScene(Game &game, sf::RenderWindow &window, int points, sf::Font* gameFont);
     void update(Game &game, sf::RenderWindow &window) override;
+    void processEvent(sf::Event &ev) override;
     void updateHighscores(Game &game, int points);
     void drawIn(sf::RenderWindow &window) override;
 };

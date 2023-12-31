@@ -17,12 +17,14 @@ class MenuScene : public Scene{
     int countdownHours = 24;
     int countdownMinutes = 0;
     int countdownSeconds = 0;
+    InputText nameInput;
     Button goToPlayButton;
     Button exitButton;
     Button goToHighscoresButton;
   public:
     MenuScene(sf::RenderWindow &window, sf::Font* gameFont);
     void update(Game &game, sf::RenderWindow &window) override;
+    void processEvent(sf::Event &ev) override;
     void drawIn(sf::RenderWindow &window) override;
 };
 

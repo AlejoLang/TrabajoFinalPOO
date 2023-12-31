@@ -38,6 +38,13 @@ void DeathScene::update(Game &game, sf::RenderWindow &window) {
   if(restartGame.isClicked(window)){
     game.changeScene(new PlayScene(window, sceneFont));
   }
+  if (sceneEvent.key.code == sf::Keyboard::Escape) {
+    game.changeScene(new MenuScene(window, sceneFont));
+  }
+}
+
+void DeathScene::processEvent(sf::Event &ev){
+  sceneEvent = ev;
 }
 
 void DeathScene::updateHighscores(Game &game, int points) {

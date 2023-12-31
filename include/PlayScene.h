@@ -31,6 +31,7 @@ class PlayScene : public Scene {
   public:
     PlayScene(sf::RenderWindow &window, sf::Font* gameFont);
     void update(Game &game, sf::RenderWindow &window) override;
+    void processEvent(sf::Event &ev) override;
     void drawIn(sf::RenderWindow &window) override;
     void updateBackground(sf::RenderWindow &window, float altitude);
     void updatePoints();

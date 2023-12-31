@@ -35,7 +35,13 @@ void PlayScene::update(Game &game, sf::RenderWindow &window) {
     } else {
       deadFrameCount++;
     }
+  } else if (sceneEvent.key.code == sf::Keyboard::Escape) {
+    game.changeScene(new MenuScene(window, sceneFont));
   }
+}
+
+void PlayScene::processEvent(sf::Event &ev) {
+  sceneEvent = ev;
 }
 
 void PlayScene::updateBackground(sf::RenderWindow &window, float altitude) {
