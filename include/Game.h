@@ -12,6 +12,7 @@ class Game {
     sf::RenderWindow window;
     Scene *currentScene;
     Scene *nextScene;
+    sf::Font gameFont;
   public:
     Highscore gameHighscores;
     char username[20];

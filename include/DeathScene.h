@@ -12,13 +12,12 @@ class Scene;
 
 class DeathScene : public Scene{
   private:
-    sf::Font sceneFont;
     sf::Text mainText;
     sf::Text pointsText;
     Button backToMenu;
     Button restartGame;
   public:
-    DeathScene(Game &game, sf::RenderWindow &window, int points);
+    DeathScene(Game &game, sf::RenderWindow &window, int points, sf::Font* gameFont);
     void update(Game &game, sf::RenderWindow &window) override;
     void updateHighscores(Game &game, int points);
     void drawIn(sf::RenderWindow &window) override;

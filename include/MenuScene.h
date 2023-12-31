@@ -6,6 +6,7 @@
 #include "PlayScene.h"
 #include "HighscoresScene.h"
 #include "Button.h"
+#include "InputBox.h"
 
 class MenuScene : public Scene{
   private:
@@ -20,7 +21,7 @@ class MenuScene : public Scene{
     Button exitButton;
     Button goToHighscoresButton;
   public:
-    MenuScene(sf::RenderWindow &window);
+    MenuScene(sf::RenderWindow &window, sf::Font* gameFont);
     void update(Game &game, sf::RenderWindow &window) override;
     void drawIn(sf::RenderWindow &window) override;
 };

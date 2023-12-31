@@ -1,9 +1,8 @@
 #include "Button.h"
 #include <iostream>
 
-Button::Button(std::string btnText){
-  this->buttonFont.loadFromFile("./resources/fonts/RetroGaming.ttf");
-  this->buttonText.setFont(buttonFont);
+Button::Button(std::string btnText, sf::Font* gameFont){
+  this->buttonText.setFont(*gameFont);
   this->buttonText.setCharacterSize(36);
   this->buttonText.setString(btnText);
   this->buttonText.setColor(sf::Color::White);

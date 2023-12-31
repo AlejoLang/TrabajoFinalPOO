@@ -1,11 +1,11 @@
 #include "HighscoresScene.h"
 #include <iostream>
 
-HighscoresScene::HighscoresScene(sf::RenderWindow &window, Highscore &highscores) 
-  : goToMenuButton("Menu")
+HighscoresScene::HighscoresScene(sf::RenderWindow &window, Highscore &highscores, sf::Font* gameFont)
+                :Scene(gameFont)
+                , goToMenuButton("Menu", gameFont)
 {
-  if(!sceneFont.loadFromFile("./resources/fonts/RetroGaming.ttf")) { exit(1); }
-  titleText.setFont(sceneFont);
+  titleText.setFont(*sceneFont);
   titleText.setString("Highscores");
   titleText.setCharacterSize(72);
   titleText.setOrigin(titleText.getGlobalBounds().getSize().x / 2.0, titleText.getGlobalBounds().getSize().y / 2.0);
@@ -18,7 +18,7 @@ void HighscoresScene::setUpHighscoresText(sf::RenderWindow &window, Highscore &h
   std::vector <HighscoreStruct> hsVector = highscores.getHighscores();
   std::cout<<hsVector.size()<<std::endl;
   sf::Text aux;
-  aux.setFont(sceneFont);
+  aux.setFont(*sceneFont);
   aux.setCharacterSize(32);
   std::stringstream stream;
   for (size_t i = 0; i < hsVector.size(); i++) {
@@ -43,7 +43,7 @@ void HighscoresScene::setUpHighscoresText(sf::RenderWindow &window, Highscore &h
 void HighscoresScene::update(Game &game, sf::RenderWindow &window) {
   goToMenuButton.update(window);
   if(goToMenuButton.isClicked(window)) {
-    game.changeScene(new MenuScene(window));
+    game.changeScene(new MenuScene(window, sceneFont));
   }
 }
 

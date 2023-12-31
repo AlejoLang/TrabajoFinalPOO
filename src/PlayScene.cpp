@@ -4,11 +4,12 @@
 #include "Collision.h"
 #include <iostream>
 
-PlayScene::PlayScene(sf::RenderWindow &window) 
-          : mainMap(window)
+PlayScene::PlayScene(sf::RenderWindow &window, sf::Font* gameFont) 
+          :Scene(gameFont)
+          , mainMap(window)
           , mainView(window.getDefaultView())
+          , mainHud(gameFont)
 { 
-  this->sceneFont.loadFromFile("./resources/fonts/RetroGaming.ttf");
   if(!playerTexture.loadFromFile("./resources/textures/Starship.png")){ exit(1); }
   if(!lowAltitudeBackgroundTexture.loadFromFile("./resources/textures/lowAltitudeSky.png")) { exit(1); }
   if(!midAltitudeBackgroundTexture.loadFromFile("./resources/textures/midAltitudeSky.png")) { exit(1); }
@@ -30,7 +31,7 @@ void PlayScene::update(Game &game, sf::RenderWindow &window) {
   updatePoints();
   if(!playerShip->getStatus()){
     if(deadFrameCount > 12) {
-      game.changeScene(new DeathScene(game, window, points));
+      game.changeScene(new DeathScene(game, window, points, sceneFont));
     } else {
       deadFrameCount++;
     }

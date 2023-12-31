@@ -14,9 +14,8 @@ class Hud {
     sf::Text altitudeText;
     sf::Text altitudeUnitsText;
     float altitudeTextPadd;
-    sf::Font hudFont;
   public:
-    Hud();
+    Hud(sf::Font* gameFont);
     void update(Ship *playerShip, sf::View &view);
     void updateIndicators(Ship *playerShip, sf::View &view);
     void updateAltitudeText(Ship *playerShip, sf::View &view);

@@ -6,8 +6,9 @@ Game::Game()
     : window(sf::VideoMode(1920, 1080), "Juego")
     , gameHighscores ("./Highscores.dat")
 {
+  if(!gameFont.loadFromFile("./resources/fonts/RetroGaming.ttf")) { exit(1); }
   window.setFramerateLimit(60);
-  currentScene = new MenuScene(window);
+  currentScene = new MenuScene(window, &gameFont);
   nextScene = nullptr;
   srand(time(NULL));
   std::strcpy(username, "Player");

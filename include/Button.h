@@ -5,10 +5,9 @@
 class Button {
   private:
     sf::Text buttonText;
-    sf::Font buttonFont;
     sf::RectangleShape buttonBox;
   public:
-    Button(std::string btnText);
+    Button(std::string btnText, sf::Font* gameFont);
     void update(sf::RenderWindow &window);
     void setPos(sf::Vector2f pos);
     bool isMouseContained(sf::RenderWindow &window);

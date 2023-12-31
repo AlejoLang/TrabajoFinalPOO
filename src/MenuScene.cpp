@@ -3,14 +3,14 @@
 #include <string>
 #include <iostream>
 
-MenuScene::MenuScene(sf::RenderWindow &window) 
-          : goToPlayButton("Play") 
-          , exitButton("Exit")
-          , goToHighscoresButton("Highscores")
+MenuScene::MenuScene(sf::RenderWindow &window, sf::Font* gameFont)
+          :Scene(gameFont)
+          , goToPlayButton("Play", gameFont) 
+          , exitButton("Exit", gameFont)
+          , goToHighscoresButton("Highscores", gameFont)
 {
-  this->sceneFont.loadFromFile("./resources/fonts/RetroGaming.ttf");
-  titleText.setFont(sceneFont);
-  subtitleText.setFont(sceneFont);
+  titleText.setFont(*sceneFont);
+  subtitleText.setFont(*sceneFont);
   titleText.setString("T-24:00:00");
   subtitleText.setString("Presiona <Enter> para jugar");
   titleText.setCharacterSize(72);
@@ -51,13 +51,13 @@ void MenuScene::update (Game &game, sf::RenderWindow &window) {
   goToHighscoresButton.update(window);
   exitButton.update(window);
   if(goToPlayButton.isClicked(window)) {
-    game.changeScene(new PlayScene(window));
+    game.changeScene(new PlayScene(window, sceneFont));
   }
   if(exitButton.isClicked(window)) {
     window.close();
   }
   if(goToHighscoresButton.isClicked(window)) {
-    game.changeScene(new HighscoresScene(window, game.gameHighscores));
+    game.changeScene(new HighscoresScene(window, game.gameHighscores, sceneFont));
   }
 }
 
