@@ -86,6 +86,7 @@ public:
 	void setEditable(bool value) { editable=value; }
 	void setSingleWord(bool value) { single_word=value; }
 	std::string getValue() { return value; }
+	void setValue(std::string text) { value = text; }
 	void reset() { value.clear(); }
 };
 
