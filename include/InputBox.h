@@ -80,8 +80,8 @@ public:
 		} else {
 			setString(value);
 		}
-		this->setOrigin({this->getGlobalBounds().getSize().x / 2.0, this->getGlobalBounds().getSize().y / 2.0});
-		this->setPosition({960, 940});
+		setOrigin({this->getGlobalBounds().getSize().x / 2.0, this->getGlobalBounds().getSize().y / 2.0});
+		setPosition({960, 940});
 	}
 	void setEditable(bool value) { editable=value; }
 	void setSingleWord(bool value) { single_word=value; }
