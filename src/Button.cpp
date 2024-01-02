@@ -1,13 +1,17 @@
 #include "Button.h"
 #include <iostream>
 
-Button::Button(std::string btnText, sf::Font* gameFont){
+Button::Button(std::string btnText, sf::Font* gameFont, std::string size){
   this->buttonText.setFont(*gameFont);
   this->buttonText.setCharacterSize(36);
   this->buttonText.setString(btnText);
   this->buttonText.setColor(sf::Color::White);
   this->buttonText.setOrigin(this->buttonText.getGlobalBounds().width / 2.0f, this->buttonText.getGlobalBounds().height / 2.0f);
-  this->buttonBox.setSize({280, 50});
+  if(size == "auto") {
+    this->buttonBox.setSize({buttonText.getGlobalBounds().getSize().x + 20, 50});
+  } else {
+    this->buttonBox.setSize({std::stof(size), 50.0});
+  }
   this->buttonBox.setFillColor(sf::Color::Transparent);
   this->buttonBox.setOutlineThickness(2);
   this->buttonBox.setOutlineColor(sf::Color::White);
@@ -41,6 +45,10 @@ bool Button::isMouseContained(sf::RenderWindow &window) {
     return true;
   }
   return false;
+}
+
+sf::Vector2f Button::getSize() {
+  return this->buttonBox.getGlobalBounds().getSize();
 }
 
 void Button::drawIn(sf::RenderWindow &window) {
