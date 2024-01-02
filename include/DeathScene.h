@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <fstream>
+#include <cstring>
 #include "Game.h"
 #include "Scene.h"
 #include "MenuScene.h"
