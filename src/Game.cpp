@@ -7,11 +7,11 @@ Game::Game()
     , gameHighscores ("./Highscores.dat")
 {
   if(!gameFont.loadFromFile("./resources/fonts/RetroGaming.ttf")) { exit(1); }
+  username = "Player";
   window.setFramerateLimit(60);
-  currentScene = new MenuScene(window, &gameFont);
+  currentScene = new MenuScene(*this, window, &gameFont);
   nextScene = nullptr;
   srand(time(NULL));
-  username = "Player";
 }
 
 void Game::Run() {

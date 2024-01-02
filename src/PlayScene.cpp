@@ -36,7 +36,7 @@ void PlayScene::update(Game &game, sf::RenderWindow &window) {
       deadFrameCount++;
     }
   } else if (sceneEvent.key.code == sf::Keyboard::Escape) {
-    game.changeScene(new MenuScene(window, sceneFont));
+    game.changeScene(new MenuScene(game, window, sceneFont));
   }
 }
 

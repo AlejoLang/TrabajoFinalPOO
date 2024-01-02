@@ -48,10 +48,10 @@ void HighscoresScene::setUpHighscoresText(sf::RenderWindow &window, Highscore &h
 void HighscoresScene::update(Game &game, sf::RenderWindow &window) {
   goToMenuButton.update(window);
   if(goToMenuButton.isClicked(window)) {
-    game.changeScene(new MenuScene(window, sceneFont));
+    game.changeScene(new MenuScene(game, window, sceneFont));
   }
   if (sceneEvent.key.code == sf::Keyboard::Escape) {
-    game.changeScene(new MenuScene(window, sceneFont));
+    game.changeScene(new MenuScene(game, window, sceneFont));
   }
 }
 
