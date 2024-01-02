@@ -11,7 +11,7 @@ Game::Game()
   currentScene = new MenuScene(window, &gameFont);
   nextScene = nullptr;
   srand(time(NULL));
-  std::strcpy(username, "Player");
+  username = "Player";
 }
 
 void Game::Run() {

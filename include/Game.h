@@ -5,7 +5,7 @@
 #include "PlayScene.h"
 #include "MenuScene.h"
 #include "Highscore.h"
-#include <cstring>
+#include <string>
 
 class Game {
   private:
@@ -15,7 +15,7 @@ class Game {
     sf::Font gameFont;
   public:
     Highscore gameHighscores;
-    char username[20];
+    std::string username;
     Game();
     void Run();
     void handleEvents();
