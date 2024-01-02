@@ -3,7 +3,7 @@
 #include <string>
 #include <iostream>
 
-MenuScene::MenuScene(sf::RenderWindow &window, sf::Font* gameFont)
+MenuScene::MenuScene(Game &game, sf::RenderWindow &window, sf::Font* gameFont)
           :Scene(gameFont)
           , nameInput(*gameFont, 36, sf::Color::White)
           , goToPlayButton("Play", gameFont) 
@@ -26,6 +26,7 @@ MenuScene::MenuScene(sf::RenderWindow &window, sf::Font* gameFont)
   nameInput.setMaxChars(20);
   nameInput.setOrigin({nameInput.getGlobalBounds().getSize().x / 2.0, nameInput.getGlobalBounds().getSize().y / 2.0});
   nameInput.setPosition({960, 940});
+  nameInput.setValue(game.username);
 }
 
 void MenuScene::update (Game &game, sf::RenderWindow &window) {
