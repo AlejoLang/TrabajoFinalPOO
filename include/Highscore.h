@@ -9,8 +9,8 @@ struct HighscoreStruct {
   char username[20];
   int points;
 
-  HighscoreStruct(char name[20], int p) {
-    for(int i = 0; i < 20 ; ++i) {
+  HighscoreStruct(std::string name, int p) {
+    for(int i = 0; i < name.size() ; ++i) {
       username[i] = name[i];
     }
     points = p;
