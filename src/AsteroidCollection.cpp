@@ -9,7 +9,9 @@ AsteroidCollection::AsteroidCollection() : asteroidGenerationTime(0.4) {
 }
 
 void AsteroidCollection::update(sf::View &mainView, Ship *playerShip) {
-  handleAsteroidGeneration(mainView);
+  if(playerShip->getAltitudeKm() > 0.1) {
+    handleAsteroidGeneration(mainView);
+  }
   for (Asteroid *a: asteroidsVector) {
     a->update();
   }
