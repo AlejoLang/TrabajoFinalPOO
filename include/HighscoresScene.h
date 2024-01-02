@@ -10,7 +10,7 @@
 
 class HighscoresScene : public Scene{
   private:
-    std::vector <sf::Text> highscoresTextsVector;
+    std::vector<std::pair <sf::Text, sf::Text>> highscoresTextsVector;
     sf::Text titleText;
     sf::Text headerText;
     Button goToMenuButton;

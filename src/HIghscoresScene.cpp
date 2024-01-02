@@ -16,27 +16,32 @@ HighscoresScene::HighscoresScene(sf::RenderWindow &window, Highscore &highscores
 
 void HighscoresScene::setUpHighscoresText(sf::RenderWindow &window, Highscore &highscores) {
   std::vector <HighscoreStruct> hsVector = highscores.getHighscores();
-  std::cout<<hsVector.size()<<std::endl;
-  sf::Text aux;
-  aux.setFont(*sceneFont);
-  aux.setCharacterSize(32);
-  std::stringstream stream;
+  sf::Text auxName;
+  sf::Text auxPoints;
+  auxName.setFont(*sceneFont);
+  auxPoints.setFont(*sceneFont);
+  auxName.setCharacterSize(32);
+  auxPoints.setCharacterSize(32);
   for (size_t i = 0; i < hsVector.size(); i++) {
-    stream.str("");
-    stream << std::fixed << hsVector[i].username << std::setw(30) << std::setfill(' ') <<hsVector[i].points;
-    aux.setString(stream.str());
-    highscoresTextsVector.push_back(aux);
-    highscoresTextsVector[i].setOrigin(highscoresTextsVector[i].getGlobalBounds().getSize().x / 2.0, highscoresTextsVector[i].getGlobalBounds().getSize().y / 2.0);
-    highscoresTextsVector[i].setPosition(window.getSize().x / 2.0, 300 + (i * 60));
+    auxName.setString((std::string)hsVector[i].username);
+    auxPoints.setString(std::to_string(hsVector[i].points));
+    highscoresTextsVector.push_back({auxName, auxPoints});
+    highscoresTextsVector[i].first.setOrigin(0, highscoresTextsVector[i].first.getGlobalBounds().getSize().y / 2.0);
+    highscoresTextsVector[i].second.setOrigin(highscoresTextsVector[i].second.getGlobalBounds().getSize().x , highscoresTextsVector[i].second.getGlobalBounds().getSize().y / 2.0);
+    highscoresTextsVector[i].first.setPosition(window.getSize().x / 2.0 - (32 * 10), 300 + (i * 60));
+    highscoresTextsVector[i].second.setPosition(window.getSize().x / 2.0 + (32 * 10), 300 + (i * 60));
   }
   if(highscoresTextsVector.size() >= 1){
-    highscoresTextsVector[0].setColor(sf::Color(255, 215, 0));
+    highscoresTextsVector[0].first.setColor(sf::Color(255, 215, 0));
+    highscoresTextsVector[0].second.setColor(sf::Color(255, 215, 0));
   }
   if(highscoresTextsVector.size() >= 2) {
-    highscoresTextsVector[1].setColor(sf::Color(192, 192, 192));
+    highscoresTextsVector[1].first.setColor(sf::Color(192, 192, 192));
+    highscoresTextsVector[1].second.setColor(sf::Color(192, 192, 192));
   }
   if(highscoresTextsVector.size() >= 3) {
-    highscoresTextsVector[2].setColor(sf::Color(205, 127, 50));
+    highscoresTextsVector[2].first.setColor(sf::Color(205, 127, 50));
+    highscoresTextsVector[2].second.setColor(sf::Color(205, 127, 50));
   }
 }
 
@@ -57,7 +62,8 @@ void HighscoresScene::processEvent(sf::Event &ev) {
 void HighscoresScene::drawIn (sf::RenderWindow &window) {
   window.draw(titleText);
   for (size_t i = 0; i < highscoresTextsVector.size(); i++){
-    window.draw(highscoresTextsVector[i]);
+    window.draw(highscoresTextsVector[i].first);
+    window.draw(highscoresTextsVector[i].second);
   }
   goToMenuButton.drawIn(window);
 }
