@@ -5,7 +5,7 @@
 
 MenuScene::MenuScene(sf::RenderWindow &window, sf::Font* gameFont)
           :Scene(gameFont)
-          , nameInput(*gameFont, 20, sf::Color::White)
+          , nameInput(*gameFont, 36, sf::Color::White)
           , goToPlayButton("Play", gameFont) 
           , exitButton("Exit", gameFont)
           , goToHighscoresButton("Highscores", gameFont)
@@ -23,6 +23,9 @@ MenuScene::MenuScene(sf::RenderWindow &window, sf::Font* gameFont)
   goToPlayButton.setPos({960, 640});
   goToHighscoresButton.setPos({960, 740});
   exitButton.setPos({960, 840});
+  nameInput.setMaxChars(20);
+  nameInput.setOrigin({nameInput.getGlobalBounds().getSize().x / 2.0, nameInput.getGlobalBounds().getSize().y / 2.0});
+  nameInput.setPosition({960, 940});
 }
 
 void MenuScene::update (Game &game, sf::RenderWindow &window) {
@@ -51,6 +54,8 @@ void MenuScene::update (Game &game, sf::RenderWindow &window) {
   goToPlayButton.update(window);
   goToHighscoresButton.update(window);
   exitButton.update(window);
+  nameInput.update();
+  game.username = nameInput.getValue();
   if(goToPlayButton.isClicked(window)) {
     game.changeScene(new PlayScene(window, sceneFont));
   }
@@ -77,4 +82,5 @@ void MenuScene::drawIn(sf::RenderWindow &window) {
   goToPlayButton.drawIn(window);
   exitButton.drawIn(window);
   goToHighscoresButton.drawIn(window);
+  window.draw(nameInput);
 }
