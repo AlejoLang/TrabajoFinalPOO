@@ -1,16 +1,17 @@
+#pragma once
 #include <SFML/Graphics.hpp>
 #include <string>
 /**
 * Esta clase sirve para facilitar la entrada de strings en una ventana de sfml-2.x.
-* Hereda de sf::Text, así que se usa como un sf::Text. 
-* 	- Se lo crea pasandole una fuente, un tamaño y un color (los dos últimos opcionales).
-* 	- Se le puede cambiar el formato al texto con los mismos métodos que sf::Text. 
-* 	- Se lo dibuja con el método draw de la ventana igual que con los sprites.
-* 	- Lo importante es pasarle los eventos del bucle de eventos mediante el método 
+* Hereda de sf::Text, asï¿½ que se usa como un sf::Text. 
+* 	- Se lo crea pasandole una fuente, un tamaï¿½o y un color (los dos ï¿½ltimos opcionales).
+* 	- Se le puede cambiar el formato al texto con los mismos mï¿½todos que sf::Text. 
+* 	- Se lo dibuja con el mï¿½todo draw de la ventana igual que con los sprites.
+* 	- Lo importante es pasarle los eventos del bucle de eventos mediante el mï¿½todo 
 * 	  processEvent, que retorna true si era un evento de su interes, o false en caso 
 * 		contrario.
-* 	- Y además antes de dibujarlo hay que llamar a su método update, en caso contrario 
-* 	  no se verá nada.
+* 	- Y ademï¿½s antes de dibujarlo hay que llamar a su mï¿½todo update, en caso contrario 
+* 	  no se verï¿½ nada.
 * 	
 * 	Ejemplode uso:
 *				...
@@ -23,7 +24,7 @@
 * 				// procesar eventos
 * 				Event e;
 * 				while(w.pollEvent(e)) {
-* 					if (text_entrada.processEvent(e)) {} // si retorna true, es porque procesó el evento
+* 					if (text_entrada.processEvent(e)) {} // si retorna true, es porque procesï¿½ el evento
 * 					else if (e.type == ....
 * 					...
 * 				}
@@ -36,7 +37,6 @@
 *
 * Version: 2014-02-19
 **/
-
 class InputText:public sf::Text {
 	sf::Clock clock;
 	std::string value;
@@ -75,10 +75,13 @@ public:
 	}
 	void setMaxChars(unsigned int max) { max_chars=max; }
 	void update() {
-		if (editable && int(clock.getElapsedTime().asSeconds()*3)%2)
+		if (editable && int(clock.getElapsedTime().asSeconds()*3)%2){
 			setString(value+"|");
-		else 
+		} else {
 			setString(value);
+		}
+		this->setOrigin({this->getGlobalBounds().getSize().x / 2.0, this->getGlobalBounds().getSize().y / 2.0});
+		this->setPosition({960, 940});
 	}
 	void setEditable(bool value) { editable=value; }
 	void setSingleWord(bool value) { single_word=value; }
