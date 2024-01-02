@@ -25,6 +25,7 @@ class Highscore {
   public:
     Highscore(std::string filePath);
     void addScore(HighscoreStruct toAdd);
+    void cleanHighscores();
     std::vector <HighscoreStruct> getHighscores();
     void saveFile();
 };

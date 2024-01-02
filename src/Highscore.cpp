@@ -33,6 +33,12 @@ void Highscore::addScore(HighscoreStruct toAdd) {
   this->saveFile();
 }
 
+void Highscore::cleanHighscores() {
+  std::ofstream highscoreFile(path, std::ios::binary | std::ios::out | std::ios::trunc);
+  highscoreVector.clear();
+  highscoreFile.close();
+}
+
 std::vector <HighscoreStruct> Highscore::getHighscores() {
   return this->highscoreVector;
 }

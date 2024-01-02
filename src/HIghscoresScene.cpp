@@ -4,6 +4,7 @@
 HighscoresScene::HighscoresScene(sf::RenderWindow &window, Highscore &highscores, sf::Font* gameFont)
                 :Scene(gameFont)
                 , goToMenuButton("Menu", gameFont)
+                , cleanHighscoresButton("Clean Highscores", gameFont, "auto")
 {
   titleText.setFont(*sceneFont);
   titleText.setString("Highscores");
@@ -12,6 +13,7 @@ HighscoresScene::HighscoresScene(sf::RenderWindow &window, Highscore &highscores
   titleText.setPosition(window.getSize().x / 2.0, 100);
   setUpHighscoresText(window, highscores);
   goToMenuButton.setPos({window.getSize().x / 2.0, window.getSize().y - 100});
+  cleanHighscoresButton.setPos({window.getSize().x - (cleanHighscoresButton.getSize().x / 2.0) - 100, window.getSize().y - 100});
 }
 
 void HighscoresScene::setUpHighscoresText(sf::RenderWindow &window, Highscore &highscores) {
@@ -47,11 +49,16 @@ void HighscoresScene::setUpHighscoresText(sf::RenderWindow &window, Highscore &h
 
 void HighscoresScene::update(Game &game, sf::RenderWindow &window) {
   goToMenuButton.update(window);
+  cleanHighscoresButton.update(window);
   if(goToMenuButton.isClicked(window)) {
     game.changeScene(new MenuScene(game, window, sceneFont));
-  }
+  }/**/
   if (sceneEvent.key.code == sf::Keyboard::Escape) {
     game.changeScene(new MenuScene(game, window, sceneFont));
+  }
+  if(cleanHighscoresButton.isClicked(window)) {
+    game.gameHighscores.cleanHighscores();
+    game.changeScene(new HighscoresScene(window, game.gameHighscores, sceneFont));
   }
 }
 
@@ -66,4 +73,5 @@ void HighscoresScene::drawIn (sf::RenderWindow &window) {
     window.draw(highscoresTextsVector[i].second);
   }
   goToMenuButton.drawIn(window);
+  cleanHighscoresButton.drawIn(window);
 }
