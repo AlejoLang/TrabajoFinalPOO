@@ -75,12 +75,14 @@ public:
 	}
 	void setMaxChars(unsigned int max) { max_chars=max; }
 	void update() {
-		if (editable && int(clock.getElapsedTime().asSeconds()*3)%2){
+		if (editable && int(clock.getElapsedTime().asSeconds()*3)%2 && value != ""){
 			setString(value+"|");
-		} else {
+		} else if(value != "") {
 			setString(value);
+		} else {
+			setString("Type to enter username");
 		}
-		setOrigin({this->getGlobalBounds().getSize().x / 2.0, this->getGlobalBounds().getSize().y / 2.0});
+		setOrigin({this->getGlobalBounds().getSize().x / 2.0, 25});
 		setPosition({960, 940});
 	}
 	void setEditable(bool value) { editable=value; }
