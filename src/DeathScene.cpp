@@ -28,11 +28,6 @@ void DeathScene::update(Game &game, sf::RenderWindow &window) {
   restartGame.update(window);
   if(backToMenu.isClicked(window)){
     std::vector <HighscoreStruct> aux = game.gameHighscores.getHighscores();
-    for (int i = 0; i < aux.size(); i++)
-    {
-      std::cout<<aux[i].username<<" "<<aux[i].points<<std::endl;
-    }
-    
     game.changeScene(new MenuScene(window, sceneFont));
   }
   if(restartGame.isClicked(window)){
