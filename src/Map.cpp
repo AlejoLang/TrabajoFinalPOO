@@ -7,7 +7,7 @@ Map::Map(sf::RenderWindow &window){
   if(!launchPadTowerTexture.loadFromFile("./resources/textures/padTower.png")) {exit(1); }
   groundTexture.setRepeated(true);
   ground.setTexture(groundTexture);
-  ground.setTextureRect({0, 0, window.getSize().x * 5, 100});
+  ground.setTextureRect({0, 0, window.getSize().x * 5, groundTexture.getSize().y});
   ground.setPosition(-ground.getTextureRect().getSize().x / 2.0f, 0);
   
   launchPad.setTexture(launchPadTexture);
