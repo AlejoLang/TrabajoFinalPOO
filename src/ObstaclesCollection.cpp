@@ -6,7 +6,7 @@ ObstaclesCollection::ObstaclesCollection() : generationTime(0.4) {
     asteroidTexures.push_back(aux);
     if(!asteroidTexures[i].loadFromFile("./resources/textures/Asteroid"+ std::to_string(i + 1)+".png")) { exit(1); }
   }
-  for (size_t i = 0; i < 1; i++) {
+  for (size_t i = 0; i < 2; i++) {
     sf::Texture aux;
     airplaneTexures.push_back(aux);
     if(!airplaneTexures[i].loadFromFile("./resources/textures/Airplane"+ std::to_string(i + 1)+".png")) { exit(1); }
