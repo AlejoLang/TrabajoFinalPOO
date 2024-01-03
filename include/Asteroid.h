@@ -1,14 +1,8 @@
-#ifndef ASTEROID_H
-#define ASTEROID_H
+#pragma once
 #include <SFML/Graphics.hpp>
-#include "Entity.h"
+#include "Obstacle.h"
 
-class Asteroid : public Entity {
-  private:
-    sf::Vector2f asteroidVelocity;
+class Asteroid : public Obstacle {
   public:
-    Asteroid(sf::Texture &astText, sf::View &view);
-    void update();
+    Asteroid(std::vector<sf::Texture> &asteroidTexures, sf::View &view);
 };
-
-#endif
