@@ -9,7 +9,7 @@
 #include "Ship.h"
 #include "Hud.h"
 #include "Map.h"
-#include "AsteroidCollection.h"
+#include "ObstaclesCollection.h"
 #include "FuelRefillerCollection.h"
 
 class PlayScene : public Scene {
@@ -21,7 +21,7 @@ class PlayScene : public Scene {
     Ship *playerShip;
     Map mainMap;
     Hud mainHud;
-    AsteroidCollection mainAsteroidCollection;
+    ObstaclesCollection mainObstaclesCollection;
     fuelRefillerCollection mainRefillerCollection;
     int deadFrameCount;
     int points;

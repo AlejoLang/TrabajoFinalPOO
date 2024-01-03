@@ -22,7 +22,7 @@ PlayScene::PlayScene(sf::RenderWindow &window, sf::Font* gameFont)
 void PlayScene::update(Game &game, sf::RenderWindow &window) {
   playerShip->update(mainMap);
   mainView.setCenter(playerShip->getCenter().x, playerShip->getCenter().y - 350.f);
-  mainAsteroidCollection.update(mainView, playerShip);
+  mainObstaclesCollection.update(mainView, playerShip);
   mainRefillerCollection.update(mainView, playerShip);
   mainHud.update(playerShip, mainView);
   updateBackground(window, playerShip->getAltitudeKm());
@@ -73,7 +73,7 @@ void PlayScene::drawIn(sf::RenderWindow &window) {
   window.setView(mainView);
   window.draw(background);
   playerShip->drawIn(window);
-  mainAsteroidCollection.drawIn(window);
+   mainObstaclesCollection.drawIn(window);
   mainRefillerCollection.drawIn(window);
   mainMap.drawIn(window);
   mainHud.draw(window);
