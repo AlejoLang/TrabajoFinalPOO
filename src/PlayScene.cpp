@@ -11,13 +11,11 @@ PlayScene::PlayScene(sf::RenderWindow &window, sf::Font* gameFont)
           , mainHud(gameFont)
 { 
   if(!playerTexture.loadFromFile("./resources/textures/Starship.png")){ exit(1); }
-  if(!lowAltitudeBackgroundTexture.loadFromFile("./resources/textures/lowAltitudeSky.png")) { exit(1); }
-  if(!midAltitudeBackgroundTexture.loadFromFile("./resources/textures/midAltitudeSky.png")) { exit(1); }
-  if(!highAltitudeBackgroundTexture.loadFromFile("./resources/textures/highAltitudeSky.png")) { exit(1); }
-  if(!spaceBackgroundTexture.loadFromFile("./resources/textures/spaceSky.png")) { exit(1); }
+  if(!backgroundTexture.loadFromFile("./resources/textures/background.png")){ exit(1); }
   playerShip = new Ship(playerTexture, mainMap, window);
-  background.setTexture(lowAltitudeBackgroundTexture);
-  background.setOrigin(lowAltitudeBackgroundTexture.getSize().x / 2.0f, lowAltitudeBackgroundTexture.getSize().y / 2.0f);
+  background.setTexture(backgroundTexture);
+  background.setTextureRect(sf::IntRect(0, backgroundTexture.getSize().y - 1080, backgroundTexture.getSize().x, backgroundTexture.getSize().y));
+  background.setOrigin(window.getSize().x / 2.0f, window.getSize().y / 2.0);
   deadFrameCount = 0;
 }
 
@@ -45,14 +43,28 @@ void PlayScene::processEvent(sf::Event &ev) {
 }
 
 void PlayScene::updateBackground(sf::RenderWindow &window, float altitude) {
-  if(altitude < 0.5) {
-    background.setTexture(lowAltitudeBackgroundTexture);
-  } else if( altitude < 2) {
-    background.setTexture(midAltitudeBackgroundTexture);
-  } else if (altitude < 3) {
-    background.setTexture(highAltitudeBackgroundTexture);
-  } else if(altitude < 4){
-    background.setTexture(spaceBackgroundTexture);
+  if(altitude < 5) {
+    if(background.getTextureRect().top < background.getTexture()->getSize().y - 1080) {
+      background.setTextureRect({0, background.getTextureRect().top + 3, background.getTextureRect().width, background.getTextureRect().height + 3});
+    }
+  } else if( altitude < 10) {
+    if(background.getTextureRect().top < background.getTexture()->getSize().y - (1080*2)) {
+      background.setTextureRect({0, background.getTextureRect().top + 3, background.getTextureRect().width, background.getTextureRect().height + 3});
+    } else if (background.getTextureRect().top > background.getTexture()->getSize().y - (1080*2)) {
+      background.setTextureRect({0, background.getTextureRect().top - 3, background.getTextureRect().width, background.getTextureRect().height - 3});
+    }
+  } else if (altitude < 15) {
+    if(background.getTextureRect().top < background.getTexture()->getSize().y - (1080*3)) {
+      background.setTextureRect({0, background.getTextureRect().top + 3, background.getTextureRect().width, background.getTextureRect().height + 3});
+    } else if (background.getTextureRect().top > background.getTexture()->getSize().y - (1080*3)) {
+      background.setTextureRect({0, background.getTextureRect().top - 3, background.getTextureRect().width, background.getTextureRect().height - 3});
+    }
+  } else if(altitude < 20){
+    if(background.getTextureRect().top < background.getTexture()->getSize().y - (1080*4)) {
+      background.setTextureRect({0, background.getTextureRect().top + 3, background.getTextureRect().width, background.getTextureRect().height + 3});
+    } else if (background.getTextureRect().top > background.getTexture()->getSize().y - (1080*4)) {
+      background.setTextureRect({0, background.getTextureRect().top - 3, background.getTextureRect().width, background.getTextureRect().height - 3});
+    }
   }
   background.setPosition(mainView.getCenter());
 }

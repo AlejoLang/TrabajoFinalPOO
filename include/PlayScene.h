@@ -16,10 +16,7 @@ class PlayScene : public Scene {
   private:
     sf::View mainView;
     sf::Texture playerTexture;
-    sf::Texture lowAltitudeBackgroundTexture;
-    sf::Texture midAltitudeBackgroundTexture;
-    sf::Texture highAltitudeBackgroundTexture;
-    sf::Texture spaceBackgroundTexture;
+    sf::Texture backgroundTexture;
     sf::Sprite background;
     Ship *playerShip;
     Map mainMap;
