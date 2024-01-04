@@ -3,7 +3,7 @@
 #include <iostream>
 
 Game::Game() 
-    : window(sf::VideoMode(1920, 1080), "Juego")
+    : window(sf::VideoMode(1920, 1080), "Juego", sf::Style::Fullscreen )
     , gameHighscores ("./Highscores.dat")
 {
   if(!gameFont.loadFromFile("./resources/fonts/RetroGaming.ttf")) { exit(1); }
