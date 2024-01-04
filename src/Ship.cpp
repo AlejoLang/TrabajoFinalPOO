@@ -8,7 +8,7 @@ Ship::Ship (sf::Texture &playerTexture, Map &mainMap,sf::RenderWindow &window)
     : Entity(playerTexture) 
     , trustAnimationSprite(sf::seconds(0.016), false, false)
     , explostionAnimationSprite(sf::seconds(0.016), false, false){
-  entitySprite.setPosition({mainMap.getLaunchPadSprite().getPosition().x, mainMap.getLaunchPadSprite().getPosition().y - mainMap.getLaunchPadSprite().getGlobalBounds().height - entitySprite.getGlobalBounds().height / 2.0f});
+  entitySprite.setPosition({mainMap.getLaunchPadSprite().getPosition().x, mainMap.getLaunchPadSprite().getPosition().y - mainMap.getLaunchPadSprite().getGlobalBounds().height - entitySprite.getGlobalBounds().height / 2.0f + 1});
   fuelLOX = 350;
   fuelCH4 = 100;
   acceleration = 0;
