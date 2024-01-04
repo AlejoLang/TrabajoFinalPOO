@@ -1,5 +1,5 @@
 #include "ObstaclesCollection.h"
-
+#include "iostream"
 ObstaclesCollection::ObstaclesCollection() : generationTime(0.4) {
   for (size_t i = 0; i < 2; i++) {
     sf::Texture aux;
@@ -25,10 +25,27 @@ void ObstaclesCollection::update(sf::View &mainView, Ship *playerShip) {
 void ObstaclesCollection::handleObstaclesGeneration(sf::View &mainView, Ship *playerShip) {
   if(generationClock.getElapsedTime().asSeconds() > generationTime) {
     float playerAltitude = playerShip->getAltitudeKm();
-    if(playerAltitude > 0.1 && playerAltitude < 10) {
+    float randomNumber = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+    if(playerAltitude > 0.1 && playerAltitude < 5) {
       Obstacle *newAirplane = new Airplane(airplaneTexures, mainView);
       obstaclesVector.push_back(newAirplane);
-    } else if(playerAltitude > 10) {
+    } else if(playerAltitude < 10) {
+      if(randomNumber > 0.3) {
+        Obstacle *newAirplane = new Airplane(airplaneTexures, mainView);
+        obstaclesVector.push_back(newAirplane);
+      } else {
+        Obstacle *newAsteroid = new Asteroid(asteroidTexures, mainView);
+        obstaclesVector.push_back(newAsteroid);
+      }
+    } else if(playerAltitude < 15) {
+      if(randomNumber < 0.3) {
+        Obstacle *newAirplane = new Airplane(airplaneTexures, mainView);
+        obstaclesVector.push_back(newAirplane);
+      } else {
+        Obstacle *newAsteroid = new Asteroid(asteroidTexures, mainView);
+        obstaclesVector.push_back(newAsteroid);
+      }
+    } else if(playerAltitude < 20) {
       Obstacle *newAsteroid = new Asteroid(asteroidTexures, mainView);
       obstaclesVector.push_back(newAsteroid);
     }
