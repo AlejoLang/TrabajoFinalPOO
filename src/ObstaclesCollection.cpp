@@ -29,15 +29,15 @@ void ObstaclesCollection::handleObstaclesGeneration(sf::View &mainView, Ship *pl
     if(playerAltitude > 0.1 && playerAltitude < 5) {
       Obstacle *newAirplane = new Airplane(airplaneTexures, mainView);
       obstaclesVector.push_back(newAirplane);
-    } else if(playerAltitude < 10) {
-      if(randomNumber > 0.3) {
+    } else if(playerAltitude > 0.1 && playerAltitude < 10) {
+      if(playerAltitude > 0.1 && randomNumber > 0.3) {
         Obstacle *newAirplane = new Airplane(airplaneTexures, mainView);
         obstaclesVector.push_back(newAirplane);
       } else {
         Obstacle *newAsteroid = new Asteroid(asteroidTexures, mainView);
         obstaclesVector.push_back(newAsteroid);
       }
-    } else if(playerAltitude < 15) {
+    } else if(playerAltitude > 0.1 && playerAltitude < 15) {
       if(randomNumber < 0.3) {
         Obstacle *newAirplane = new Airplane(airplaneTexures, mainView);
         obstaclesVector.push_back(newAirplane);
@@ -45,7 +45,7 @@ void ObstaclesCollection::handleObstaclesGeneration(sf::View &mainView, Ship *pl
         Obstacle *newAsteroid = new Asteroid(asteroidTexures, mainView);
         obstaclesVector.push_back(newAsteroid);
       }
-    } else if(playerAltitude < 20) {
+    } else if(playerAltitude > 15) {
       Obstacle *newAsteroid = new Asteroid(asteroidTexures, mainView);
       obstaclesVector.push_back(newAsteroid);
     }
