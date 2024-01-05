@@ -36,7 +36,7 @@ void fuelRefillerCollection::handleRefillerCollision(Ship *playerShip) {
 }
 
 void fuelRefillerCollection::handleRefillerRemove(sf::View &mainView) {
-  for (int i = 0; i < fuelRefillersVector.size(); ++i) {
+  for (size_t i = 0; i < fuelRefillersVector.size(); ++i) {
     if(fuelRefillersVector[i]->getCenter().y - fuelRefillersVector[i]->getSprite().getGlobalBounds().height > mainView.getCenter().y + mainView.getSize().y / 2.0f){
       delete fuelRefillersVector[i];
       fuelRefillersVector.erase(fuelRefillersVector.begin() + i);

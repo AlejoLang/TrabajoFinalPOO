@@ -18,7 +18,7 @@ Highscore::Highscore(std::string filePath) {
     int size = highscoreFile.tellg() / sizeof(HighscoreStruct);
     highscoreFile.seekg(0);
     HighscoreStruct auxSt;
-    for(size_t i = 0; i < size; ++i) {
+    for(int i = 0; i < size; ++i) {
       highscoreFile.read(reinterpret_cast<char *>(&auxSt), sizeof(HighscoreStruct));
       highscoreVector.push_back(auxSt);
     }
@@ -48,7 +48,7 @@ void Highscore::saveFile() {
   if(!highscoreFile) {
     std::cerr<<"Error on highscore file"<<std::endl;
   } else {
-    for (int i = 0; i < highscoreVector.size(); ++i){
+    for (size_t i = 0; i < highscoreVector.size(); ++i){
       highscoreFile.write(reinterpret_cast<char *>(&highscoreVector[i]), sizeof(HighscoreStruct));
     }
     highscoreFile.close();
