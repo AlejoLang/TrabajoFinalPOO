@@ -6,13 +6,14 @@ fuelRefillerCollection::fuelRefillerCollection() : generationTime(5) {
 }
 
 void fuelRefillerCollection::update(sf::View &mainView, Ship *playerShip) {
-  handleRefillerGeneration(mainView);
+  handleRefillerGeneration(mainView, playerShip);
   handleRefillerCollision(playerShip);
   handleRefillerRemove(mainView);
 }
 
-void fuelRefillerCollection::handleRefillerGeneration(sf::View &mainView) {
-  if(generationClock.getElapsedTime().asSeconds() > generationTime) {
+void fuelRefillerCollection::handleRefillerGeneration(sf::View &mainView, Ship *playerShip) {
+  if(playerShip->getAltitudeKm() < 0.5) { generationClock.restart(); }
+  if(generationClock.getElapsedTime().asSeconds() > generationTime){
     int type = rand() % 2;
     FuelRefiller *newRefiller;
     if(type == 0) {

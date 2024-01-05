@@ -15,7 +15,7 @@ class fuelRefillerCollection
   public:
     fuelRefillerCollection(/* args */);
     void update(sf::View &mainView, Ship *playerShip);
-    void handleRefillerGeneration(sf::View &mainView);
+    void handleRefillerGeneration(sf::View &mainView, Ship *playerShip);
     void handleRefillerCollision(Ship *playerShip);
     void handleRefillerRemove(sf::View &mainView);
     void drawIn(sf::RenderWindow &window);
