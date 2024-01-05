@@ -5,7 +5,7 @@ Button::Button(std::string btnText, sf::Font* gameFont, std::string size){
   this->buttonText.setFont(*gameFont);
   this->buttonText.setCharacterSize(36);
   this->buttonText.setString(btnText);
-  this->buttonText.setColor(sf::Color::White);
+  this->buttonText.setFillColor(sf::Color::White);
   this->buttonText.setOrigin(this->buttonText.getGlobalBounds().width / 2.0f, this->buttonText.getGlobalBounds().height / 2.0f);
   if(size == "auto") {
     this->buttonBox.setSize({buttonText.getGlobalBounds().getSize().x + 20, 50});
@@ -20,9 +20,9 @@ Button::Button(std::string btnText, sf::Font* gameFont, std::string size){
 
 void Button::update(sf::RenderWindow &window) {
   if(this->isMouseContained(window)) {
-    this->buttonText.setColor(sf::Color::Red);
+    this->buttonText.setFillColor(sf::Color::Red);
   } else {
-    this->buttonText.setColor(sf::Color::White);
+    this->buttonText.setFillColor(sf::Color::White);
   }
 }
 
