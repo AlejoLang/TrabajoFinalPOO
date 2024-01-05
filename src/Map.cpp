@@ -7,15 +7,15 @@ Map::Map(sf::RenderWindow &window){
   if(!launchPadTowerTexture.loadFromFile("./resources/textures/padTower.png")) {exit(1); }
   groundTexture.setRepeated(true);
   ground.setTexture(groundTexture);
-  ground.setTextureRect({0, 0, window.getSize().x * 5, groundTexture.getSize().y});
-  ground.setPosition(-ground.getTextureRect().getSize().x / 2.0f, 0);
+  ground.setTextureRect({0, 0, int(window.getSize().x) * 5, int(groundTexture.getSize().y)});
+  ground.setPosition(-ground.getTextureRect().getSize().x / 2.0f, 0.0f);
   
   launchPad.setTexture(launchPadTexture);
   launchPad.setOrigin(launchPadTexture.getSize().x / 2.0f, launchPadTexture.getSize().y);
   launchPad.setPosition(window.getSize().x / 2.0f, 0);
   
   launchPadTower.setTexture(launchPadTowerTexture);
-  launchPadTower.setPosition(launchPad.getPosition().x - 14 - launchPadTexture.getSize().x / 2, launchPad.getPosition().y - launchPadTowerTexture.getSize().y);
+  launchPadTower.setPosition(launchPad.getPosition().x - 14.0f - launchPadTexture.getSize().x / 2.0f, launchPad.getPosition().y - launchPadTowerTexture.getSize().y);
 }
 
 void Map::drawIn(sf::RenderWindow &window) {

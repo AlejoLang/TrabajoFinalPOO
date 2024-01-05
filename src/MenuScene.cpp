@@ -24,7 +24,7 @@ MenuScene::MenuScene(Game &game, sf::RenderWindow &window, sf::Font* gameFont)
   goToHighscoresButton.setPos({960, 740});
   exitButton.setPos({960, 840});
   nameInput.setMaxChars(20);
-  nameInput.setOrigin({nameInput.getGlobalBounds().getSize().x / 2.0, nameInput.getGlobalBounds().getSize().y / 2.0});
+  nameInput.setOrigin({nameInput.getGlobalBounds().getSize().x / 2.0f, nameInput.getGlobalBounds().getSize().y / 2.0f});
   nameInput.setPosition({960, 940});
   nameInput.setValue(game.username);
 }

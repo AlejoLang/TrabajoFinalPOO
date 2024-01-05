@@ -9,11 +9,11 @@ HighscoresScene::HighscoresScene(sf::RenderWindow &window, Highscore &highscores
   titleText.setFont(*sceneFont);
   titleText.setString("Highscores");
   titleText.setCharacterSize(72);
-  titleText.setOrigin(titleText.getGlobalBounds().getSize().x / 2.0, titleText.getGlobalBounds().getSize().y / 2.0);
+  titleText.setOrigin(titleText.getGlobalBounds().getSize().x / 2.0f, titleText.getGlobalBounds().getSize().y / 2.0f);
   titleText.setPosition(window.getSize().x / 2.0, 100);
   setUpHighscoresText(window, highscores);
-  goToMenuButton.setPos({window.getSize().x / 2.0, window.getSize().y - 100});
-  cleanHighscoresButton.setPos({window.getSize().x - (cleanHighscoresButton.getSize().x / 2.0) - 100, window.getSize().y - 100});
+  goToMenuButton.setPos({float(window.getSize().x / 2.0), (float) (window.getSize().y - 100)});
+  cleanHighscoresButton.setPos({float(window.getSize().x) - (float(cleanHighscoresButton.getSize().x) / 2.0f) - 100.0f, float(window.getSize().y - 100)});
 }
 
 void HighscoresScene::setUpHighscoresText(sf::RenderWindow &window, Highscore &highscores) {
