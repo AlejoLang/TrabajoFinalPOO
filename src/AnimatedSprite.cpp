@@ -180,6 +180,8 @@ void AnimatedSprite::update(sf::Time deltaTime)
             setFrame(m_currentFrame, false);
         }
     }
+    currentSprite.setTexture(*m_animation->getSpriteSheet());
+    currentSprite.setTextureRect(m_animation->getFrame(m_currentFrame));
 }
 
 void AnimatedSprite::draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -193,8 +195,5 @@ void AnimatedSprite::draw(sf::RenderTarget& target, sf::RenderStates states) con
 }
 
 const sf::Sprite& AnimatedSprite::getSprite() const{
-  sf::Sprite currentSprite;
-  currentSprite.setTexture(*m_animation->getSpriteSheet());
-  currentSprite.setTextureRect(m_animation->getFrame(m_currentFrame));
   return currentSprite;
 }
