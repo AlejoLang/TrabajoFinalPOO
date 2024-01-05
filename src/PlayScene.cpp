@@ -6,8 +6,8 @@
 
 PlayScene::PlayScene(sf::RenderWindow &window, sf::Font* gameFont) 
           :Scene(gameFont)
-          , mainMap(window)
           , mainView(window.getDefaultView())
+          , mainMap(window)
           , mainHud(gameFont)
 { 
   if(!playerTexture.loadFromFile("./resources/textures/Starship.png")){ exit(1); }

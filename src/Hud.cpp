@@ -5,8 +5,8 @@
 #include <iostream>
 
 Hud::Hud (sf::Font* gameFont)
-    : fuelCH4Indicator("CH4", 100, gameFont)
-    , fuelLOXIndicator("LOX", 350, gameFont) 
+    : fuelLOXIndicator("LOX", 350, gameFont) 
+    , fuelCH4Indicator("CH4", 100, gameFont)
 {
   altitudeText.setString("Altitude: 0000.00");
   altitudeText.setFont(*gameFont);
