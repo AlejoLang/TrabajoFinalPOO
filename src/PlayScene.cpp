@@ -34,7 +34,7 @@ void PlayScene::update(Game &game, sf::RenderWindow &window) {
       deadFrameCount++;
     }
   } else if (sceneEvent.key.code == sf::Keyboard::Escape) {
-    game.changeScene(new MenuScene(game, window, sceneFont));
+    game.changeScene(new MenuScene(game, sceneFont));
   }
 }
 
@@ -44,25 +44,25 @@ void PlayScene::processEvent(sf::Event &ev) {
 
 void PlayScene::updateBackground(float altitude) {
   if(altitude < 5) {
-    if(background.getTextureRect().top < background.getTexture()->getSize().y - 1080) {
+    if(background.getTextureRect().top < int(background.getTexture()->getSize().y) - 1080) {
       background.setTextureRect({0, background.getTextureRect().top + 3, background.getTextureRect().width, background.getTextureRect().height + 3});
     }
   } else if( altitude < 10) {
-    if(background.getTextureRect().top < background.getTexture()->getSize().y - (1080*2)) {
+    if(background.getTextureRect().top < int(background.getTexture()->getSize().y) - (1080*2)) {
       background.setTextureRect({0, background.getTextureRect().top + 3, background.getTextureRect().width, background.getTextureRect().height + 3});
-    } else if (background.getTextureRect().top > background.getTexture()->getSize().y - (1080*2)) {
+    } else if (background.getTextureRect().top > int(background.getTexture()->getSize().y) - (1080*2)) {
       background.setTextureRect({0, background.getTextureRect().top - 3, background.getTextureRect().width, background.getTextureRect().height - 3});
     }
   } else if (altitude < 15) {
-    if(background.getTextureRect().top < background.getTexture()->getSize().y - (1080*3)) {
+    if(background.getTextureRect().top < int(background.getTexture()->getSize().y) - (1080*3)) {
       background.setTextureRect({0, background.getTextureRect().top + 3, background.getTextureRect().width, background.getTextureRect().height + 3});
-    } else if (background.getTextureRect().top > background.getTexture()->getSize().y - (1080*3)) {
+    } else if (background.getTextureRect().top > int(background.getTexture()->getSize().y) - (1080*3)) {
       background.setTextureRect({0, background.getTextureRect().top - 3, background.getTextureRect().width, background.getTextureRect().height - 3});
     }
   } else if(altitude < 20){
-    if(background.getTextureRect().top < background.getTexture()->getSize().y - (1080*4)) {
+    if(background.getTextureRect().top < int(background.getTexture()->getSize().y) - (1080*4)) {
       background.setTextureRect({0, background.getTextureRect().top + 3, background.getTextureRect().width, background.getTextureRect().height + 3});
-    } else if (background.getTextureRect().top > background.getTexture()->getSize().y - (1080*4)) {
+    } else if (background.getTextureRect().top > int(background.getTexture()->getSize().y) - (1080*4)) {
       background.setTextureRect({0, background.getTextureRect().top - 3, background.getTextureRect().width, background.getTextureRect().height - 3});
     }
   }

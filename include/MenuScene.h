@@ -22,7 +22,7 @@ class MenuScene : public Scene{
     Button exitButton;
     Button goToHighscoresButton;
   public:
-    MenuScene(Game &game, sf::RenderWindow &window, sf::Font* gameFont);
+    MenuScene(Game &game, sf::Font* gameFont);
     void update(Game &game, sf::RenderWindow &window) override;
     void processEvent(sf::Event &ev) override;
     void drawIn(sf::RenderWindow &window) override;

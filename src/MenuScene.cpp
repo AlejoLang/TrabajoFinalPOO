@@ -3,7 +3,7 @@
 #include <string>
 #include <iostream>
 
-MenuScene::MenuScene(Game &game, sf::RenderWindow &window, sf::Font* gameFont)
+MenuScene::MenuScene(Game &game, sf::Font* gameFont)
           :Scene(gameFont)
           , nameInput(*gameFont, 36, sf::Color::White)
           , goToPlayButton("Play", gameFont) 
