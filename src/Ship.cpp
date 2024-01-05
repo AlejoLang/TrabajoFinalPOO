@@ -9,12 +9,17 @@ Ship::Ship (sf::Texture &playerTexture, Map &mainMap)
     , trustAnimationSprite(sf::seconds(0.016), false, false)
     , explostionAnimationSprite(sf::seconds(0.016), false, false){
   entitySprite.setPosition({mainMap.getLaunchPadSprite().getPosition().x, mainMap.getLaunchPadSprite().getPosition().y - mainMap.getLaunchPadSprite().getGlobalBounds().height - entitySprite.getGlobalBounds().height / 2.0f + 1});
+  std::cout<<"--------------"<<std::endl;
+  std::cout<<entitySprite.getPosition().y<<std::endl;
   fuelLOX = 350;
   fuelCH4 = 100;
   acceleration = 0;
   gravityAcceleration = 0;
   velocity = {0, 0};
   isAlive = true;
+  angularMomentum = 0;
+  maxAltitudeKm = 0;
+  currentAltitudeKm = 0;
   if(!animationTextures.loadFromFile("./resources/textures/playerTextures.png")) {exit(1);};
   trustAnimation.setSpriteSheet(animationTextures);
   for (int i = 0; i < 12; i++) {
@@ -24,8 +29,8 @@ Ship::Ship (sf::Texture &playerTexture, Map &mainMap)
   for (int i = 0; i < 12; i++) {
     explosionAnimation.addFrame(sf::IntRect(i * 240, 240, 240, 240));
   }
-trustAnimationSprite.setAnimation(trustAnimation);
-explostionAnimationSprite.setAnimation(explosionAnimation);
+  trustAnimationSprite.setAnimation(trustAnimation);
+  explostionAnimationSprite.setAnimation(explosionAnimation);
   trustAnimationSprite.setOrigin({120,120});
 }
 
@@ -36,10 +41,10 @@ void Ship::update(Map &mainMap) {
     handleTrust();
     calculateDirection();
     handleGravity(mainMap);
-    updateAltitude();
-    checkForDeath(mainMap);
     entitySprite.move(velocity);
     handleTrustAnimation();
+    updateAltitude();
+    checkForDeath(mainMap);
   }
 }
 
@@ -84,7 +89,7 @@ void Ship::handleTrustAnimation() {
 void Ship::handleRotation() {
   const float maxRotationSpeed = 2.0;
     float rotationSpeed = angularMomentum / 10.0;
-
+    
     rotationSpeed = std::min(rotationSpeed, maxRotationSpeed);
     rotationSpeed = std::max(rotationSpeed, -maxRotationSpeed);
 
