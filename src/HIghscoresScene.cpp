@@ -34,16 +34,16 @@ void HighscoresScene::setUpHighscoresText(sf::RenderWindow &window, Highscore &h
     highscoresTextsVector[i].second.setPosition(window.getSize().x / 2.0 + (32 * 10), 300 + (i * 60));
   }
   if(highscoresTextsVector.size() >= 1){
-    highscoresTextsVector[0].first.setColor(sf::Color(255, 215, 0));
-    highscoresTextsVector[0].second.setColor(sf::Color(255, 215, 0));
+    highscoresTextsVector[0].first.setFillColor(sf::Color(255, 215, 0));
+    highscoresTextsVector[0].second.setFillColor(sf::Color(255, 215, 0));
   }
   if(highscoresTextsVector.size() >= 2) {
-    highscoresTextsVector[1].first.setColor(sf::Color(192, 192, 192));
-    highscoresTextsVector[1].second.setColor(sf::Color(192, 192, 192));
+    highscoresTextsVector[1].first.setFillColor(sf::Color(192, 192, 192));
+    highscoresTextsVector[1].second.setFillColor(sf::Color(192, 192, 192));
   }
   if(highscoresTextsVector.size() >= 3) {
-    highscoresTextsVector[2].first.setColor(sf::Color(205, 127, 50));
-    highscoresTextsVector[2].second.setColor(sf::Color(205, 127, 50));
+    highscoresTextsVector[2].first.setFillColor(sf::Color(205, 127, 50));
+    highscoresTextsVector[2].second.setFillColor(sf::Color(205, 127, 50));
   }
 }
 

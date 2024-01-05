@@ -9,7 +9,7 @@ DeathScene::DeathScene(Game &game, sf::RenderWindow &window, int points, sf::Fon
 {
   mainText.setString("YOU DIED");
   mainText.setFont(*sceneFont);
-  mainText.setColor(sf::Color::Red);
+  mainText.setFillColor(sf::Color::Red);
   mainText.setCharacterSize(72);
   mainText.setOrigin(mainText.getGlobalBounds().width / 2.0f, mainText.getGlobalBounds().height / 2.0f);
   mainText.setPosition(window.getSize().x / 2.0f, window.getSize().y / 2.0f  - 200);
