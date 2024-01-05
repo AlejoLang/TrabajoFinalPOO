@@ -62,7 +62,7 @@ void ObstaclesCollection::handleObstaclesCollision(Ship *playerShip) {
 }
 
 void ObstaclesCollection::handleObstaclesRemove(sf::View &mainView) {
-  for (int i = 0; i < obstaclesVector.size(); ++i) {
+  for (size_t i = 0; i < obstaclesVector.size(); ++i) {
     if(obstaclesVector[i]->getCenter().y - obstaclesVector[i]->getSprite().getGlobalBounds().height > mainView.getCenter().y + mainView.getSize().y / 2.0f){
       delete obstaclesVector[i];
       obstaclesVector.erase(obstaclesVector.begin() + i);
