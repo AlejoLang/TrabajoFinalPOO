@@ -54,9 +54,7 @@ public:
     bool isPlaying() const;
     sf::Time getFrameTime() const;
     void setFrame(std::size_t newFrame, bool resetTime = true);
-    const sf::Sprite& getSprite() const;
 private:
-    sf::Sprite currentSprite;
     const Animation* m_animation;
     sf::Time m_frameTime;
     sf::Time m_currentTime;
