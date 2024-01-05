@@ -26,6 +26,7 @@ class MenuScene : public Scene{
     void update(Game &game, sf::RenderWindow &window) override;
     void processEvent(sf::Event &ev) override;
     void drawIn(sf::RenderWindow &window) override;
+    ~MenuScene() {};
 };
 
 #endif 

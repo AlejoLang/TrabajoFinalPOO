@@ -16,6 +16,7 @@ class Entity {
     bool collides(sf::Sprite &sprite);
     sf::Vector2f getCenter();
     sf::Sprite& getSprite();
+    virtual ~Entity() {};
 };
 
 #endif

@@ -28,4 +28,5 @@ class Highscore {
     void cleanHighscores();
     std::vector <HighscoreStruct> getHighscores();
     void saveFile();
+    ~Highscore() {};
 };

@@ -90,6 +90,7 @@ public:
 	std::string getValue() { return value; }
 	void setValue(std::string text) { value = text; }
 	void reset() { value.clear(); }
+	~InputText() {};
 };
 
 

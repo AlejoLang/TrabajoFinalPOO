@@ -21,6 +21,7 @@ class Hud {
     void updateAltitudeText(Ship *playerShip, sf::View &view);
     void updateVelocityText(Ship *playerShip, sf::View &view);
     void draw(sf::RenderWindow &window);
+    ~Hud() {};
 };
 
 #endif

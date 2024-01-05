@@ -9,4 +9,5 @@ class Obstacle : public Entity {
   public:
     Obstacle() : Entity() {};
     void update() { entitySprite.move(obstacleVelocity); };
+    virtual ~Obstacle() {};
 };

@@ -23,4 +23,5 @@ class DeathScene : public Scene{
     void processEvent(sf::Event &ev) override;
     void updateHighscores(Game &game, int points);
     void drawIn(sf::RenderWindow &window) override;
+    ~DeathScene() {};
 };

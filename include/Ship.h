@@ -42,6 +42,7 @@ class Ship : public Entity {
     bool getStatus();
     void drawIn(sf::RenderWindow &window) override;
     void explode();
+    ~Ship() {};
 };
 
 #endif

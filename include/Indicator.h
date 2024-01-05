@@ -15,6 +15,7 @@ class Indicator
     void update(float value);
     void setPos(sf::Vector2f pos);
     void draw(sf::RenderWindow &window);
+    ~Indicator() {};
 };
 
 #endif

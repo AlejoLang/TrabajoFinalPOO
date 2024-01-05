@@ -14,4 +14,5 @@ class Button {
     bool isClicked(sf::RenderWindow &window);
     sf::Vector2f getSize();
     void drawIn(sf::RenderWindow &window);
+    ~Button() {};
 };
