@@ -82,7 +82,7 @@ public:
 		} else {
 			setString("Type to enter username");
 		}
-		setOrigin({this->getGlobalBounds().getSize().x / 2.0, 25});
+		setOrigin({(float) (this->getGlobalBounds().getSize().x / 2.0), 25});
 		setPosition({960, 940});
 	}
 	void setEditable(bool value) { editable=value; }
