@@ -15,7 +15,7 @@ PlayScene::PlayScene(sf::RenderWindow &window, sf::Font* gameFont)
   playerShip = new Ship(playerTexture, mainMap);
   background.setTexture(backgroundTexture);
   background.setTextureRect(sf::IntRect(0, backgroundTexture.getSize().y - 1080, backgroundTexture.getSize().x, backgroundTexture.getSize().y));
-  background.setOrigin(window.getSize().x / 2.0f, window.getSize().y / 2.0 + 50);
+  background.setOrigin(window.getSize().x / 2.0f, window.getSize().y / 2.0f + 50);
   deadFrameCount = 0;
 }
 
