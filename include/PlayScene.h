@@ -30,7 +30,7 @@ class PlayScene : public Scene {
     void update(Game &game, sf::RenderWindow &window) override;
     void processEvent(sf::Event &ev) override;
     void drawIn(sf::RenderWindow &window) override;
-    void updateBackground(sf::RenderWindow &window, float altitude);
+    void updateBackground(float altitude);
     void updatePoints();
     void reducePoints(float val);
     ~PlayScene();

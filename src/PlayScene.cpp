@@ -12,7 +12,7 @@ PlayScene::PlayScene(sf::RenderWindow &window, sf::Font* gameFont)
 { 
   if(!playerTexture.loadFromFile("./resources/textures/Starship.png")){ exit(1); }
   if(!backgroundTexture.loadFromFile("./resources/textures/background.png")){ exit(1); }
-  playerShip = new Ship(playerTexture, mainMap, window);
+  playerShip = new Ship(playerTexture, mainMap);
   background.setTexture(backgroundTexture);
   background.setTextureRect(sf::IntRect(0, backgroundTexture.getSize().y - 1080, backgroundTexture.getSize().x, backgroundTexture.getSize().y));
   background.setOrigin(window.getSize().x / 2.0f, window.getSize().y / 2.0 + 50);
@@ -25,7 +25,7 @@ void PlayScene::update(Game &game, sf::RenderWindow &window) {
   mainObstaclesCollection.update(mainView, playerShip);
   mainRefillerCollection.update(mainView, playerShip);
   mainHud.update(playerShip, mainView);
-  updateBackground(window, playerShip->getAltitudeKm());
+  updateBackground(playerShip->getAltitudeKm());
   updatePoints();
   if(!playerShip->getStatus()){
     if(deadFrameCount > 12) {
@@ -42,7 +42,7 @@ void PlayScene::processEvent(sf::Event &ev) {
   sceneEvent = ev;
 }
 
-void PlayScene::updateBackground(sf::RenderWindow &window, float altitude) {
+void PlayScene::updateBackground(float altitude) {
   if(altitude < 5) {
     if(background.getTextureRect().top < background.getTexture()->getSize().y - 1080) {
       background.setTextureRect({0, background.getTextureRect().top + 3, background.getTextureRect().width, background.getTextureRect().height + 3});

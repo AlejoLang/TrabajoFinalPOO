@@ -4,7 +4,7 @@
 #include "Collision.h"
 #include <iostream>
 
-Ship::Ship (sf::Texture &playerTexture, Map &mainMap,sf::RenderWindow &window) 
+Ship::Ship (sf::Texture &playerTexture, Map &mainMap) 
     : Entity(playerTexture) 
     , trustAnimationSprite(sf::seconds(0.016), false, false)
     , explostionAnimationSprite(sf::seconds(0.016), false, false){
@@ -24,7 +24,8 @@ Ship::Ship (sf::Texture &playerTexture, Map &mainMap,sf::RenderWindow &window)
   for (int i = 0; i < 12; i++) {
     explosionAnimation.addFrame(sf::IntRect(i * 240, 240, 240, 240));
   }
-
+trustAnimationSprite.setAnimation(trustAnimation);
+explostionAnimationSprite.setAnimation(explosionAnimation);
   trustAnimationSprite.setOrigin({120,120});
 }
 
