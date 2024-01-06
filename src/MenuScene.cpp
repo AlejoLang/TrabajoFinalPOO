@@ -27,6 +27,7 @@ MenuScene::MenuScene(Game &game, sf::Font* gameFont)
   nameInput.setOrigin({nameInput.getGlobalBounds().getSize().x / 2.0f, nameInput.getGlobalBounds().getSize().y / 2.0f});
   nameInput.setPosition({960, 940});
   nameInput.setValue(game.username);
+  nameInput.setSingleWord(true);
 }
 
 void MenuScene::update (Game &game, sf::RenderWindow &window) {
@@ -57,13 +58,13 @@ void MenuScene::update (Game &game, sf::RenderWindow &window) {
   exitButton.update(window);
   nameInput.update();
   game.username = nameInput.getValue();
-  if(goToPlayButton.isClicked(window)) {
+  if(goToPlayButton.isClicked(window) && game.isFocused) {
     game.changeScene(new PlayScene(window, sceneFont));
   }
-  if(exitButton.isClicked(window)) {
+  if(exitButton.isClicked(window) && game.isFocused) {
     window.close();
   }
-  if(goToHighscoresButton.isClicked(window)) {
+  if(goToHighscoresButton.isClicked(window) && game.isFocused) {
     game.changeScene(new HighscoresScene(window, game.gameHighscores, sceneFont));
   }
   if (sceneEvent.key.code == sf::Keyboard::Escape) {
