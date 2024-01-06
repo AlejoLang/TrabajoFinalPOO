@@ -43,6 +43,9 @@ void DeathScene::processEvent(sf::Event &ev){
 }
 
 void DeathScene::updateHighscores(Game &game, int points) {
+  if(game.username == "") {
+    game.username = "Player";
+  }
   HighscoreStruct newHs(game.username, points);
   game.gameHighscores.addScore(newHs);
 }
