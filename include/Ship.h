@@ -1,6 +1,7 @@
 #ifndef SHIP_H
 #define SHIP_H
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "Entity.h"
 #include "Map.h"
 #include "Asteroid.h"
@@ -17,6 +18,8 @@ class Ship : public Entity {
     float maxAltitudeKm;
     float angularMomentum;
     sf::Texture animationTextures;
+    sf::Sound explosionSound;
+    sf::SoundBuffer explosionSoundFile;
     Animation trustAnimation;
     AnimatedSprite trustAnimationSprite;
     Animation explosionAnimation;
@@ -40,6 +43,7 @@ class Ship : public Entity {
     float getAltitudeKm();
     float getVelocityKm_H();
     bool getStatus();
+    bool isExplosionSoundPlaying();
     void drawIn(sf::RenderWindow &window) override;
     void explode();
     ~Ship() {};

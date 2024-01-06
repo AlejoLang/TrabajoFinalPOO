@@ -30,10 +30,17 @@ Ship::Ship (sf::Texture &playerTexture, Map &mainMap)
   trustAnimationSprite.setAnimation(trustAnimation);
   explostionAnimationSprite.setAnimation(explosionAnimation);
   trustAnimationSprite.setOrigin({120,120});
+
+  if(!explosionSoundFile.loadFromFile("./resources/sounds/explosion.wav")) { exit(1); }
+  explosionSound.setBuffer(explosionSoundFile);
+  explosionSound.setVolume(50);
 }
 
 void Ship::update(Map &mainMap) {
   if(!isAlive) {
+    if(explosionSound.getStatus() != sf::SoundSource::Status::Playing) {
+      explosionSound.play();
+    }
     explostionAnimationSprite.update(sf::seconds(0.016));
   } else {
     handleTrust();
@@ -142,6 +149,10 @@ float Ship::getVelocityKm_H() {
   velocity /= 2; /*Convert to m/s (1m = 2px)*/
   velocity *= 3.6; /*Convert to Km/h*/
   return velocity;
+}
+
+bool Ship::isExplosionSoundPlaying() {
+  return explosionSound.getStatus() == sf::SoundSource::Status::Playing;
 }
 
 void Ship::drawIn(sf::RenderWindow &window) {
