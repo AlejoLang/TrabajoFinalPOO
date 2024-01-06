@@ -65,9 +65,11 @@ public:
 			if (event.text.unicode=='\b') {
 				if (value.size()) value.erase(value.size()-1,1);
 			} else if (event.text.unicode>=32 && event.text.unicode<128) {
-				if (!max_chars || value.size()<max_chars) 
-					if (!single_word || event.text.unicode!=' ')
+				if (!max_chars || value.size()<max_chars){
+					if (!single_word || event.text.unicode!=32){
 						value += static_cast<char>(event.text.unicode);
+					}
+				}
 			}
 			return true;
 		}
