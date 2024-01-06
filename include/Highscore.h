@@ -10,8 +10,6 @@ struct HighscoreStruct {
   int points = 0;
 
   HighscoreStruct(std::string name, int p) {
-
-  std::cout<<name.size()<<std::endl;
     for(size_t i = 0; i < name.size(); ++i) {
       username[i] = name[i];
     }
