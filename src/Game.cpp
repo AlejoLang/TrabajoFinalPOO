@@ -32,7 +32,12 @@ void Game::handleEvents() {
   while (window.pollEvent(evt)) {
     if (evt.type == sf::Event::Closed) {
       window.close();
-    } else {
+    } else if (evt.type == sf::Event::GainedFocus) {
+      isFocused = true;
+    } else if (evt.type == sf::Event::LostFocus) {
+      isFocused = false;
+    }
+    else {
       currentScene->processEvent(evt);
     }
   }

@@ -16,6 +16,7 @@ class Game {
   public:
     Highscore gameHighscores;
     std::string username;
+    bool isFocused;
     Game();
     void Run();
     void handleEvents();
