@@ -9,8 +9,6 @@ Ship::Ship (sf::Texture &playerTexture, Map &mainMap)
     , trustAnimationSprite(sf::seconds(0.016), false, false)
     , explostionAnimationSprite(sf::seconds(0.016), false, false){
   entitySprite.setPosition({mainMap.getLaunchPadSprite().getPosition().x, mainMap.getLaunchPadSprite().getPosition().y - mainMap.getLaunchPadSprite().getGlobalBounds().height - entitySprite.getGlobalBounds().height / 2.0f + 1});
-  std::cout<<"--------------"<<std::endl;
-  std::cout<<entitySprite.getPosition().y<<std::endl;
   fuelLOX = 350;
   fuelCH4 = 100;
   acceleration = 0;
