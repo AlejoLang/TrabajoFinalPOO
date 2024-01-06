@@ -34,12 +34,12 @@ Ship::Ship (sf::Texture &playerTexture, Map &mainMap)
   if(!explosionSoundFile.loadFromFile("./resources/sounds/explosion.wav")) { exit(1); }
   explosionSound.setBuffer(explosionSoundFile);
   explosionSound.setVolume(50);
-  rocketSound.setLoop(false);
+  explosionSound.setLoop(false);
   if(!rocketSoundFile.loadFromFile("./resources/sounds/rocket.wav")) { exit(1); }
   rocketSound.setBuffer(rocketSoundFile);
   rocketSound.setVolume(75);
   rocketSound.setLoop(true);
-  std::cout<<rocketSoundFile.getDuration().asSeconds()<<std::endl;
+  std::cout<<rocketSoundFile.getDuration().asSeconds();
 }
 
 void Ship::update(Map &mainMap) {
@@ -75,7 +75,9 @@ void Ship::handleTrust() {
     acceleration += 0.3;
     angularMomentum += velocity.x / acceleration * 0.25;
     trustAnimationSprite.play(trustAnimation);
-    rocketSound.play();
+    if(rocketSound.getStatus() != sf::SoundSource::Status::Playing) {
+      rocketSound.play();
+    }
   } else {
     acceleration -= 0.5;
     trustAnimationSprite.stop();
@@ -172,12 +174,13 @@ void Ship::drawIn(sf::RenderWindow &window) {
 void Ship::explode() {
   if(!isAlive){ return; }
   isAlive = false;
-  explostionAnimationSprite.play(explosionAnimation);
-  explostionAnimationSprite.setOrigin({120, 120});
-  explostionAnimationSprite.setPosition(entitySprite.getPosition());
+  rocketSound.stop();
   if(explosionSound.getStatus() == sf::SoundSource::Status::Stopped) {
     explosionSound.play();
   }
+  explostionAnimationSprite.play(explosionAnimation);
+  explostionAnimationSprite.setOrigin({120, 120});
+  explostionAnimationSprite.setPosition(entitySprite.getPosition());
 }
 
 bool Ship::getStatus() {
