@@ -20,6 +20,8 @@ class Ship : public Entity {
     sf::Texture animationTextures;
     sf::Sound explosionSound;
     sf::SoundBuffer explosionSoundFile;
+    sf::Sound rocketSound;
+    sf::SoundBuffer rocketSoundFile;
     Animation trustAnimation;
     AnimatedSprite trustAnimationSprite;
     Animation explosionAnimation;
