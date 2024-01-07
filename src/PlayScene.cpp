@@ -22,10 +22,11 @@ PlayScene::PlayScene(sf::RenderWindow &window, sf::Font* gameFont)
 void PlayScene::update(Game &game, sf::RenderWindow &window) {
   playerShip->update(mainMap);
   mainView.setCenter(playerShip->getCenter().x, playerShip->getCenter().y - 350.f);
-  mainObstaclesCollection.update(mainView, playerShip);
-  mainRefillerCollection.update(mainView, playerShip);
+  mainObstaclesCollection.update(mainView, playerShip, game.getGameDifficulty());
+  mainRefillerCollection.update(mainView, playerShip, game.getGameDifficulty());
   mainHud.update(playerShip, mainView);
   updateBackground(playerShip->getAltitudeKm());
+  updateGameDifficulty(game, playerShip->getAltitudeKm());
   updatePoints();
   if(!playerShip->getStatus()){
     if(!playerShip->isExplosionSoundPlaying() && deadFrameCount > 12) {
@@ -81,6 +82,18 @@ void PlayScene::drawIn(sf::RenderWindow &window) {
 
 void PlayScene::updatePoints() {
   points = (playerShip->getAltitudeKm() * 100) + ((playerShip->getCH4() + playerShip->getLOX()) * 0.5);
+}
+
+void PlayScene::updateGameDifficulty(Game &game, float altitude) {
+  if(altitude < 5) {
+    game.setGameDifficulty(1);
+  } else if( altitude < 10) {
+    game.setGameDifficulty(2);
+  } else if (altitude < 15) {
+    game.setGameDifficulty(3);
+  } else if(altitude < 20){
+    game.setGameDifficulty(4);
+  }
 }
 
 PlayScene::~PlayScene() {

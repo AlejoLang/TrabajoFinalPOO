@@ -22,7 +22,7 @@ class PlayScene : public Scene {
     Map mainMap;
     Hud mainHud;
     ObstaclesCollection mainObstaclesCollection;
-    fuelRefillerCollection mainRefillerCollection;
+    FuelRefillerCollection mainRefillerCollection;
     int deadFrameCount;
     int points;
   public:
@@ -33,6 +33,7 @@ class PlayScene : public Scene {
     void updateBackground(float altitude);
     void updatePoints();
     void reducePoints(float val);
+    void updateGameDifficulty(Game &game, float altitude);
     ~PlayScene();
 };
 
