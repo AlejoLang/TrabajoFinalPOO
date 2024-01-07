@@ -53,6 +53,14 @@ void Game::Draw() {
   window.display();
 }
 
+int Game::getGameDifficulty() {
+  return this->gameDifficulty;
+}
+
+void Game::setGameDifficulty(int newDifficulty) {
+  this->gameDifficulty = newDifficulty;
+}
+
 void Game::changeScene(Scene *newScene) {
   nextScene = newScene;
 }
