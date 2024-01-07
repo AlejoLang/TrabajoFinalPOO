@@ -37,9 +37,8 @@ Ship::Ship (sf::Texture &playerTexture, Map &mainMap)
   explosionSound.setLoop(false);
   if(!rocketSoundFile.loadFromFile("./resources/sounds/rocket.wav")) { exit(1); }
   rocketSound.setBuffer(rocketSoundFile);
-  rocketSound.setVolume(75);
+  rocketSound.setVolume(50);
   rocketSound.setLoop(true);
-  std::cout<<rocketSoundFile.getDuration().asSeconds();
 }
 
 void Ship::update(Map &mainMap) {
@@ -85,7 +84,7 @@ void Ship::handleTrust() {
     rocketSound.pause();
   }
   angularMomentum += velocity.x / 30.0;
-  acceleration = std::max(0.0f, std::min(acceleration, 40.0f));
+  acceleration = std::max(0.0f, std::min(acceleration, 40.f));
   velocity -= {velocity.x - acceleration, velocity.y - acceleration};
 }
 
