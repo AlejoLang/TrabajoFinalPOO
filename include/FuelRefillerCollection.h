@@ -13,6 +13,8 @@ class FuelRefillerCollection
     sf::Texture CH4RefillerTexture;
     sf::Clock generationClock; 
     float generationTime;
+    sf::SoundBuffer collectionSoundFile;
+    sf::Sound collectionSound;
   public:
     FuelRefillerCollection(/* args */);
     void update(sf::View &mainView, Ship *playerShip, int gameDifficulty);

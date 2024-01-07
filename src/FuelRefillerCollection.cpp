@@ -3,6 +3,8 @@
 FuelRefillerCollection::FuelRefillerCollection() : generationTime(5) {
   if(!LOXRefillerTexture.loadFromFile("./resources/textures/LOXRefiller.png")) { exit(1); }
   if(!CH4RefillerTexture.loadFromFile("./resources/textures/CH4Refiller.png")) { exit(1); }
+  if(!collectionSoundFile.loadFromFile("./resources/sounds/collect.wav")) { exit(1); }
+  collectionSound.setBuffer(collectionSoundFile);
 }
 
 void FuelRefillerCollection::update(sf::View &mainView, Ship *playerShip, int gameDifficulty) {
@@ -49,6 +51,7 @@ void FuelRefillerCollection::handleRefillerGeneration(sf::View &mainView, Ship *
 void FuelRefillerCollection::handleRefillerCollision(Ship *playerShip) {
   for (size_t i = 0; i < fuelRefillersVector.size(); i++) {
     if(fuelRefillersVector[i]->checkAndHandleCollision(playerShip)){
+      collectionSound.play();
       delete fuelRefillersVector[i];
       fuelRefillersVector.erase(fuelRefillersVector.begin() + i);
     }
