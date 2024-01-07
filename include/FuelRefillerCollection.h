@@ -15,7 +15,8 @@ class FuelRefillerCollection
     float generationTime;
   public:
     FuelRefillerCollection(/* args */);
-    void update(sf::View &mainView, Ship *playerShip);
+    void update(sf::View &mainView, Ship *playerShip, int gameDifficulty);
+    void updateGenerationTime(int gameDifficulty);
     void handleRefillerGeneration(sf::View &mainView, Ship *playerShip);
     void handleRefillerCollision(Ship *playerShip);
     void handleRefillerRemove(sf::View &mainView);

@@ -5,10 +5,30 @@ FuelRefillerCollection::FuelRefillerCollection() : generationTime(5) {
   if(!CH4RefillerTexture.loadFromFile("./resources/textures/CH4Refiller.png")) { exit(1); }
 }
 
-void FuelRefillerCollection::update(sf::View &mainView, Ship *playerShip) {
+void FuelRefillerCollection::update(sf::View &mainView, Ship *playerShip, int gameDifficulty) {
+  updateGenerationTime(gameDifficulty);
   handleRefillerGeneration(mainView, playerShip);
   handleRefillerCollision(playerShip);
   handleRefillerRemove(mainView);
+}
+
+void FuelRefillerCollection::updateGenerationTime(int gameDifficulty) {
+  switch (gameDifficulty){
+    case 1:
+      generationTime = 4;
+      break;
+    case 2:
+      generationTime = 8;
+      break;
+    case 3:
+      generationTime = 12;
+      break;
+    case 4:
+      generationTime = 16;
+      break;
+    default:
+      break;
+  }
 }
 
 void FuelRefillerCollection::handleRefillerGeneration(sf::View &mainView, Ship *playerShip) {
