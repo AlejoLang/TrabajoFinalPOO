@@ -18,7 +18,8 @@ class ObstaclesCollection {
     float generationTime;
   public:
     ObstaclesCollection();
-    void update(sf::View &mainView, Ship *playerShip);
+    void update(sf::View &mainView, Ship *playerShip, int gameDifficulty);
+    void updateGenerationTime(int gameDifficulty);
     void handleObstaclesGeneration(sf::View &mainView, Ship *playerShip);
     void handleObstaclesCollision(Ship *playerShip);
     void handleObstaclesRemove(sf::View &mainView);

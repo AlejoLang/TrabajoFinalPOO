@@ -1,6 +1,6 @@
 #include "ObstaclesCollection.h"
 #include "iostream"
-ObstaclesCollection::ObstaclesCollection() : generationTime(0.4) {
+ObstaclesCollection::ObstaclesCollection() : generationTime(0.8) {
   for (size_t i = 0; i < 2; i++) {
     sf::Texture aux;
     asteroidTexures.push_back(aux);
@@ -13,13 +13,33 @@ ObstaclesCollection::ObstaclesCollection() : generationTime(0.4) {
   }
 }
 
-void ObstaclesCollection::update(sf::View &mainView, Ship *playerShip) {
+void ObstaclesCollection::update(sf::View &mainView, Ship *playerShip, int gameDifficulty) {
+  updateGenerationTime(gameDifficulty);
   handleObstaclesGeneration(mainView, playerShip);
   for (Obstacle *obs: obstaclesVector) {
     obs->update();
   }
   handleObstaclesCollision(playerShip);
   handleObstaclesRemove(mainView);
+}
+
+void ObstaclesCollection::updateGenerationTime(int gameDifficulty) {
+  switch (gameDifficulty) {
+    case 1:
+      generationTime = 0.8;
+      break;
+    case 2:
+      generationTime = 0.6;
+      break;
+    case 3:
+      generationTime = 0.4;
+      break;
+    case 4:
+      generationTime = 0.2;
+      break;
+    default:
+      break;
+  }
 }
 
 void ObstaclesCollection::handleObstaclesGeneration(sf::View &mainView, Ship *playerShip) {
