@@ -3,8 +3,9 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include "FuelRefiller.h"
+#include "Ship.h"
 
-class fuelRefillerCollection
+class FuelRefillerCollection
 {
   private:
     std::vector<FuelRefiller *> fuelRefillersVector;
@@ -13,13 +14,13 @@ class fuelRefillerCollection
     sf::Clock generationClock; 
     float generationTime;
   public:
-    fuelRefillerCollection(/* args */);
+    FuelRefillerCollection(/* args */);
     void update(sf::View &mainView, Ship *playerShip);
     void handleRefillerGeneration(sf::View &mainView, Ship *playerShip);
     void handleRefillerCollision(Ship *playerShip);
     void handleRefillerRemove(sf::View &mainView);
     void drawIn(sf::RenderWindow &window);
-    ~fuelRefillerCollection();
+    ~FuelRefillerCollection();
 };
 
 

@@ -1,17 +1,17 @@
 #include "FuelRefillerCollection.h"
 
-fuelRefillerCollection::fuelRefillerCollection() : generationTime(5) {
+FuelRefillerCollection::FuelRefillerCollection() : generationTime(5) {
   if(!LOXRefillerTexture.loadFromFile("./resources/textures/LOXRefiller.png")) { exit(1); }
   if(!CH4RefillerTexture.loadFromFile("./resources/textures/CH4Refiller.png")) { exit(1); }
 }
 
-void fuelRefillerCollection::update(sf::View &mainView, Ship *playerShip) {
+void FuelRefillerCollection::update(sf::View &mainView, Ship *playerShip) {
   handleRefillerGeneration(mainView, playerShip);
   handleRefillerCollision(playerShip);
   handleRefillerRemove(mainView);
 }
 
-void fuelRefillerCollection::handleRefillerGeneration(sf::View &mainView, Ship *playerShip) {
+void FuelRefillerCollection::handleRefillerGeneration(sf::View &mainView, Ship *playerShip) {
   if(playerShip->getAltitudeKm() < 0.5) { generationClock.restart(); }
   if(generationClock.getElapsedTime().asSeconds() > generationTime){
     int type = rand() % 2;
@@ -26,7 +26,7 @@ void fuelRefillerCollection::handleRefillerGeneration(sf::View &mainView, Ship *
   }
 }
 
-void fuelRefillerCollection::handleRefillerCollision(Ship *playerShip) {
+void FuelRefillerCollection::handleRefillerCollision(Ship *playerShip) {
   for (size_t i = 0; i < fuelRefillersVector.size(); i++) {
     if(fuelRefillersVector[i]->checkAndHandleCollision(playerShip)){
       delete fuelRefillersVector[i];
@@ -36,7 +36,7 @@ void fuelRefillerCollection::handleRefillerCollision(Ship *playerShip) {
   
 }
 
-void fuelRefillerCollection::handleRefillerRemove(sf::View &mainView) {
+void FuelRefillerCollection::handleRefillerRemove(sf::View &mainView) {
   for (size_t i = 0; i < fuelRefillersVector.size(); ++i) {
     if(fuelRefillersVector[i]->getCenter().y - fuelRefillersVector[i]->getSprite().getGlobalBounds().height > mainView.getCenter().y + mainView.getSize().y / 2.0f){
       delete fuelRefillersVector[i];
@@ -45,13 +45,13 @@ void fuelRefillerCollection::handleRefillerRemove(sf::View &mainView) {
   }
 }
 
-void fuelRefillerCollection::drawIn(sf::RenderWindow &window) {
+void FuelRefillerCollection::drawIn(sf::RenderWindow &window) {
   for (FuelRefiller *refiller: fuelRefillersVector) {
     refiller->drawIn(window);
   }
 }
 
-fuelRefillerCollection::~fuelRefillerCollection() {
+FuelRefillerCollection::~FuelRefillerCollection() {
   for (FuelRefiller *refiller: fuelRefillersVector) {
     delete refiller;
   }
