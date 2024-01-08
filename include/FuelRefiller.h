@@ -1,10 +1,8 @@
 #ifndef FUELREFILLER_H
 #define FUELREFILLER_H
 #include <SFML/Graphics.hpp>
-#include <string>
 #include "Entity.h"
-#include "Collision.h"
-#include "Ship.h"
+class Ship;
 
 class FuelRefiller : public Entity {
   protected:

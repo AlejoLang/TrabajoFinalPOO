@@ -1,5 +1,7 @@
 #include "FuelRefiller.h"
-#include <iostream>
+#include "Ship.h"
+#include "Collision.h"
+#include <string>
 
 FuelRefiller::FuelRefiller(sf::Texture &texture, std::string fuelType, sf::View &view) : Entity(texture) {
   this->type = fuelType;
