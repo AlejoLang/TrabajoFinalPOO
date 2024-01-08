@@ -17,9 +17,9 @@ class Hud {
   public:
     Hud(sf::Font* gameFont);
     void update(Ship *playerShip, sf::View &view);
-    void updateIndicators(Ship *playerShip, sf::View &view);
-    void updateAltitudeText(Ship *playerShip, sf::View &view);
-    void updateVelocityText(Ship *playerShip, sf::View &view);
+    void updateIndicators(float LOXLevel, float CH4Level , sf::View &view);
+    void updateAltitudeText(float altitude, sf::View &view);
+    void updateVelocityText(float velocity, sf::View &view);
     void draw(sf::RenderWindow &window);
     ~Hud() {};
 };
