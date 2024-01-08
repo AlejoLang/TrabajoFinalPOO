@@ -2,6 +2,7 @@
 #define SHIP_H
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include "Game.h"
 #include "Entity.h"
 #include "AnimatedSprite.h"
 #include "Map.h"
@@ -28,11 +29,11 @@ class Ship : public Entity {
     bool isAlive;
   public:
     Ship(sf::Texture &playerTexture, Map &mainMap);
-    void update(Map &mainMap);
+    void update(Game &game, Map &mainMap);
     void updateAltitude();
-    void handleTrust();
-    void handleRotation();
-    void handleGravity(Map &mainMap);
+    void handleTrust(Game &game);
+    void handleRotation(Game &game);
+    void handleGravity(Game &game, Map &mainMap);
     void handleTrustAnimation();
     void calculateDirection();
     void increaseLOX(float val);

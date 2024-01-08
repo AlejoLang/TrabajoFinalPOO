@@ -25,7 +25,7 @@ PlayScene::PlayScene(sf::RenderWindow &window, sf::Font* gameFont)
 }
 
 void PlayScene::update(Game &game, sf::RenderWindow &window) {
-  playerShip->update(mainMap);
+  playerShip->update(game, mainMap);
   mainView.setCenter(playerShip->getCenter().x, playerShip->getCenter().y - 350.f);
   mainObstaclesCollection.update(mainView, playerShip, game.getGameDifficulty());
   mainRefillerCollection.update(mainView, playerShip, game.getGameDifficulty());

@@ -39,13 +39,13 @@ Ship::Ship (sf::Texture &playerTexture, Map &mainMap)
   rocketSound.setLoop(true);
 }
 
-void Ship::update(Map &mainMap) {
+void Ship::update(Game &game, Map &mainMap) {
   if(!isAlive) {
     explostionAnimationSprite.update(sf::seconds(0.016));
   } else {
-    handleTrust();
+    handleTrust(game);
     calculateDirection();
-    handleGravity(mainMap);
+    handleGravity(game, mainMap);
     entitySprite.move(velocity);
     handleTrustAnimation();
     updateAltitude();
@@ -65,8 +65,8 @@ void Ship::calculateDirection() {
   velocity = {velocity.x * direction.x, velocity.y * direction.y};
 }
 
-void Ship::handleTrust() {
-  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W) && fuelLOX > 0 && fuelCH4 > 0) {
+void Ship::handleTrust(Game &game) {
+  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W) && game.isFocused && fuelLOX > 0 && fuelCH4 > 0) {
     fuelLOX -= 0.175;
     fuelCH4 -= 0.05;
     acceleration += 0.3;
@@ -95,17 +95,17 @@ void Ship::handleTrustAnimation() {
   trustAnimationSprite.update(sf::seconds(0.016));
 }
 
-void Ship::handleRotation() {
+void Ship::handleRotation(Game &game) {
   const float maxRotationSpeed = 2.0;
     float rotationSpeed = angularMomentum / 10.0;
     
     rotationSpeed = std::min(rotationSpeed, maxRotationSpeed);
     rotationSpeed = std::max(rotationSpeed, -maxRotationSpeed);
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) && fuelLOX > 0 && fuelCH4 > 0) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) && game.isFocused && fuelLOX > 0 && fuelCH4 > 0) {
         rotationSpeed -= 0.5;
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right) && fuelLOX > 0 && fuelCH4 > 0) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right) && game.isFocused && fuelLOX > 0 && fuelCH4 > 0) {
         rotationSpeed += 0.5;
     }
 
@@ -113,12 +113,12 @@ void Ship::handleRotation() {
     angularMomentum *= 0.1;
 }
 
-void Ship::handleGravity(Map &mainMap) {
+void Ship::handleGravity(Game &game, Map &mainMap) {
   if(!entitySprite.getGlobalBounds().intersects(mainMap.getGroundSprite().getGlobalBounds()) && !this->collides(mainMap.getLaunchPadSprite())){
     gravityAcceleration += 0.135;
     gravityAcceleration > 20 ? gravityAcceleration = 20 : gravityAcceleration = gravityAcceleration;
     velocity.y += gravityAcceleration;
-    handleRotation();
+    handleRotation(game);
   } else {
     gravityAcceleration = 0;
     acceleration = 0;
