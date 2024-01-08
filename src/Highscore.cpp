@@ -1,4 +1,9 @@
+#include <string>
+#include <vector>
 #include "Highscore.h"
+#include <fstream>
+#include <iostream>
+#include <algorithm>
 
 bool operator < (HighscoreStruct hs1, HighscoreStruct hs2) {
   return hs1.points < hs2.points;

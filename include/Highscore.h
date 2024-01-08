@@ -1,9 +1,4 @@
 #pragma once
-#include <vector>
-#include <fstream>
-#include <string>
-#include <iostream>
-#include <algorithm>
 
 struct HighscoreStruct {
   char username[21] = "";
