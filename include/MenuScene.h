@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "Game.h"
 #include "Scene.h"
-#include "PlayScene.h"
+#include "InstructionsScene.h"
 #include "HighscoresScene.h"
 #include "Button.h"
 #include "InputBox.h"
