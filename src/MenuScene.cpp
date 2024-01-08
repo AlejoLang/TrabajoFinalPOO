@@ -12,6 +12,7 @@ MenuScene::MenuScene(Game &game, sf::Font* gameFont)
           , goToPlayButton("Play", gameFont) 
           , exitButton("Exit", gameFont)
           , goToHighscoresButton("Highscores", gameFont)
+          , volumeSelector("Volume", gameFont)
 {
   titleText.setFont(*sceneFont);
   subtitleText.setFont(*sceneFont);
@@ -31,6 +32,9 @@ MenuScene::MenuScene(Game &game, sf::Font* gameFont)
   nameInput.setPosition({960, 940});
   nameInput.setValue(game.username);
   nameInput.setSingleWord(true);
+  volumeSelector.setSize({200, 20});
+  volumeSelector.setPos({220, 940});
+  volumeSelector.setValuePercentaje(game.getGameVolume());
 }
 
 void MenuScene::update (Game &game, sf::RenderWindow &window) {
@@ -61,6 +65,8 @@ void MenuScene::update (Game &game, sf::RenderWindow &window) {
   exitButton.update(window);
   nameInput.update();
   game.username = nameInput.getValue();
+  volumeSelector.update(window);
+  game.setGameVolume(volumeSelector.getValuePercentaje());
   if(goToPlayButton.isClicked(window) && game.isFocused) {
     game.changeScene(new InstructionsScene(window, sceneFont));
   }
@@ -87,5 +93,6 @@ void MenuScene::drawIn(sf::RenderWindow &window) {
   goToPlayButton.drawIn(window);
   exitButton.drawIn(window);
   goToHighscoresButton.drawIn(window);
+  volumeSelector.draw(window);
   window.draw(nameInput);
 }

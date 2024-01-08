@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "Button.h"
 #include "InputBox.h"
+#include "Selector.h"
 
 class MenuScene : public Scene{
   private:
@@ -17,6 +18,7 @@ class MenuScene : public Scene{
     Button goToPlayButton;
     Button exitButton;
     Button goToHighscoresButton;
+    Selector volumeSelector;
   public:
     MenuScene(Game &game, sf::Font* gameFont);
     void update(Game &game, sf::RenderWindow &window) override;
