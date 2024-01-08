@@ -26,6 +26,8 @@ Hud::Hud (sf::Font* gameFont)
   velocityUnitsText.setCharacterSize(24);
   velocityUnitsText.setOrigin({0, velocityText.getGlobalBounds().height / 2.0f});
   velocityTextPadd = velocityText.getGlobalBounds().width;
+  fuelCH4Indicator.setSize({-200, 10});
+  fuelLOXIndicator.setSize({-200, 10});
 }
 
 void Hud::update(Ship *playerShip, sf::View &view) {
