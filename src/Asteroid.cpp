@@ -1,4 +1,5 @@
 #include "Asteroid.h"
+#include <math.h>
 
 Asteroid::Asteroid(std::vector<sf::Texture> &asteroidTexures, sf::View &view) : Obstacle() {
   entitySprite.setTexture(asteroidTexures[static_cast<int>(std::round(rand() % 2))]);

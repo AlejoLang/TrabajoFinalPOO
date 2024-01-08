@@ -1,4 +1,5 @@
 #include "Airplane.h"
+#include <math.h>
 
 Airplane::Airplane(std::vector<sf::Texture> &planeTexures, sf::View &view) : Obstacle() {
   entitySprite.setTexture(planeTexures[static_cast<int>(std::round(rand() % planeTexures.size()))]);

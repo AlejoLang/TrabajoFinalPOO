@@ -1,6 +1,9 @@
+#include "Scene.h"
 #include "InstructionsScene.h"
+#include "PlayScene.h"
+#include "MenuScene.h"
 
-InstructionsScene::InstructionsScene(Game &game, sf::RenderWindow &window, sf::Font* gameFont) : Scene (gameFont) {
+InstructionsScene::InstructionsScene(sf::RenderWindow &window, sf::Font* gameFont) : Scene (gameFont) {
   setUpImages(window);
   setUpText(window);
 }

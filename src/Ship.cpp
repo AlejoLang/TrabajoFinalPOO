@@ -1,8 +1,6 @@
-#include <SFML/Graphics.hpp>
 #include "Ship.h"
-#include <math.h>
 #include "Collision.h"
-#include <iostream>
+#include <math.h>
 
 Ship::Ship (sf::Texture &playerTexture, Map &mainMap) 
     : Entity(playerTexture) 

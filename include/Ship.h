@@ -3,9 +3,8 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "Entity.h"
-#include "Map.h"
-#include "Asteroid.h"
 #include "AnimatedSprite.h"
+#include "Map.h"
 
 class Ship : public Entity {
   private:
@@ -25,7 +24,6 @@ class Ship : public Entity {
     Animation trustAnimation;
     AnimatedSprite trustAnimationSprite;
     Animation explosionAnimation;
-    Animation* currentAnimation;
     AnimatedSprite explostionAnimationSprite;
     bool isAlive;
   public:

@@ -1,5 +1,13 @@
 #include "ObstaclesCollection.h"
-#include "iostream"
+#include "Obstacle.h"
+#include "Asteroid.h"
+#include "Airplane.h"
+#include "Ship.h"
+#include "Collision.h"
+#include <vector>
+#include <math.h>
+
+
 ObstaclesCollection::ObstaclesCollection() : generationTime(0.8) {
   for (size_t i = 0; i < 2; i++) {
     sf::Texture aux;

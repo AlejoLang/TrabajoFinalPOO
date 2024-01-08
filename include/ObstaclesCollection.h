@@ -1,13 +1,8 @@
 #ifndef ASTEROIDCOLLECTION_H
 #define ASTEROIDCOLLECTION_H
 #include <SFML/Graphics.hpp>
-#include <vector>
-#include <math.h>
-#include "Obstacle.h"
-#include "Asteroid.h"
-#include "Airplane.h"
-#include "Ship.h"
-#include "Collision.h"
+class Obstacle;
+class Ship;
 
 class ObstaclesCollection {
   private:
