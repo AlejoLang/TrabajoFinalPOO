@@ -1,13 +1,15 @@
+#include "Game.h"
 #include "FuelRefillerCollection.h"
 #include "FuelRefiller.h"
 #include "Ship.h"
 #include <vector>
 
-FuelRefillerCollection::FuelRefillerCollection() : generationTime(5) {
+FuelRefillerCollection::FuelRefillerCollection(Game &game) : generationTime(5) {
   if(!LOXRefillerTexture.loadFromFile("./resources/textures/LOXRefiller.png")) { exit(1); }
   if(!CH4RefillerTexture.loadFromFile("./resources/textures/CH4Refiller.png")) { exit(1); }
   if(!collectionSoundFile.loadFromFile("./resources/sounds/collect.wav")) { exit(1); }
   collectionSound.setBuffer(collectionSoundFile);
+  collectionSound.setVolume(game.getGameVolume());
 }
 
 void FuelRefillerCollection::update(sf::View &mainView, Ship *playerShip, int gameDifficulty) {
