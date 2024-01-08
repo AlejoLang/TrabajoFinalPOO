@@ -1,5 +1,5 @@
 #include "Indicator.h"
-#include <iostream>
+#include <string>
 
 Indicator::Indicator(std::string text, float base, sf::Font* gameFont) {
   indicatorText.setFont(*gameFont);

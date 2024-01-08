@@ -1,7 +1,6 @@
 #ifndef INDICATOR_H
 #define INDICATOR_H
 #include <SFML/Graphics.hpp>
-#include <string>
 
 class Indicator
 {
