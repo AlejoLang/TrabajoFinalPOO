@@ -59,7 +59,7 @@ void MenuScene::update (Game &game, sf::RenderWindow &window) {
   nameInput.update();
   game.username = nameInput.getValue();
   if(goToPlayButton.isClicked(window) && game.isFocused) {
-    game.changeScene(new PlayScene(window, sceneFont));
+    game.changeScene(new InstructionsScene(game, window, sceneFont));
   }
   if(exitButton.isClicked(window) && game.isFocused) {
     window.close();
