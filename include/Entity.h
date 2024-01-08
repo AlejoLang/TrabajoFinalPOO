@@ -1,8 +1,6 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 #include <SFML/Graphics.hpp>
-#include <string>
-#include "Collision.h"
 
 class Entity {
   protected:

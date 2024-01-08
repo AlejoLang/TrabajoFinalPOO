@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include "Entity.h"
+#include "Collision.h"
 
 Entity::Entity(sf::Texture &texture){
   entitySprite.setTexture(texture);
