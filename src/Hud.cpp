@@ -1,4 +1,5 @@
 #include "Hud.h"
+#include "Ship.h"
 #include <string>
 #include <sstream>
 #include <iomanip>

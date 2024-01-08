@@ -1,8 +1,8 @@
 #ifndef HUD_H
 #define HUD_H
 #include <SFML/Graphics.hpp>
-#include "Ship.h"
 #include "Indicator.h"
+class Ship;
 
 class Hud {
   private:
