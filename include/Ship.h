@@ -28,7 +28,7 @@ class Ship : public Entity {
     AnimatedSprite explostionAnimationSprite;
     bool isAlive;
   public:
-    Ship(sf::Texture &playerTexture, Map &mainMap);
+    Ship(Game &game, sf::Texture &playerTexture, Map &mainMap);
     void update(Game &game, Map &mainMap);
     void updateAltitude();
     void handleTrust(Game &game);

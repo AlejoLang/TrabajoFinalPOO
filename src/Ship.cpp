@@ -2,7 +2,7 @@
 #include "Collision.h"
 #include <math.h>
 
-Ship::Ship (sf::Texture &playerTexture, Map &mainMap) 
+Ship::Ship (Game &game, sf::Texture &playerTexture, Map &mainMap) 
     : Entity(playerTexture) 
     , trustAnimationSprite(sf::seconds(0.016), false, false)
     , explostionAnimationSprite(sf::seconds(0.016), false, false){
@@ -31,11 +31,11 @@ Ship::Ship (sf::Texture &playerTexture, Map &mainMap)
 
   if(!explosionSoundFile.loadFromFile("./resources/sounds/explosion.wav")) { exit(1); }
   explosionSound.setBuffer(explosionSoundFile);
-  explosionSound.setVolume(50);
+  explosionSound.setVolume(game.getGameVolume());
   explosionSound.setLoop(false);
   if(!rocketSoundFile.loadFromFile("./resources/sounds/rocket.wav")) { exit(1); }
   rocketSound.setBuffer(rocketSoundFile);
-  rocketSound.setVolume(50);
+  rocketSound.setVolume(game.getGameVolume());
   rocketSound.setLoop(true);
 }
 

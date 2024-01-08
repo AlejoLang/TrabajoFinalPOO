@@ -16,7 +16,7 @@ class FuelRefillerCollection
     sf::SoundBuffer collectionSoundFile;
     sf::Sound collectionSound;
   public:
-    FuelRefillerCollection(/* args */);
+    FuelRefillerCollection(Game &game);
     void update(sf::View &mainView, Ship *playerShip, int gameDifficulty);
     void updateGenerationTime(int gameDifficulty);
     void handleRefillerGeneration(sf::View &mainView, Ship *playerShip);
