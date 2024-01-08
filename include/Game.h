@@ -11,6 +11,7 @@ class Game {
     Scene *nextScene;
     sf::Font gameFont;
     int gameDifficulty;
+    int gameVolume;
   public:
     Highscore gameHighscores;
     std::string username;
@@ -22,6 +23,8 @@ class Game {
     void Draw();
     int getGameDifficulty();
     void setGameDifficulty(int newDifficulty);
+    int getGameVolume();
+    void setGameVolume(int newVolume);
     void changeScene(Scene *newScene);
     ~Game();
 };

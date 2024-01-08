@@ -7,6 +7,7 @@
 
 Game::Game() 
     : window(sf::VideoMode(1920, 1080), "Juego", sf::Style::Fullscreen )
+    , gameVolume(100)
     , gameHighscores ("./Highscores.dat")
 {
   if(!gameFont.loadFromFile("./resources/fonts/RetroGaming.ttf")) { exit(1); }
@@ -62,6 +63,14 @@ int Game::getGameDifficulty() {
 
 void Game::setGameDifficulty(int newDifficulty) {
   this->gameDifficulty = newDifficulty;
+}
+
+int Game::getGameVolume() {
+  return this->gameVolume;
+}
+
+void Game::setGameVolume(int newVolume) {
+  this->gameVolume = newVolume;
 }
 
 void Game::changeScene(Scene *newScene) {
