@@ -1,5 +1,10 @@
+#include "Game.h"
+#include "Scene.h"
 #include "HighscoresScene.h"
-#include <iostream>
+#include "MenuScene.h"
+#include <vector>
+#include <string>
+#include <iomanip>
 
 HighscoresScene::HighscoresScene(sf::RenderWindow &window, Highscore &highscores, sf::Font* gameFont)
                 :Scene(gameFont)

@@ -1,16 +1,11 @@
 #ifndef PLAYSCENE_H
 #define PLAYSCENE_H
 #include <SFML/Graphics.hpp>
-#include <vector>
-#include <math.h>
-#include "Game.h"
-#include "Scene.h"
-#include "DeathScene.h"
-#include "Ship.h"
 #include "Hud.h"
 #include "Map.h"
 #include "ObstaclesCollection.h"
 #include "FuelRefillerCollection.h"
+class Ship;
 
 class PlayScene : public Scene {
   private:

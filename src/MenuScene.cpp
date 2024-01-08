@@ -1,7 +1,10 @@
 #include <SFML/Graphics.hpp>
+#include "Game.h"
+#include "Scene.h"
+#include "InstructionsScene.h"
+#include "HighscoresScene.h"
 #include "MenuScene.h"
 #include <string>
-#include <iostream>
 
 MenuScene::MenuScene(Game &game, sf::Font* gameFont)
           :Scene(gameFont)

@@ -1,10 +1,6 @@
 #ifndef MENUSCENE_H
 #define MENUSCENE_H
 #include <SFML/Graphics.hpp>
-#include "Game.h"
-#include "Scene.h"
-#include "InstructionsScene.h"
-#include "HighscoresScene.h"
 #include "Button.h"
 #include "InputBox.h"
 

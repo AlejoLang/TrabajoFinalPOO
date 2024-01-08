@@ -1,11 +1,8 @@
 #ifndef GAME_H
 #define GAME_H
 #include <SFML/Graphics.hpp>
-#include "Scene.h"
-#include "PlayScene.h"
-#include "MenuScene.h"
 #include "Highscore.h"
-#include <string>
+class Scene;
 
 class Game {
   private:

@@ -54,7 +54,7 @@ void InstructionsScene::setUpText(sf::RenderWindow &window) {
   quitInstructionText.setString("Press to go to Menu\n(Points not saved)");
   avoidInstructionText.setString("Avoid the obstacles");
   collectInstructionText.setString("Collect to gain fuel");
-  continueText.setString("Press any key to continue...");
+  continueText.setString("Press Enter to continue...");
 
   titleText.setCharacterSize(48);
   accelerateInstructionText.setCharacterSize(24);
@@ -90,7 +90,7 @@ void InstructionsScene::update(Game &game, sf::RenderWindow &window) {
   if(int(timer.getElapsedTime().asSeconds()*3)%2) {
     continueText.setString("");
   } else {
-    continueText.setString("Press any key to continue...");
+    continueText.setString("Press Enter to continue...");
   }
 }
 

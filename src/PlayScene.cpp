@@ -1,8 +1,13 @@
-#include <SFML/Graphics.hpp>
+#include "Game.h"
+#include "Scene.h"
 #include "PlayScene.h"
-#include <random>
+#include "DeathScene.h"
+#include "MenuScene.h"
+#include "Ship.h"
 #include "Collision.h"
-#include <iostream>
+#include <random>
+#include <vector>
+#include <math.h>
 
 PlayScene::PlayScene(sf::RenderWindow &window, sf::Font* gameFont) 
           :Scene(gameFont)

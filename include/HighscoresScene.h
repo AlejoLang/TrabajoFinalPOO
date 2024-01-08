@@ -1,14 +1,9 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include <vector>
-#include <string>
-#include <iomanip>
-#include "Game.h"
-#include "Scene.h"
 #include "Button.h"
 #include "Highscore.h"
 
-class HighscoresScene : public Scene{
+class HighscoresScene : public Scene {
   private:
     std::vector<std::pair <sf::Text, sf::Text>> highscoresTextsVector;
     sf::Text titleText;
