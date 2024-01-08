@@ -6,18 +6,32 @@ Indicator::Indicator(std::string text, float base, sf::Font* gameFont) {
   indicatorText.setString(text);
   indicatorText.setOrigin({0, indicatorText.getGlobalBounds().width / 2.0f});
   indicatorRect.setFillColor(sf::Color::White);
-  indicatorRect.setSize({-200, 10});
-  indicatorRect.setOrigin({0, indicatorRect.getSize().y / 2.0f});
   indicatorRectOut.setOutlineColor(sf::Color::Blue);
   indicatorRectOut.setFillColor(sf::Color::Transparent);
   indicatorRectOut.setOutlineThickness(3);
-  indicatorRectOut.setSize({-200, 10});
-  indicatorRectOut.setOrigin({0, indicatorRectOut.getSize().y / 2.0f});
   baseMagnitude = base;
+  value = 100;
 }
 
-void Indicator::update(float val) {
-  indicatorRect.setSize({-(val * 200) / baseMagnitude, 10});
+void Indicator::update(float newValue) {
+  setValue(newValue);
+}
+
+void Indicator::setValue(float newValue) {
+  newValue = std::max(0.0f, std::min(newValue, baseMagnitude));
+  indicatorRect.setSize({-(newValue * (indicatorRectOut.getGlobalBounds().getSize().x - indicatorRectOut.getOutlineThickness())) / baseMagnitude, indicatorRect.getGlobalBounds().getSize().y}); 
+  value = newValue;
+}
+
+void Indicator::setSize(sf::Vector2f newSize) {
+  indicatorRect.setSize({newSize.x, newSize.y});
+  indicatorRect.setOrigin({0, indicatorRect.getSize().y / 2.0f});
+  indicatorRectOut.setSize({newSize.x, newSize.y});
+  indicatorRectOut.setOrigin({0, indicatorRectOut.getSize().y / 2.0f});
+}
+
+float Indicator::getValuePercentaje() {
+  return ((this->value * 100) / baseMagnitude);
 }
 
 void Indicator::setPos(sf::Vector2f pos) {
