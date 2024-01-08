@@ -67,7 +67,7 @@ void MenuScene::update (Game &game, sf::RenderWindow &window) {
   if(goToHighscoresButton.isClicked(window) && game.isFocused) {
     game.changeScene(new HighscoresScene(window, game.gameHighscores, sceneFont));
   }
-  if (sceneEvent.key.code == sf::Keyboard::Escape) {
+  if (sceneEvent.key.scancode == sf::Keyboard::Scan::Escape) {
     window.close();
   }
 }
