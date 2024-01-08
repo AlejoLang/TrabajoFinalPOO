@@ -1,6 +1,11 @@
+#include "Game.h"
+#include "Scene.h"
 #include "DeathScene.h"
+#include "MenuScene.h"
+#include "PlayScene.h"
 #include <vector>
-#include <iostream>
+#include <fstream>
+#include <cstring>
 
 DeathScene::DeathScene(Game &game, sf::RenderWindow &window, int points, sf::Font* gameFont) 
           : Scene(gameFont)
