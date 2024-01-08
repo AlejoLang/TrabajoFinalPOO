@@ -1,9 +1,9 @@
 #ifndef FUELREFILLERCOLLECTION
 #define FUELREFILLERCOLLECTION
 #include <SFML/Graphics.hpp>
-#include <vector>
-#include "FuelRefiller.h"
-#include "Ship.h"
+#include <SFML/Audio.hpp>
+class FuelRefiller;
+class Ship;
 
 class FuelRefillerCollection
 {

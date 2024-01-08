@@ -1,4 +1,7 @@
 #include "FuelRefillerCollection.h"
+#include "FuelRefiller.h"
+#include "Ship.h"
+#include <vector>
 
 FuelRefillerCollection::FuelRefillerCollection() : generationTime(5) {
   if(!LOXRefillerTexture.loadFromFile("./resources/textures/LOXRefiller.png")) { exit(1); }
