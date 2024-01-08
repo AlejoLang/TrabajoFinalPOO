@@ -1,5 +1,5 @@
 #include "Button.h"
-#include <iostream>
+#include <string>
 
 Button::Button(std::string btnText, sf::Font* gameFont, std::string size){
   this->buttonText.setFont(*gameFont);
