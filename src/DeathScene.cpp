@@ -36,7 +36,7 @@ void DeathScene::update(Game &game, sf::RenderWindow &window) {
     game.changeScene(new MenuScene(game, sceneFont));
   }
   if(restartGame.isClicked(window) && game.isFocused){
-    game.changeScene(new PlayScene(window, sceneFont));
+    game.changeScene(new PlayScene(game, window, sceneFont));
   }
   if (sceneEvent.key.scancode == sf::Keyboard::Scan::Escape) {
     game.changeScene(new MenuScene(game, sceneFont));

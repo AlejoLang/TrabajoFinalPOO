@@ -88,7 +88,7 @@ void InstructionsScene::update(Game &game, sf::RenderWindow &window) {
   if (sceneEvent.key.scancode == sf::Keyboard::Scan::Escape) {
     game.changeScene(new MenuScene(game, sceneFont));
   } else if (sceneEvent.key.scancode == sf::Keyboard::Scan::Enter) {
-    game.changeScene(new PlayScene(window, sceneFont));
+    game.changeScene(new PlayScene(game, window, sceneFont));
   }
   if(int(timer.getElapsedTime().asSeconds()*3)%2) {
     continueText.setString("");
