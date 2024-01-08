@@ -9,15 +9,16 @@
 #include <vector>
 #include <math.h>
 
-PlayScene::PlayScene(sf::RenderWindow &window, sf::Font* gameFont) 
+PlayScene::PlayScene(Game &game, sf::RenderWindow &window, sf::Font* gameFont) 
           :Scene(gameFont)
           , mainView(window.getDefaultView())
           , mainMap(window)
           , mainHud(gameFont)
+          , mainRefillerCollection(game)
 { 
   if(!playerTexture.loadFromFile("./resources/textures/Starship.png")){ exit(1); }
   if(!backgroundTexture.loadFromFile("./resources/textures/background.png")){ exit(1); }
-  playerShip = new Ship(playerTexture, mainMap);
+  playerShip = new Ship(game, playerTexture, mainMap);
   background.setTexture(backgroundTexture);
   background.setTextureRect(sf::IntRect(0, backgroundTexture.getSize().y - 1080, backgroundTexture.getSize().x, backgroundTexture.getSize().y));
   background.setOrigin(window.getSize().x / 2.0f, window.getSize().y / 2.0f + 50);
