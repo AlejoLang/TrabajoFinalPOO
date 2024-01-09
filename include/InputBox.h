@@ -85,7 +85,6 @@ public:
 			setString("Type to enter username");
 		}
 		setOrigin({this->getGlobalBounds().getSize().x / 2.0f, 25.0f});
-		setPosition({960, 940});
 	}
 	void setEditable(bool value) { editable=value; }
 	void setSingleWord(bool value) { single_word=value; }
