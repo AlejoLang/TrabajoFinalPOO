@@ -86,7 +86,7 @@ void InstructionsScene::setUpText(sf::RenderWindow &window) {
 
 void InstructionsScene::update(Game &game, sf::RenderWindow &window) { 
   if (sceneEvent.key.scancode == sf::Keyboard::Scan::Escape) {
-    game.changeScene(new MenuScene(game, sceneFont));
+    game.changeScene(new MenuScene(game, window, sceneFont));
   } else if (sceneEvent.key.scancode == sf::Keyboard::Scan::Enter) {
     game.changeScene(new PlayScene(game, window, sceneFont));
   }
@@ -116,22 +116,6 @@ void InstructionsScene::drawIn(sf::RenderWindow &window) {
     window.draw(avoidInstructionText);
     window.draw(collectInstructionText);
     window.draw(continueText);
-}
-
-sf::Vector2f getCenter(sf::Sprite &sprite) {
-  return {sprite.getTexture()->getSize().x / 2.0f, sprite.getTexture()->getSize().y / 2.0f};
-}
-
-sf::Vector2f getPlaceBelow(sf::Sprite &spriteOrigin, sf::Sprite &spriteToPlace, float gap) {
-  return {spriteOrigin.getPosition().x, spriteOrigin.getPosition().y + (spriteOrigin.getTexture()->getSize().y / 2.0f) + (spriteToPlace.getTexture()->getSize().y / 2.0f) + gap};
-}
-
-sf::Vector2f getPlaceRight(sf::Sprite &spriteOrigin, sf::Sprite &spriteToPlace, float gap) {
-  return {spriteOrigin.getPosition().x + (spriteOrigin.getTexture()->getSize().x / 2.0f) + (spriteToPlace.getTexture()->getSize().x / 2.0f) + gap, spriteOrigin.getPosition().y};
-}
-
-sf::Vector2f getPlaceRight(sf::Sprite &spriteOrigin, float gap) {
-  return {spriteOrigin.getPosition().x + (spriteOrigin.getTexture()->getSize().x / 2.0f) + gap, spriteOrigin.getPosition().y};
 }
 
 InstructionsScene::~InstructionsScene() {}

@@ -56,10 +56,10 @@ void HighscoresScene::update(Game &game, sf::RenderWindow &window) {
   goToMenuButton.update(window);
   cleanHighscoresButton.update(window);
   if(goToMenuButton.isClicked(window) && game.isFocused) {
-    game.changeScene(new MenuScene(game, sceneFont));
+    game.changeScene(new MenuScene(game, window, sceneFont));
   }
   if (sceneEvent.key.scancode == sf::Keyboard::Scan::Escape) {
-    game.changeScene(new MenuScene(game, sceneFont));
+    game.changeScene(new MenuScene(game, window, sceneFont));
   }
   if(cleanHighscoresButton.isClicked(window) && game.isFocused) {
     game.gameHighscores.cleanHighscores();

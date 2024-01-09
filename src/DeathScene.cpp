@@ -33,13 +33,13 @@ void DeathScene::update(Game &game, sf::RenderWindow &window) {
   restartGame.update(window);
   if(backToMenu.isClicked(window) && game.isFocused){
     std::vector <HighscoreStruct> aux = game.gameHighscores.getHighscores();
-    game.changeScene(new MenuScene(game, sceneFont));
+    game.changeScene(new MenuScene(game, window, sceneFont));
   }
   if(restartGame.isClicked(window) && game.isFocused){
     game.changeScene(new PlayScene(game, window, sceneFont));
   }
   if (sceneEvent.key.scancode == sf::Keyboard::Scan::Escape) {
-    game.changeScene(new MenuScene(game, sceneFont));
+    game.changeScene(new MenuScene(game, window, sceneFont));
   }
 }
 

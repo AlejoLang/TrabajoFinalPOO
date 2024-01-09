@@ -13,7 +13,7 @@ Game::Game()
   if(!gameFont.loadFromFile("./resources/fonts/RetroGaming.ttf")) { exit(1); }
   username = "Player";
   window.setFramerateLimit(60);
-  currentScene = new MenuScene(*this, &gameFont);
+  currentScene = new MenuScene(*this, window, &gameFont);
   nextScene = nullptr;
   srand(time(NULL));
 }
