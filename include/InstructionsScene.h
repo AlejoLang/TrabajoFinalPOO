@@ -1,11 +1,6 @@
 #pragma once 
 #include <SFML/Graphics.hpp>
 
-sf::Vector2f getCenter(sf::Sprite &sprite);
-sf::Vector2f getPlaceBelow(sf::Sprite &spriteOrigin, sf::Sprite &spriteToPlace, float gap);
-sf::Vector2f getPlaceRight(sf::Sprite &spriteOrigin, sf::Sprite &spriteToPlace, float gap);
-sf::Vector2f getPlaceRight(sf::Sprite &spriteOrigin, float gap);
-
 class InstructionsScene : public Scene {
   private:
     sf::Texture wKeypadTexture;
