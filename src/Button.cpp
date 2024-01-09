@@ -51,6 +51,11 @@ sf::Vector2f Button::getSize() {
   return this->buttonBox.getGlobalBounds().getSize();
 }
 
+sf::RectangleShape& Button::getBox() {
+  return this->buttonBox;
+}
+
+
 void Button::drawIn(sf::RenderWindow &window) {
   window.draw(this->buttonText);
   window.draw(this->buttonBox);
