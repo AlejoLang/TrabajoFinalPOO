@@ -20,7 +20,7 @@ class MenuScene : public Scene{
     Button goToHighscoresButton;
     Selector volumeSelector;
   public:
-    MenuScene(Game &game, sf::Font* gameFont);
+    MenuScene(Game &game, sf::RenderWindow &window, sf::Font* gameFont);
     void update(Game &game, sf::RenderWindow &window) override;
     void processEvent(sf::Event &ev) override;
     void drawIn(sf::RenderWindow &window) override;

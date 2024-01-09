@@ -6,7 +6,7 @@
 #include "MenuScene.h"
 #include <string>
 
-MenuScene::MenuScene(Game &game, sf::Font* gameFont)
+MenuScene::MenuScene(Game &game, sf::RenderWindow &window, sf::Font* gameFont)
           :Scene(gameFont)
           , nameInput(*gameFont, 36, sf::Color::White)
           , goToPlayButton("Play", gameFont) 
@@ -23,17 +23,17 @@ MenuScene::MenuScene(Game &game, sf::Font* gameFont)
   subtitleText.setOrigin(subtitleText.getGlobalBounds().width / 2.0f, subtitleText.getGlobalBounds().width / 2.0f);
   titleText.setFillColor(sf::Color::White);
   subtitleText.setFillColor(sf::Color::White);
-  titleText.setPosition(960, 540);
-  goToPlayButton.setPos({960, 640});
-  goToHighscoresButton.setPos({960, 740});
-  exitButton.setPos({960, 840});
+  titleText.setPosition({window.getSize().x / 2.0f, window.getSize().y / 2.0f - 50});
   nameInput.setMaxChars(20);
   nameInput.setOrigin({nameInput.getGlobalBounds().getSize().x / 2.0f, nameInput.getGlobalBounds().getSize().y / 2.0f});
-  nameInput.setPosition({960, 940});
   nameInput.setValue(game.username);
+  nameInput.setPosition({window.getSize().x / 2.0f, window.getSize().y / 2.0f + 50});
   nameInput.setSingleWord(true);
+  goToPlayButton.setPos(getPlaceBelow(nameInput, goToPlayButton.getBox(), 40.f));
+  goToHighscoresButton.setPos(getPlaceBelow(goToPlayButton.getBox(), goToHighscoresButton.getBox(), 20.f));
+  exitButton.setPos(getPlaceBelow(goToHighscoresButton.getBox(), exitButton.getBox(), 20.f));
   volumeSelector.setSize({200, 20});
-  volumeSelector.setPos({220, 940});
+  volumeSelector.setPos({window.getSize().x / 6.0f, window.getSize().y / 6.0f * 5.0f});
   volumeSelector.setValuePercentaje(game.getGameVolume());
   volumeSelector.setBorderColor(sf::Color::Red);
 }
@@ -65,6 +65,7 @@ void MenuScene::update (Game &game, sf::RenderWindow &window) {
   goToHighscoresButton.update(window);
   exitButton.update(window);
   nameInput.update();
+  nameInput.setPosition({window.getSize().x / 2.0f, window.getSize().y / 2.0f + 50});
   game.username = nameInput.getValue();
   volumeSelector.update(window);
   game.setGameVolume(volumeSelector.getValuePercentaje());
