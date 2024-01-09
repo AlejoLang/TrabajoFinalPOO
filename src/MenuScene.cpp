@@ -35,6 +35,7 @@ MenuScene::MenuScene(Game &game, sf::Font* gameFont)
   volumeSelector.setSize({200, 20});
   volumeSelector.setPos({220, 940});
   volumeSelector.setValuePercentaje(game.getGameVolume());
+  volumeSelector.setBorderColor(sf::Color::Red);
 }
 
 void MenuScene::update (Game &game, sf::RenderWindow &window) {
