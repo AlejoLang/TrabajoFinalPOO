@@ -6,7 +6,7 @@ Indicator::Indicator(std::string text, float base, sf::Font* gameFont) {
   indicatorText.setString(text);
   indicatorText.setOrigin({0, indicatorText.getGlobalBounds().width / 2.0f});
   indicatorRect.setFillColor(sf::Color::White);
-  indicatorRectOut.setOutlineColor(sf::Color::Blue);
+  indicatorRectOut.setOutlineColor(sf::Color::White);
   indicatorRectOut.setFillColor(sf::Color::Transparent);
   indicatorRectOut.setOutlineThickness(3);
   baseMagnitude = base;
@@ -28,6 +28,13 @@ void Indicator::setSize(sf::Vector2f newSize) {
   indicatorRect.setOrigin({0, indicatorRect.getSize().y / 2.0f});
   indicatorRectOut.setSize({newSize.x, newSize.y});
   indicatorRectOut.setOrigin({0, indicatorRectOut.getSize().y / 2.0f});
+}
+
+void Indicator::setInsideColor(sf::Color color) {
+  indicatorRect.setFillColor(color);
+}
+void Indicator::setBorderColor(sf::Color color) {
+  indicatorRectOut.setOutlineColor(color);
 }
 
 float Indicator::getValuePercentaje() {

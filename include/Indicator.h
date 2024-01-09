@@ -15,6 +15,8 @@ class Indicator
     void update(float newValue);
     void setSize(sf::Vector2f newSize);
     void setValue(float newValue);
+    void setInsideColor(sf::Color color);
+    void setBorderColor(sf::Color color);
     float getValuePercentaje();
     void setPos(sf::Vector2f pos);
     void draw(sf::RenderWindow &window);
