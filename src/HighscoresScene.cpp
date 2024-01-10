@@ -14,11 +14,11 @@ HighscoresScene::HighscoresScene(sf::RenderWindow &window, Highscore &highscores
   titleText.setFont(*sceneFont);
   titleText.setString("Highscores");
   titleText.setCharacterSize(72);
-  titleText.setOrigin(titleText.getGlobalBounds().getSize().x / 2.0f, titleText.getGlobalBounds().getSize().y / 2.0f);
-  titleText.setPosition(window.getSize().x / 2.0, 100);
+  titleText.setOrigin(getCenter(titleText));
+  titleText.setPosition({window.getSize().x / 2.0f, 100.0f});
   setUpHighscoresText(window, highscores);
-  goToMenuButton.setPos({float(window.getSize().x / 2.0), (float) (window.getSize().y - 100)});
-  cleanHighscoresButton.setPos({float(window.getSize().x) - (float(cleanHighscoresButton.getSize().x) / 2.0f) - 100.0f, float(window.getSize().y - 100)});
+  goToMenuButton.setPos({window.getSize().x / 2.0f, window.getSize().y - 100.0f});
+  cleanHighscoresButton.setPos(getPlaceRight(goToMenuButton.getBox(), cleanHighscoresButton.getBox(), 300));
 }
 
 void HighscoresScene::setUpHighscoresText(sf::RenderWindow &window, Highscore &highscores) {
@@ -33,10 +33,10 @@ void HighscoresScene::setUpHighscoresText(sf::RenderWindow &window, Highscore &h
     auxName.setString((std::string)hsVector[i].username);
     auxPoints.setString(std::to_string(hsVector[i].points));
     highscoresTextsVector.push_back({auxName, auxPoints});
-    highscoresTextsVector[i].first.setOrigin(0, highscoresTextsVector[i].first.getGlobalBounds().getSize().y / 2.0);
-    highscoresTextsVector[i].second.setOrigin(highscoresTextsVector[i].second.getGlobalBounds().getSize().x , highscoresTextsVector[i].second.getGlobalBounds().getSize().y / 2.0);
-    highscoresTextsVector[i].first.setPosition(window.getSize().x / 2.0 - (32 * 10), 300 + (i * 60));
-    highscoresTextsVector[i].second.setPosition(window.getSize().x / 2.0 + (32 * 10), 300 + (i * 60));
+    highscoresTextsVector[i].first.setOrigin(getCenter(highscoresTextsVector[i].first));
+    highscoresTextsVector[i].second.setOrigin(getCenter(highscoresTextsVector[i].second));
+    highscoresTextsVector[i].first.setPosition(window.getSize().x / 6.0f * 2.0f, titleText.getPosition().y + 200 + (i * 60));
+    highscoresTextsVector[i].second.setPosition(window.getSize().x / 6.0f * 4.0f, titleText.getPosition().y + 200 + (i * 60));
   }
   if(highscoresTextsVector.size() >= 1){
     highscoresTextsVector[0].first.setFillColor(sf::Color(255, 215, 0));
