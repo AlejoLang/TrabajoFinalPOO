@@ -16,15 +16,15 @@ DeathScene::DeathScene(Game &game, sf::RenderWindow &window, int points, sf::Fon
   mainText.setFont(*sceneFont);
   mainText.setFillColor(sf::Color::Red);
   mainText.setCharacterSize(72);
-  mainText.setOrigin(mainText.getGlobalBounds().width / 2.0f, mainText.getGlobalBounds().height / 2.0f);
+  mainText.setOrigin(getCenter(mainText));
   mainText.setPosition(window.getSize().x / 2.0f, window.getSize().y / 2.0f  - 200);
   pointsText.setString("Total points: " + std::to_string(points));
   pointsText.setFont(*sceneFont);
   pointsText.setCharacterSize(42);
-  pointsText.setOrigin(pointsText.getGlobalBounds().width / 2.0f, pointsText.getGlobalBounds().height / 2.0f);
-  pointsText.setPosition(mainText.getPosition().x, mainText.getPosition().y + mainText.getGlobalBounds().height + pointsText.getGlobalBounds().height);
-  backToMenu.setPos({pointsText.getPosition().x, pointsText.getPosition().y + 100});
-  restartGame.setPos({pointsText.getPosition().x, pointsText.getPosition().y + 180});
+  pointsText.setOrigin(getCenter(pointsText));
+  pointsText.setPosition(getPlaceBelow(mainText, pointsText, 50));
+  backToMenu.setPos(getPlaceBelow(pointsText, backToMenu.getBox(), 100));
+  restartGame.setPos(getPlaceBelow(backToMenu.getBox(), restartGame.getBox(), 20));
   updateHighscores(game, points);
 }
 
