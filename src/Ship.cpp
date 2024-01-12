@@ -1,5 +1,6 @@
 #include "Ship.h"
 #include "Collision.h"
+#define _USE_MATH_DEFINES
 #include <math.h>
 
 Ship::Ship (Game &game, sf::Texture &playerTexture, Map &mainMap) 
