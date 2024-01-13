@@ -11,7 +11,7 @@ class Button {
     void setPos(sf::Vector2f pos);
     sf::RectangleShape& getBox();
     bool isMouseContained(sf::RenderWindow &window);
-    bool isClicked(sf::RenderWindow &window);
+    bool isClicked(sf::Event &evt, sf::RenderWindow &window);
     sf::Vector2f getSize();
     void drawIn(sf::RenderWindow &window);
     ~Button() {};

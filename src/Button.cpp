@@ -1,4 +1,5 @@
 #include "Button.h"
+#include "iostream"
 #include <string>
 
 Button::Button(std::string btnText, sf::Font* gameFont, std::string size){
@@ -31,11 +32,13 @@ void Button::setPos(sf::Vector2f pos) {
   this->buttonBox.setPosition({pos.x, pos.y + 10});
 }
 
-bool Button::isClicked(sf::RenderWindow &window) {
-  if(sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && this->isMouseContained(window)) {
-    return true;
-  }
-  return false;
+bool Button::isClicked(sf::Event &evt, sf::RenderWindow &window) {
+    if (evt.type == sf::Event::MouseButtonPressed) {
+        if (evt.mouseButton.button == sf::Mouse::Left && this->isMouseContained(window) && window.hasFocus()) {
+            return true;
+        }
+    }
+    return false;
 }
 
 bool Button::isMouseContained(sf::RenderWindow &window) {
