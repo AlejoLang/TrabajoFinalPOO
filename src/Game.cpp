@@ -4,6 +4,7 @@
 #include "PlayScene.h"
 #include <string>
 #include <ctime>
+#include "iostream"
 
 Game::Game() 
     : window(sf::VideoMode(1920, 1080), "Juego", sf::Style::Fullscreen )
