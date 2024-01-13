@@ -15,22 +15,16 @@ MenuScene::MenuScene(Game &game, sf::RenderWindow &window, sf::Font* gameFont)
           , volumeSelector("Volume", gameFont)
 {
   titleText.setFont(*sceneFont);
-  subtitleText.setFont(*sceneFont);
   titleText.setString("T-24:00:00");
-  subtitleText.setString("Presiona <Enter> para jugar");
   titleText.setCharacterSize(72);
-  subtitleText.setCharacterSize(36);
   titleText.setOrigin(getCenter(titleText));
-  subtitleText.setOrigin(getCenter(subtitleText));
   titleText.setFillColor(sf::Color::White);
-  subtitleText.setFillColor(sf::Color::White);
   titleText.setPosition({window.getSize().x / 2.0f, (window.getSize().y / 2.0f) - 150.0f});
-  subtitleText.setPosition(getPlaceBelow(titleText, subtitleText, 40));
   nameInput.setMaxChars(20);
   nameInput.setValue(game.username);
   nameInput.setString(game.username);
   nameInput.setOrigin(getCenter(nameInput));
-  nameInput.setPosition(getPlaceBelow(subtitleText, nameInput, 100));
+  nameInput.setPosition(getPlaceBelow(titleText, nameInput, 140));
   nameInput.setSingleWord(true);
   goToPlayButton.setPos(getPlaceBelow(nameInput, goToPlayButton.getBox(), 40.f));
   goToHighscoresButton.setPos(getPlaceBelow(goToPlayButton.getBox(), goToHighscoresButton.getBox(), 20.f));
@@ -72,14 +66,16 @@ void MenuScene::update (Game &game, sf::RenderWindow &window) {
   game.username = nameInput.getValue();
   volumeSelector.update(window);
   game.setGameVolume(volumeSelector.getValuePercentaje());
-  if(goToPlayButton.isClicked(window) && game.isFocused) {
+  if(goToPlayButton.isClicked(sceneEvent, window) && game.isFocused) {
     game.changeScene(new InstructionsScene(window, sceneFont));
+    return;
   }
-  if(exitButton.isClicked(window) && game.isFocused) {
+  if(exitButton.isClicked(sceneEvent, window) && game.isFocused) {
     window.close();
   }
-  if(goToHighscoresButton.isClicked(window) && game.isFocused) {
+  if(goToHighscoresButton.isClicked(sceneEvent, window) && game.isFocused) {
     game.changeScene(new HighscoresScene(window, game.gameHighscores, sceneFont));
+    return;
   }
   if (sceneEvent.key.scancode == sf::Keyboard::Scan::Escape) {
     window.close();
@@ -94,7 +90,6 @@ void MenuScene::processEvent(sf::Event &ev){
 void MenuScene::drawIn(sf::RenderWindow &window) {
   window.setView(window.getDefaultView());
   window.draw(titleText);
-  window.draw(subtitleText);
   goToPlayButton.drawIn(window);
   exitButton.drawIn(window);
   goToHighscoresButton.drawIn(window);
