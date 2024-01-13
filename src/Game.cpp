@@ -8,7 +8,7 @@
 Game::Game() 
     : window(sf::VideoMode(1920, 1080), "Juego", sf::Style::Fullscreen )
     , gameVolume(100)
-    , gameHighscores ("./Highscores.dat")
+    , gameHighscores ("./resources/Highscores.dat")
 {
   if(!gameFont.loadFromFile("./resources/fonts/RetroGaming.ttf")) { exit(1); }
   username = "Player";
