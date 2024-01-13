@@ -29,11 +29,11 @@ class Ship : public Entity {
     bool isAlive;
   public:
     Ship(Game &game, sf::Texture &playerTexture, Map &mainMap);
-    void update(Game &game, Map &mainMap);
+    void update(sf::RenderWindow& window, Map &mainMap);
     void updateAltitude();
-    void handleTrust(Game &game);
-    void handleRotation(Game &game);
-    void handleGravity(Game &game, Map &mainMap);
+    void handleTrust(sf::RenderWindow& window);
+    void handleRotation(sf::RenderWindow& window);
+    void handleGravity(sf::RenderWindow& window, Map &mainMap);
     void handleTrustAnimation();
     void calculateDirection();
     void increaseLOX(float val);

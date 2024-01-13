@@ -40,13 +40,13 @@ Ship::Ship (Game &game, sf::Texture &playerTexture, Map &mainMap)
   rocketSound.setLoop(true);
 }
 
-void Ship::update(Game &game, Map &mainMap) {
+void Ship::update(sf::RenderWindow& window, Map &mainMap) {
   if(!isAlive) {
     explostionAnimationSprite.update(sf::seconds(0.016));
   } else {
-    handleTrust(game);
+    handleTrust(window);
     calculateDirection();
-    handleGravity(game, mainMap);
+    handleGravity(window, mainMap);
     entitySprite.move(velocity);
     handleTrustAnimation();
     updateAltitude();
@@ -66,8 +66,8 @@ void Ship::calculateDirection() {
   velocity = {velocity.x * direction.x, velocity.y * direction.y};
 }
 
-void Ship::handleTrust(Game &game) {
-  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W) && game.isFocused && fuelLOX > 0 && fuelCH4 > 0) {
+void Ship::handleTrust(sf::RenderWindow& window) {
+  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W) && window.hasFocus() && fuelLOX > 0 && fuelCH4 > 0) {
     fuelLOX -= 0.175;
     fuelCH4 -= 0.05;
     acceleration += 0.3;
@@ -96,17 +96,17 @@ void Ship::handleTrustAnimation() {
   trustAnimationSprite.update(sf::seconds(0.016));
 }
 
-void Ship::handleRotation(Game &game) {
+void Ship::handleRotation(sf::RenderWindow& window) {
   const float maxRotationSpeed = 2.0;
     float rotationSpeed = angularMomentum / 10.0;
     
     rotationSpeed = std::min(rotationSpeed, maxRotationSpeed);
     rotationSpeed = std::max(rotationSpeed, -maxRotationSpeed);
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) && game.isFocused && fuelLOX > 0 && fuelCH4 > 0) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) && window.hasFocus() && fuelLOX > 0 && fuelCH4 > 0) {
         rotationSpeed -= 0.5;
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right) && game.isFocused && fuelLOX > 0 && fuelCH4 > 0) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right) && window.hasFocus() && fuelLOX > 0 && fuelCH4 > 0) {
         rotationSpeed += 0.5;
     }
 
@@ -114,12 +114,12 @@ void Ship::handleRotation(Game &game) {
     angularMomentum *= 0.1;
 }
 
-void Ship::handleGravity(Game &game, Map &mainMap) {
+void Ship::handleGravity(sf::RenderWindow& window, Map &mainMap) {
   if(!entitySprite.getGlobalBounds().intersects(mainMap.getGroundSprite().getGlobalBounds()) && !this->collides(mainMap.getLaunchPadSprite())){
     gravityAcceleration += 0.135;
     gravityAcceleration > 20 ? gravityAcceleration = 20 : gravityAcceleration = gravityAcceleration;
     velocity.y += gravityAcceleration;
-    handleRotation(game);
+    handleRotation(window);
   } else {
     gravityAcceleration = 0;
     acceleration = 0;
