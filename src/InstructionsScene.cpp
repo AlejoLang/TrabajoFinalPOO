@@ -85,10 +85,15 @@ void InstructionsScene::setUpText(sf::RenderWindow &window) {
 }
 
 void InstructionsScene::update(Game &game, sf::RenderWindow &window) { 
-  if (sceneEvent.key.scancode == sf::Keyboard::Scan::Escape) {
-    game.changeScene(new MenuScene(game, window, sceneFont));
-  } else if (sceneEvent.key.scancode == sf::Keyboard::Scan::Enter) {
-    game.changeScene(new PlayScene(game, window, sceneFont));
+  if(sceneEvent.type == sf::Event::KeyReleased) {
+    if (sceneEvent.key.scancode == sf::Keyboard::Scan::Escape) {
+      game.changeScene(new MenuScene(game, window, sceneFont));
+      return;
+    } 
+    if (sceneEvent.key.scancode == sf::Keyboard::Scan::Enter) {
+      game.changeScene(new PlayScene(game, window, sceneFont));
+      return;
+    }
   }
   if(int(timer.getElapsedTime().asSeconds()*3)%2) {
     continueText.setString("");

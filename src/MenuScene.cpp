@@ -66,14 +66,14 @@ void MenuScene::update (Game &game, sf::RenderWindow &window) {
   game.username = nameInput.getValue();
   volumeSelector.update(window);
   game.setGameVolume(volumeSelector.getValuePercentaje());
-  if(goToPlayButton.isClicked(sceneEvent, window) && game.isFocused) {
+  if(goToPlayButton.isClicked(sceneEvent, window)) {
     game.changeScene(new InstructionsScene(window, sceneFont));
     return;
   }
-  if(exitButton.isClicked(sceneEvent, window) && game.isFocused) {
+  if(exitButton.isClicked(sceneEvent, window)) {
     window.close();
   }
-  if(goToHighscoresButton.isClicked(sceneEvent, window) && game.isFocused) {
+  if(goToHighscoresButton.isClicked(sceneEvent, window)) {
     game.changeScene(new HighscoresScene(window, game.gameHighscores, sceneFont));
     return;
   }
