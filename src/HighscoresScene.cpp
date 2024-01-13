@@ -55,15 +55,18 @@ void HighscoresScene::setUpHighscoresText(sf::RenderWindow &window, Highscore &h
 void HighscoresScene::update(Game &game, sf::RenderWindow &window) {
   goToMenuButton.update(window);
   cleanHighscoresButton.update(window);
-  if(goToMenuButton.isClicked(window) && game.isFocused) {
+  if(goToMenuButton.isClicked(sceneEvent, window)) {
     game.changeScene(new MenuScene(game, window, sceneFont));
+    return;
   }
   if (sceneEvent.key.scancode == sf::Keyboard::Scan::Escape) {
     game.changeScene(new MenuScene(game, window, sceneFont));
+    return;
   }
-  if(cleanHighscoresButton.isClicked(window) && game.isFocused) {
+  if(cleanHighscoresButton.isClicked(sceneEvent, window)) {
     game.gameHighscores.cleanHighscores();
     game.changeScene(new HighscoresScene(window, game.gameHighscores, sceneFont));
+    return;
   }
 }
 

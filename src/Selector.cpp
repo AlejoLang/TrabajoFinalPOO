@@ -6,7 +6,7 @@ Selector::Selector(std::string text, sf::Font* gameFont) : Indicator(text, 200, 
 }
 
 void Selector::update(sf::RenderWindow &window) {
-  if(sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
+  if(sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && window.hasFocus()) {
     checkMousePositionInSelector(window);
   }
 }
