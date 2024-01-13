@@ -3,7 +3,6 @@
 #include <SFML/Graphics.hpp>
 #include "Highscore.h"
 class Scene;
-#include "iostream"
 
 template <typename T> sf::Vector2f getCenter(T &origin){
   return {origin.getGlobalBounds().getSize().x / 2.0f, origin.getGlobalBounds().getSize().y / 2.0f};
@@ -30,7 +29,6 @@ class Game {
   public:
     Highscore gameHighscores;
     std::string username;
-    bool isFocused;
     Game();
     void Run();
     void handleEvents();

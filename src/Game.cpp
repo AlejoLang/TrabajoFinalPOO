@@ -4,7 +4,6 @@
 #include "PlayScene.h"
 #include <string>
 #include <ctime>
-#include "iostream"
 
 Game::Game() 
     : window(sf::VideoMode(1920, 1080), "Juego", sf::Style::Fullscreen )
@@ -37,12 +36,7 @@ void Game::handleEvents() {
   while (window.pollEvent(evt)) {
     if (evt.type == sf::Event::Closed) {
       window.close();
-    } else if (evt.type == sf::Event::GainedFocus) {
-      isFocused = true;
-    } else if (evt.type == sf::Event::LostFocus) {
-      isFocused = false;
-    }
-    else {
+    } else {
       currentScene->processEvent(evt);
     }
   }
