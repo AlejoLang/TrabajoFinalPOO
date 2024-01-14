@@ -20,6 +20,8 @@ class MenuScene : public Scene{
   public:
     MenuScene(Game &game, sf::RenderWindow &window, sf::Font* gameFont);
     void update(Game &game, sf::RenderWindow &window) override;
+    void updateTitle();
+    void checkEvents(Game& game, sf::RenderWindow& window);
     void processEvent(sf::Event &ev) override;
     void drawIn(sf::RenderWindow &window) override;
     ~MenuScene() {};
