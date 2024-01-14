@@ -60,7 +60,7 @@ void MenuScene::update (Game &game, sf::RenderWindow &window) {
   volumeSelector.update(window);
   game.setGameVolume(volumeSelector.getValuePercentaje());
 
-  /* Check for key or button press events */
+  /* Check for keyboard or mouse button press events */
   checkEvents(game, window);
 }
 
