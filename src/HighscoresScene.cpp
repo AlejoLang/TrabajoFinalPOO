@@ -11,33 +11,51 @@ HighscoresScene::HighscoresScene(Game& game, sf::RenderWindow &window, sf::Font*
                 , goToMenuButton("Menu", gameFont)
                 , cleanHighscoresButton("Clean Highscores", gameFont, "auto")
 {
+  /* Title set up*/
   titleText.setFont(*sceneFont);
   titleText.setString("Highscores");
   titleText.setCharacterSize(72);
   titleText.setOrigin(getCenter(titleText));
   titleText.setPosition({window.getSize().x / 2.0f, 100.0f});
+
   setUpHighscoresText(game, window);
+
+  /* Set button positions */
   goToMenuButton.setPos({window.getSize().x / 2.0f, window.getSize().y - 100.0f});
   cleanHighscoresButton.setPos(getPlaceRight(goToMenuButton.getBox(), cleanHighscoresButton.getBox(), 300));
 }
 
 void HighscoresScene::setUpHighscoresText(Game& game, sf::RenderWindow &window) {
+  /* Load highscores vector */
   std::vector <HighscoreStruct> hsVector = game.getHighscores().getHighscoresVector();
+
+  /* Make aux text */
   sf::Text auxName;
   sf::Text auxPoints;
   auxName.setFont(*sceneFont);
   auxPoints.setFont(*sceneFont);
   auxName.setCharacterSize(32);
   auxPoints.setCharacterSize(32);
+
+  /* Iterate trough the higscores Vector */
   for (size_t i = 0; i < hsVector.size(); i++) {
+    /* Copy a username and its points to the aux texts*/
     auxName.setString((std::string)hsVector[i].username);
     auxPoints.setString(std::to_string(hsVector[i].points));
+
+    /* Add the aux texts to the texts vector*/
     highscoresTextsVector.push_back({auxName, auxPoints});
-    highscoresTextsVector[i].first.setOrigin(getCenter(highscoresTextsVector[i].first));
-    highscoresTextsVector[i].second.setOrigin(getCenter(highscoresTextsVector[i].second));
+
+    /* Set origin of the texts pushed */
+    highscoresTextsVector[i].first.setOrigin(0, highscoresTextsVector[i].first.getGlobalBounds().height / 2.0f);
+    highscoresTextsVector[i].second.setOrigin(0, highscoresTextsVector[i].second.getGlobalBounds().height / 2.0f);
+
+    /* Set position of the texts pushed*/
     highscoresTextsVector[i].first.setPosition(window.getSize().x / 6.0f * 2.0f, titleText.getPosition().y + 200 + (i * 60));
     highscoresTextsVector[i].second.setPosition(window.getSize().x / 6.0f * 4.0f, titleText.getPosition().y + 200 + (i * 60));
   }
+
+  /* Add color to the first 3 places */
   if(highscoresTextsVector.size() >= 1){
     highscoresTextsVector[0].first.setFillColor(sf::Color(255, 215, 0));
     highscoresTextsVector[0].second.setFillColor(sf::Color(255, 215, 0));
@@ -53,9 +71,16 @@ void HighscoresScene::setUpHighscoresText(Game& game, sf::RenderWindow &window) 
 }
 
 void HighscoresScene::update(Game &game, sf::RenderWindow &window) {
+  /* Set buttons color on hover*/
   goToMenuButton.update(window);
   cleanHighscoresButton.update(window);
-  if(goToMenuButton.isClicked(sceneEvent, window)) {
+
+  /* Check for keyboard or mouse button press events */
+  checkEvents(game, window);
+}
+
+void HighscoresScene::checkEvents(Game& game, sf::RenderWindow& window) {
+  if (goToMenuButton.isClicked(sceneEvent, window)) {
     game.changeScene(new MenuScene(game, window, sceneFont));
     return;
   }
@@ -63,7 +88,7 @@ void HighscoresScene::update(Game &game, sf::RenderWindow &window) {
     game.changeScene(new MenuScene(game, window, sceneFont));
     return;
   }
-  if(cleanHighscoresButton.isClicked(sceneEvent, window)) {
+  if (cleanHighscoresButton.isClicked(sceneEvent, window)) {
     game.getHighscores().cleanHighscores();
     game.changeScene(new HighscoresScene(game, window, sceneFont));
     return;
