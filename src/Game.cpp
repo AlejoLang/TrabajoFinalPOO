@@ -7,7 +7,7 @@
 
 Game::Game() 
     : window(sf::VideoMode(1920, 1080), "Juego", sf::Style::Fullscreen )
-    , gameVolume(100)
+    , gameVolume(100.0f)
     , gameHighscores ("./resources/Highscores.dat")
 {
   if(!gameFont.loadFromFile("./resources/fonts/RetroGaming.ttf")) { exit(1); }
@@ -15,7 +15,7 @@ Game::Game()
   window.setFramerateLimit(60);
   currentScene = new MenuScene(*this, window, &gameFont);
   nextScene = nullptr;
-  srand(time(NULL));
+  srand((unsigned int)time(NULL));
 }
 
 void Game::Run() {
@@ -60,11 +60,11 @@ void Game::setGameDifficulty(int newDifficulty) {
   this->gameDifficulty = newDifficulty;
 }
 
-int Game::getGameVolume() {
+float Game::getGameVolume() {
   return this->gameVolume;
 }
 
-void Game::setGameVolume(int newVolume) {
+void Game::setGameVolume(float newVolume) {
   this->gameVolume = newVolume;
 }
 

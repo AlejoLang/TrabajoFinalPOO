@@ -81,7 +81,7 @@ void InstructionsScene::setUpText(sf::RenderWindow &window) {
   quitInstructionText.setPosition(getPlaceRight(escKeypadSprite, 50));
   avoidInstructionText.setPosition(getPlaceRight(airplaneSprite, 50));
   collectInstructionText.setPosition(getPlaceRight(CH4RefillerSprite, 50));
-  continueText.setPosition(window.getSize().x / 2.0f, window.getSize().y - 100);
+  continueText.setPosition(window.getSize().x / 2.0f, (window.getSize().y - 100.0f));
 }
 
 void InstructionsScene::update(Game &game, sf::RenderWindow &window) { 

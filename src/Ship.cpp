@@ -5,8 +5,8 @@
 
 Ship::Ship (Game &game, sf::Texture &playerTexture, Map &mainMap) 
     : Entity(playerTexture) 
-    , trustAnimationSprite(sf::seconds(0.016), false, false)
-    , explostionAnimationSprite(sf::seconds(0.016), false, false){
+    , trustAnimationSprite(sf::seconds(0.016f), false, false)
+    , explostionAnimationSprite(sf::seconds(0.016f), false, false){
   entitySprite.setPosition({mainMap.getLaunchPadSprite().getPosition().x, mainMap.getLaunchPadSprite().getPosition().y - mainMap.getLaunchPadSprite().getGlobalBounds().height - entitySprite.getGlobalBounds().height / 2.0f + 1});
   fuelLOX = 350;
   fuelCH4 = 100;
@@ -42,7 +42,7 @@ Ship::Ship (Game &game, sf::Texture &playerTexture, Map &mainMap)
 
 void Ship::update(sf::RenderWindow& window, Map &mainMap) {
   if(!isAlive) {
-    explostionAnimationSprite.update(sf::seconds(0.016));
+    explostionAnimationSprite.update(sf::seconds(0.016f));
   } else {
     handleTrust(window);
     calculateDirection();
@@ -61,17 +61,17 @@ void Ship::updateAltitude() {
 
 void Ship::calculateDirection() {
   sf::Vector2f direction;
-  direction.y = -1 * cos((entitySprite.getRotation()) * M_PI / 180);
-  direction.x = 1 * sin((entitySprite.getRotation()) * M_PI / 180);
+  direction.y = -1 * float(cos((entitySprite.getRotation()) * M_PI / 180.0f));
+  direction.x = 1 * float(sin((entitySprite.getRotation()) * M_PI / 180.0f));
   velocity = {velocity.x * direction.x, velocity.y * direction.y};
 }
 
 void Ship::handleTrust(sf::RenderWindow& window) {
   if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W) && window.hasFocus() && fuelLOX > 0 && fuelCH4 > 0) {
-    fuelLOX -= 0.175;
-    fuelCH4 -= 0.05;
-    acceleration += 0.3;
-    angularMomentum += velocity.x / acceleration * 0.25;
+    fuelLOX -= 0.175f;
+    fuelCH4 -= 0.05f;
+    acceleration += 0.3f;
+    angularMomentum += velocity.x / acceleration * 0.25f;
     trustAnimationSprite.play(trustAnimation);
     if(rocketSound.getStatus() != sf::SoundSource::Status::Playing) {
       rocketSound.play();
@@ -82,23 +82,23 @@ void Ship::handleTrust(sf::RenderWindow& window) {
     trustAnimationSprite.setFrame(0);
     rocketSound.pause();
   }
-  angularMomentum += velocity.x / 30.0;
+  angularMomentum += velocity.x / 30.0f;
   acceleration = std::max(0.0f, std::min(acceleration, 40.f));
   velocity -= {velocity.x - acceleration, velocity.y - acceleration};
 }
 
 void Ship::handleTrustAnimation() {
-  float rotationAngle = entitySprite.getRotation() * M_PI / 180;
-  float deltaX = -sin(rotationAngle) * (entitySprite.getTexture()->getSize().y / 2);
-  float deltaY = cos(rotationAngle) * (entitySprite.getTexture()->getSize().y / 2);
+  float rotationAngle = float(entitySprite.getRotation() * M_PI / 180.0f);
+  float deltaX = -sin(rotationAngle) * (entitySprite.getTexture()->getSize().y / 2.0f);
+  float deltaY = cos(rotationAngle) * (entitySprite.getTexture()->getSize().y / 2.0f);
   trustAnimationSprite.setPosition(entitySprite.getPosition().x + deltaX, entitySprite.getPosition().y + deltaY);
   trustAnimationSprite.setRotation(entitySprite.getRotation());
-  trustAnimationSprite.update(sf::seconds(0.016));
+  trustAnimationSprite.update(sf::seconds(0.016f));
 }
 
 void Ship::handleRotation(sf::RenderWindow& window) {
   const float maxRotationSpeed = 2.0;
-    float rotationSpeed = angularMomentum / 10.0;
+    float rotationSpeed = angularMomentum / 10.0f;
     
     rotationSpeed = std::min(rotationSpeed, maxRotationSpeed);
     rotationSpeed = std::max(rotationSpeed, -maxRotationSpeed);
@@ -111,13 +111,13 @@ void Ship::handleRotation(sf::RenderWindow& window) {
     }
 
     entitySprite.rotate(rotationSpeed);
-    angularMomentum *= 0.1;
+    angularMomentum *= 0.1f;
 }
 
 void Ship::handleGravity(sf::RenderWindow& window, Map &mainMap) {
   if(!entitySprite.getGlobalBounds().intersects(mainMap.getGroundSprite().getGlobalBounds()) && !this->collides(mainMap.getLaunchPadSprite())){
-    gravityAcceleration += 0.135;
-    gravityAcceleration > 20 ? gravityAcceleration = 20 : gravityAcceleration = gravityAcceleration;
+    gravityAcceleration += 0.135f;
+    gravityAcceleration > 20.0f ? gravityAcceleration = 20.0f : gravityAcceleration = gravityAcceleration;
     velocity.y += gravityAcceleration;
     handleRotation(window);
   } else {
@@ -149,10 +149,10 @@ float Ship::getAltitudeKm() {
 }
 
 float Ship::getVelocityKm_H() {
-  float velocity = std::sqrt(std::pow(this->velocity.x, 2) + std::pow(this->velocity.y, 2));
-  velocity /= 0.016; /*Convert to pixels / seconds */
-  velocity /= 2; /*Convert to m/s (1m = 2px)*/
-  velocity *= 3.6; /*Convert to Km/h*/
+  float velocity = float(std::sqrt(std::pow(this->velocity.x, 2) + std::pow(this->velocity.y, 2)));
+  velocity /= 0.016f; /*Convert to pixels / seconds */
+  velocity /= 2.0f; /*Convert to m/s (1m = 2px)*/
+  velocity *= 3.6f; /*Convert to Km/h*/
   return velocity;
 }
 

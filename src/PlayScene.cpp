@@ -15,6 +15,7 @@ PlayScene::PlayScene(Game &game, sf::RenderWindow &window, sf::Font* gameFont)
           , mainMap(window)
           , mainHud(gameFont)
           , mainRefillerCollection(game)
+          , points(0)
 { 
   if(!playerTexture.loadFromFile("./resources/textures/Starship.png")){ exit(1); }
   if(!backgroundTexture.loadFromFile("./resources/textures/background.png")){ exit(1); }
@@ -87,7 +88,7 @@ void PlayScene::drawIn(sf::RenderWindow &window) {
 }
 
 void PlayScene::updatePoints() {
-  points = (playerShip->getAltitudeKm() * 100) + ((playerShip->getCH4() + playerShip->getLOX()) * 0.5);
+  points = int((playerShip->getAltitudeKm() * 100) + ((playerShip->getCH4() + playerShip->getLOX()) * 0.5));
 }
 
 void PlayScene::updateGameDifficulty(Game &game, float altitude) {

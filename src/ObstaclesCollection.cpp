@@ -8,7 +8,7 @@
 #include <math.h>
 
 
-ObstaclesCollection::ObstaclesCollection() : generationTime(0.8) {
+ObstaclesCollection::ObstaclesCollection() : generationTime(0.8f) {
   for (size_t i = 0; i < 2; i++) {
     sf::Texture aux;
     asteroidTexures.push_back(aux);
@@ -34,16 +34,16 @@ void ObstaclesCollection::update(sf::View &mainView, Ship *playerShip, int gameD
 void ObstaclesCollection::updateGenerationTime(int gameDifficulty) {
   switch (gameDifficulty) {
     case 1:
-      generationTime = 0.8;
+      generationTime = 0.8f;
       break;
     case 2:
-      generationTime = 0.6;
+      generationTime = 0.6f;
       break;
     case 3:
-      generationTime = 0.4;
+      generationTime = 0.4f;
       break;
     case 4:
-      generationTime = 0.2;
+      generationTime = 0.2f;
       break;
     default:
       break;
