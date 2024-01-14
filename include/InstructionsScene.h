@@ -30,6 +30,7 @@ class InstructionsScene : public Scene {
     void setUpImages(sf::RenderWindow &window);
     void setUpText(sf::RenderWindow &window);
     void update(Game &game, sf::RenderWindow &window) override;
+    void checkEvents(Game& game, sf::RenderWindow& window);
     void processEvent(sf::Event &ev) override;
     void drawIn(sf::RenderWindow &window) override;
     ~InstructionsScene();

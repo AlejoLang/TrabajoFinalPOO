@@ -9,6 +9,7 @@ InstructionsScene::InstructionsScene(sf::RenderWindow &window, sf::Font* gameFon
 }
 
 void InstructionsScene::setUpImages(sf::RenderWindow &window) {
+  /* Load textures*/
   if(!wKeypadTexture.loadFromFile("./resources/textures/wKeypad.png")) {exit(1);}
   if(!arrowKeypadsTexture.loadFromFile("./resources/textures/arrowKeypads.png")) {exit(1);}
   if(!escKeypadTexture.loadFromFile("./resources/textures/escKeypad.png")) {exit(1);}
@@ -17,6 +18,7 @@ void InstructionsScene::setUpImages(sf::RenderWindow &window) {
   if(!asteroidTexture.loadFromFile("./resources/textures/Asteroid2.png")) {exit(1);}
   if(!airplaneTexture.loadFromFile("./resources/textures/Airplane1.png")) {exit(1);}
   
+  /* Set textures in sprites */
   wKeypadSprite.setTexture(wKeypadTexture);
   arrowKeypadsSprite.setTexture(arrowKeypadsTexture);
   escKeypadSprite.setTexture(escKeypadTexture);
@@ -25,6 +27,7 @@ void InstructionsScene::setUpImages(sf::RenderWindow &window) {
   asteroidSprite.setTexture(asteroidTexture);
   airplaneSprite.setTexture(airplaneTexture);
 
+  /* Set sprites origin */
   wKeypadSprite.setOrigin(getCenter(wKeypadSprite));
   arrowKeypadsSprite.setOrigin(getCenter(arrowKeypadsSprite));
   escKeypadSprite.setOrigin(getCenter(escKeypadSprite));
@@ -33,6 +36,7 @@ void InstructionsScene::setUpImages(sf::RenderWindow &window) {
   asteroidSprite.setOrigin(getCenter(asteroidSprite));
   airplaneSprite.setOrigin(getCenter(airplaneSprite));
 
+  /* Set sprites position */
   wKeypadSprite.setPosition(200, 300);
   arrowKeypadsSprite.setPosition(getPlaceBelow(wKeypadSprite, arrowKeypadsSprite, 100));
   escKeypadSprite.setPosition(getPlaceBelow(arrowKeypadsSprite, escKeypadSprite,100));
@@ -43,6 +47,7 @@ void InstructionsScene::setUpImages(sf::RenderWindow &window) {
 }
 
 void InstructionsScene::setUpText(sf::RenderWindow &window) {
+  /* Set texts font */
   titleText.setFont(*sceneFont);
   accelerateInstructionText.setFont(*sceneFont);
   rotateInstructionText.setFont(*sceneFont);
@@ -51,6 +56,7 @@ void InstructionsScene::setUpText(sf::RenderWindow &window) {
   collectInstructionText.setFont(*sceneFont);
   continueText.setFont(*sceneFont);
 
+  /* Set texts string */
   titleText.setString("Instructions");
   accelerateInstructionText.setString("Press to accelerate");
   rotateInstructionText.setString("Press to rotate");
@@ -59,6 +65,7 @@ void InstructionsScene::setUpText(sf::RenderWindow &window) {
   collectInstructionText.setString("Collect to gain fuel");
   continueText.setString("Press Enter to continue...");
 
+  /* Set cheracter size */
   titleText.setCharacterSize(48);
   accelerateInstructionText.setCharacterSize(24);
   rotateInstructionText.setCharacterSize(24);
@@ -67,6 +74,7 @@ void InstructionsScene::setUpText(sf::RenderWindow &window) {
   collectInstructionText.setCharacterSize(24);
   continueText.setCharacterSize(36);
 
+  /* Set texts origin */
   titleText.setOrigin(titleText.getGlobalBounds().getSize().x / 2.0f, titleText.getGlobalBounds().getSize().y / 2.0f);
   accelerateInstructionText.setOrigin(0, accelerateInstructionText.getGlobalBounds().getSize().y / 2.0f);
   rotateInstructionText.setOrigin(0, rotateInstructionText.getGlobalBounds().getSize().y / 2.0f);
@@ -75,6 +83,7 @@ void InstructionsScene::setUpText(sf::RenderWindow &window) {
   collectInstructionText.setOrigin(0, collectInstructionText.getGlobalBounds().getSize().y / 2.0f);
   continueText.setOrigin(continueText.getGlobalBounds().getSize().x / 2.0f, continueText.getGlobalBounds().getSize().y / 2.0f );
 
+  /* Set texts position */
   titleText.setPosition(window.getSize().x / 2.0f, 100);
   accelerateInstructionText.setPosition(getPlaceRight(wKeypadSprite, 50));
   rotateInstructionText.setPosition(getPlaceRight(arrowKeypadsSprite, 50));
@@ -85,20 +94,27 @@ void InstructionsScene::setUpText(sf::RenderWindow &window) {
 }
 
 void InstructionsScene::update(Game &game, sf::RenderWindow &window) { 
-  if(sceneEvent.type == sf::Event::KeyReleased) {
-    if (sceneEvent.key.scancode == sf::Keyboard::Scan::Escape) {
-      game.changeScene(new MenuScene(game, window, sceneFont));
-      return;
-    } 
-    if (sceneEvent.key.scancode == sf::Keyboard::Scan::Enter) {
-      game.changeScene(new PlayScene(game, window, sceneFont));
-      return;
-    }
-  }
+  /* Make the text blink */
   if(int(timer.getElapsedTime().asSeconds()*3)%2) {
     continueText.setString("");
   } else {
     continueText.setString("Press Enter to continue...");
+  }
+
+  /* Check for keyboard or mouse button press events */
+  checkEvents(game, window);
+}
+
+void InstructionsScene::checkEvents(Game& game, sf::RenderWindow& window) {
+  if (sceneEvent.type == sf::Event::KeyReleased) {
+    if (sceneEvent.key.scancode == sf::Keyboard::Scan::Escape) {
+      game.changeScene(new MenuScene(game, window, sceneFont));
+      return;
+    }
+    if (sceneEvent.key.scancode == sf::Keyboard::Scan::Enter) {
+      game.changeScene(new PlayScene(game, window, sceneFont));
+      return;
+    }
   }
 }
 
