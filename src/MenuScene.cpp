@@ -21,8 +21,8 @@ MenuScene::MenuScene(Game &game, sf::RenderWindow &window, sf::Font* gameFont)
   titleText.setFillColor(sf::Color::White);
   titleText.setPosition({window.getSize().x / 2.0f, (window.getSize().y / 2.0f) - 150.0f});
   nameInput.setMaxChars(20);
-  nameInput.setValue(game.username);
-  nameInput.setString(game.username);
+  nameInput.setValue(game.getUsername());
+  nameInput.setString(game.getUsername());
   nameInput.setOrigin(getCenter(nameInput));
   nameInput.setPosition(getPlaceBelow(titleText, nameInput, 140));
   nameInput.setSingleWord(true);
@@ -63,7 +63,7 @@ void MenuScene::update (Game &game, sf::RenderWindow &window) {
   exitButton.update(window);
   nameInput.update();
   nameInput.setPosition({window.getSize().x / 2.0f, window.getSize().y / 2.0f + 50});
-  game.username = nameInput.getValue();
+  game.setUsername(nameInput.getValue());
   volumeSelector.update(window);
   game.setGameVolume(volumeSelector.getValuePercentaje());
   if(goToPlayButton.isClicked(sceneEvent, window)) {
@@ -74,7 +74,7 @@ void MenuScene::update (Game &game, sf::RenderWindow &window) {
     window.close();
   }
   if(goToHighscoresButton.isClicked(sceneEvent, window)) {
-    game.changeScene(new HighscoresScene(window, game.gameHighscores, sceneFont));
+    game.changeScene(new HighscoresScene(game, window, sceneFont));
     return;
   }
   if (sceneEvent.key.scancode == sf::Keyboard::Scan::Escape) {
