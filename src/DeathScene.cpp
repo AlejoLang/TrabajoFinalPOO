@@ -32,7 +32,6 @@ void DeathScene::update(Game &game, sf::RenderWindow &window) {
   backToMenu.update(window);
   restartGame.update(window);
   if(backToMenu.isClicked(sceneEvent, window)){
-    std::vector <HighscoreStruct> aux = game.gameHighscores.getHighscores();
     game.changeScene(new MenuScene(game, window, sceneFont));
   }
   if(restartGame.isClicked(sceneEvent, window)){
@@ -48,11 +47,11 @@ void DeathScene::processEvent(sf::Event &ev){
 }
 
 void DeathScene::updateHighscores(Game &game, int points) {
-  if(game.username == "") {
-    game.username = "Player";
+  if(game.getUsername() == "") {
+    game.setUsername("Player");
   }
-  HighscoreStruct newHs(game.username, points);
-  game.gameHighscores.addScore(newHs);
+  HighscoreStruct newHs(game.getUsername(), points);
+  game.getHighscores().addScore(newHs);
 }
 
 void DeathScene::drawIn(sf::RenderWindow &window) {
