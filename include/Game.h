@@ -26,7 +26,7 @@ class Game {
     Scene* nextScene;
     Highscore gameHighscores;
     int gameDifficulty;
-    int gameVolume;
+    float gameVolume;
     std::string username;
   public:
     Game();
@@ -36,8 +36,8 @@ class Game {
     void Draw();
     int getGameDifficulty();
     void setGameDifficulty(int newDifficulty);
-    int getGameVolume();
-    void setGameVolume(int newVolume);
+    float getGameVolume();
+    void setGameVolume(float newVolume);
     std::string getUsername();
     void setUsername(std::string newUsername);
     Highscore& getHighscores();
