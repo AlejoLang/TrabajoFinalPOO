@@ -22,7 +22,7 @@ class Highscore {
     Highscore(std::string filePath);
     void addScore(HighscoreStruct toAdd);
     void cleanHighscores();
-    std::vector <HighscoreStruct> getHighscores();
+    std::vector <HighscoreStruct> getHighscoresVector();
     void saveFile();
     ~Highscore() {};
 };

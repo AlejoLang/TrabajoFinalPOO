@@ -44,7 +44,7 @@ void Highscore::cleanHighscores() {
   highscoreFile.close();
 }
 
-std::vector <HighscoreStruct> Highscore::getHighscores() {
+std::vector <HighscoreStruct> Highscore::getHighscoresVector() {
   return this->highscoreVector;
 }
 
