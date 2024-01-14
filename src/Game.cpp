@@ -7,15 +7,19 @@
 
 Game::Game() 
     : window(sf::VideoMode(1920, 1080), "Juego", sf::Style::Fullscreen )
+    , nextScene(nullptr) 
     , gameVolume(100.0f)
     , gameHighscores ("./resources/Highscores.dat")
 {
-  if(!gameFont.loadFromFile("./resources/fonts/RetroGaming.ttf")) { exit(1); }
-  setUsername("Player");
   window.setFramerateLimit(60);
+
+  if(!gameFont.loadFromFile("./resources/fonts/RetroGaming.ttf")) { exit(1); }
+
+  setUsername("Player");
+
   currentScene = new MenuScene(*this, window, &gameFont);
-  nextScene = nullptr;
-  srand((unsigned int)time(NULL));
+
+  srand((unsigned int)time(NULL)); /* Put random seed for the rand() function */
 }
 
 void Game::Run() {
