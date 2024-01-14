@@ -26,9 +26,9 @@ MenuScene::MenuScene(Game &game, sf::RenderWindow &window, sf::Font* gameFont)
   nameInput.setOrigin(getCenter(nameInput));
   nameInput.setPosition(getPlaceBelow(titleText, nameInput, 140));
   nameInput.setSingleWord(true);
-  goToPlayButton.setPos(getPlaceBelow(nameInput, goToPlayButton.getBox(), 40.f));
-  goToHighscoresButton.setPos(getPlaceBelow(goToPlayButton.getBox(), goToHighscoresButton.getBox(), 20.f));
-  exitButton.setPos(getPlaceBelow(goToHighscoresButton.getBox(), exitButton.getBox(), 20.f));
+  goToPlayButton.setPos(getPlaceBelow(nameInput, goToPlayButton.getBox(), 80.f));
+  goToHighscoresButton.setPos(getPlaceBelow(goToPlayButton.getBox(), goToHighscoresButton.getBox(), 40.f));
+  exitButton.setPos(getPlaceBelow(goToHighscoresButton.getBox(), exitButton.getBox(), 40.f));
   volumeSelector.setSize({200, 20});
   volumeSelector.setPos({window.getSize().x / 6.0f, window.getSize().y / 6.0f * 5.0f});
   volumeSelector.setValuePercentaje(game.getGameVolume());
