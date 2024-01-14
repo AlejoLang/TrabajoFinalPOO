@@ -7,16 +7,16 @@ Button::Button(std::string btnText, sf::Font* gameFont, std::string size){
   this->buttonText.setCharacterSize(36);
   this->buttonText.setString(btnText);
   this->buttonText.setFillColor(sf::Color::White);
-  this->buttonText.setOrigin(this->buttonText.getGlobalBounds().width / 2.0f, this->buttonText.getGlobalBounds().height / 2.0f);
   if(size == "auto") {
     this->buttonBox.setSize({buttonText.getGlobalBounds().getSize().x + 20, 50});
   } else {
-    this->buttonBox.setSize({std::stof(size), 50.0});
+    this->buttonBox.setSize({std::stof(size), 50.0f});
   }
   this->buttonBox.setFillColor(sf::Color::Transparent);
   this->buttonBox.setOutlineThickness(2);
   this->buttonBox.setOutlineColor(sf::Color::White);
   this->buttonBox.setOrigin(this->buttonBox.getSize().x / 2.0f, this->buttonBox.getSize().y / 2.0f);
+  this->buttonText.setOrigin(this->buttonText.getGlobalBounds().width / 2.0f, this->buttonText.getGlobalBounds().height / 2.0f);
 }
 
 void Button::update(sf::RenderWindow &window) {
@@ -28,8 +28,8 @@ void Button::update(sf::RenderWindow &window) {
 }
 
 void Button::setPos(sf::Vector2f pos) {
-  this->buttonText.setPosition(pos);
-  this->buttonBox.setPosition({pos.x, pos.y + 10});
+  this->buttonText.setPosition({ pos.x, pos.y - 10});
+  this->buttonBox.setPosition({pos.x, pos.y});
 }
 
 bool Button::isClicked(sf::Event &evt, sf::RenderWindow &window) {
