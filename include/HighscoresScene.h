@@ -11,8 +11,8 @@ class HighscoresScene : public Scene {
     Button goToMenuButton;
     Button cleanHighscoresButton;
   public:
-    HighscoresScene(sf::RenderWindow &window, Highscore &highscores, sf::Font* gameFont);
-    void setUpHighscoresText(sf::RenderWindow &window, Highscore &highscores);
+    HighscoresScene(Game &game, sf::RenderWindow &window, sf::Font* gameFont);
+    void setUpHighscoresText(Game &game, sf::RenderWindow &window);
     void update(Game &game, sf::RenderWindow &window) override;
     void processEvent(sf::Event &ev) override;
     void drawIn(sf::RenderWindow &window) override;

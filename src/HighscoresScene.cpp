@@ -6,7 +6,7 @@
 #include <string>
 #include <iomanip>
 
-HighscoresScene::HighscoresScene(sf::RenderWindow &window, Highscore &highscores, sf::Font* gameFont)
+HighscoresScene::HighscoresScene(Game& game, sf::RenderWindow &window, sf::Font* gameFont)
                 :Scene(gameFont)
                 , goToMenuButton("Menu", gameFont)
                 , cleanHighscoresButton("Clean Highscores", gameFont, "auto")
@@ -16,13 +16,13 @@ HighscoresScene::HighscoresScene(sf::RenderWindow &window, Highscore &highscores
   titleText.setCharacterSize(72);
   titleText.setOrigin(getCenter(titleText));
   titleText.setPosition({window.getSize().x / 2.0f, 100.0f});
-  setUpHighscoresText(window, highscores);
+  setUpHighscoresText(game, window);
   goToMenuButton.setPos({window.getSize().x / 2.0f, window.getSize().y - 100.0f});
   cleanHighscoresButton.setPos(getPlaceRight(goToMenuButton.getBox(), cleanHighscoresButton.getBox(), 300));
 }
 
-void HighscoresScene::setUpHighscoresText(sf::RenderWindow &window, Highscore &highscores) {
-  std::vector <HighscoreStruct> hsVector = highscores.getHighscores();
+void HighscoresScene::setUpHighscoresText(Game& game, sf::RenderWindow &window) {
+  std::vector <HighscoreStruct> hsVector = game.getHighscores().getHighscoresVector();
   sf::Text auxName;
   sf::Text auxPoints;
   auxName.setFont(*sceneFont);
@@ -64,8 +64,8 @@ void HighscoresScene::update(Game &game, sf::RenderWindow &window) {
     return;
   }
   if(cleanHighscoresButton.isClicked(sceneEvent, window)) {
-    game.gameHighscores.cleanHighscores();
-    game.changeScene(new HighscoresScene(window, game.gameHighscores, sceneFont));
+    game.getHighscores().cleanHighscores();
+    game.changeScene(new HighscoresScene(game, window, sceneFont));
     return;
   }
 }
