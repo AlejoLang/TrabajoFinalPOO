@@ -21,14 +21,14 @@ template <typename T> sf::Vector2f getPlaceRight(T &origin, float gap){
 class Game {
   private:
     sf::RenderWindow window;
-    Scene *currentScene;
-    Scene *nextScene;
     sf::Font gameFont;
+    Scene* currentScene;
+    Scene* nextScene;
+    Highscore gameHighscores;
     int gameDifficulty;
     int gameVolume;
-  public:
-    Highscore gameHighscores;
     std::string username;
+  public:
     Game();
     void Run();
     void handleEvents();
@@ -38,6 +38,9 @@ class Game {
     void setGameDifficulty(int newDifficulty);
     int getGameVolume();
     void setGameVolume(int newVolume);
+    std::string getUsername();
+    void setUsername(std::string newUsername);
+    Highscore& getHighscores();
     void changeScene(Scene *newScene);
     ~Game();
 };

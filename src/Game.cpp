@@ -11,7 +11,7 @@ Game::Game()
     , gameHighscores ("./resources/Highscores.dat")
 {
   if(!gameFont.loadFromFile("./resources/fonts/RetroGaming.ttf")) { exit(1); }
-  username = "Player";
+  setUsername("Player");
   window.setFramerateLimit(60);
   currentScene = new MenuScene(*this, window, &gameFont);
   nextScene = nullptr;
@@ -66,6 +66,21 @@ int Game::getGameVolume() {
 
 void Game::setGameVolume(int newVolume) {
   this->gameVolume = newVolume;
+}
+
+std::string Game::getUsername()
+{
+    return this->username;
+}
+
+void Game::setUsername(std::string newUsername)
+{
+    this->username = newUsername;
+}
+
+Highscore& Game::getHighscores()
+{
+    return gameHighscores;
 }
 
 void Game::changeScene(Scene *newScene) {
