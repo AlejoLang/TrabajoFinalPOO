@@ -2,13 +2,18 @@
 #include <string>
 
 Indicator::Indicator(std::string text, float base, sf::Font* gameFont) {
+  /* Set up text */
   indicatorText.setFont(*gameFont);
   indicatorText.setString(text);
   indicatorText.setOrigin({0, indicatorText.getGlobalBounds().width / 2.0f});
+
+  /* Set up rectangles */
   indicatorRect.setFillColor(sf::Color::White);
   indicatorRectOut.setOutlineColor(sf::Color::White);
   indicatorRectOut.setFillColor(sf::Color::Transparent);
   indicatorRectOut.setOutlineThickness(3);
+
+  /* Set up variables */
   baseMagnitude = base;
   value = 100;
 }

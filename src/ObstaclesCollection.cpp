@@ -8,12 +8,17 @@
 #include <math.h>
 
 
-ObstaclesCollection::ObstaclesCollection() : generationTime(0.8f) {
+ObstaclesCollection::ObstaclesCollection() 
+                    : generationTime(0.8f) 
+{
+  /* Load asteroids textures */
   for (size_t i = 0; i < 2; i++) {
     sf::Texture aux;
     asteroidTexures.push_back(aux);
     if(!asteroidTexures[i].loadFromFile("./resources/textures/Asteroid"+ std::to_string(i + 1)+".png")) { exit(1); }
   }
+
+  /* Load airplanes textures */
   for (size_t i = 0; i < 2; i++) {
     sf::Texture aux;
     airplaneTexures.push_back(aux);
@@ -24,14 +29,18 @@ ObstaclesCollection::ObstaclesCollection() : generationTime(0.8f) {
 void ObstaclesCollection::update(sf::View &mainView, Ship *playerShip, int gameDifficulty) {
   updateGenerationTime(gameDifficulty);
   handleObstaclesGeneration(mainView, playerShip);
+
+  /* Update each obstacle */
   for (Obstacle *obs: obstaclesVector) {
     obs->update();
   }
+
   handleObstaclesCollision(playerShip);
   handleObstaclesRemove(mainView);
 }
 
 void ObstaclesCollection::updateGenerationTime(int gameDifficulty) {
+  /* Change objects generation time based on game difficulty */
   switch (gameDifficulty) {
     case 1:
       generationTime = 0.8f;
@@ -52,20 +61,23 @@ void ObstaclesCollection::updateGenerationTime(int gameDifficulty) {
 
 void ObstaclesCollection::handleObstaclesGeneration(sf::View &mainView, Ship *playerShip) {
   if(generationClock.getElapsedTime().asSeconds() > generationTime) {
+    /* set varaible for player altitude and a random number */
     float playerAltitude = playerShip->getAltitudeKm();
     float randomNumber = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-    if(playerAltitude > 0.1 && playerAltitude < 10) {
+
+    /* Generates airplanes, asteroids or a mix of both based on altitude and random number */
+    if(playerAltitude > 0.1 && playerAltitude < 10) {  /* 100% airplanes */
       Obstacle *newAirplane = new Airplane(airplaneTexures, mainView);
       obstaclesVector.push_back(newAirplane);
     } else if(playerAltitude > 0.1 && playerAltitude < 20) {
-      if(playerAltitude > 0.1 && randomNumber > 0.3) {
-        Obstacle *newAirplane = new Airplane(airplaneTexures, mainView);
+      if(playerAltitude > 0.1 && randomNumber > 0.3) {  /* 70% airplanes, 30% asteroids */
+        Obstacle *newAirplane = new Airplane(airplaneTexures, mainView); 
         obstaclesVector.push_back(newAirplane);
       } else {
         Obstacle *newAsteroid = new Asteroid(asteroidTexures, mainView);
         obstaclesVector.push_back(newAsteroid);
       }
-    } else if(playerAltitude > 0.1 && playerAltitude < 30) {
+    } else if(playerAltitude > 0.1 && playerAltitude < 30) {  /* 30% airplanes, 70% asteroids */
       if(randomNumber < 0.3) {
         Obstacle *newAirplane = new Airplane(airplaneTexures, mainView);
         obstaclesVector.push_back(newAirplane);
@@ -73,7 +85,7 @@ void ObstaclesCollection::handleObstaclesGeneration(sf::View &mainView, Ship *pl
         Obstacle *newAsteroid = new Asteroid(asteroidTexures, mainView);
         obstaclesVector.push_back(newAsteroid);
       }
-    } else if(playerAltitude > 40) {
+    } else if(playerAltitude > 40) { /* 100% asteroids */
       Obstacle *newAsteroid = new Asteroid(asteroidTexures, mainView);
       obstaclesVector.push_back(newAsteroid);
     }
@@ -82,6 +94,7 @@ void ObstaclesCollection::handleObstaclesGeneration(sf::View &mainView, Ship *pl
 }
 
 void ObstaclesCollection::handleObstaclesCollision(Ship *playerShip) {
+  /* Iterates through each obstacles searching for collisions */
   for (Obstacle *obs: obstaclesVector) {
     if(obs->collides(playerShip->getSprite())){
       playerShip->explode();
@@ -90,6 +103,7 @@ void ObstaclesCollection::handleObstaclesCollision(Ship *playerShip) {
 }
 
 void ObstaclesCollection::handleObstaclesRemove(sf::View &mainView) {
+  /* Remove obstacle that are above the view */
   for (size_t i = 0; i < obstaclesVector.size(); ++i) {
     if(obstaclesVector[i]->getCenter().y - obstaclesVector[i]->getSprite().getGlobalBounds().height > mainView.getCenter().y + mainView.getSize().y / 2.0f){
       delete obstaclesVector[i];
@@ -105,6 +119,7 @@ void ObstaclesCollection::drawIn(sf::RenderWindow &window) {
 }
 
 ObstaclesCollection::~ObstaclesCollection(){
+  /* Remove all remaining obstacles */
   for (Obstacle *obs: obstaclesVector) {
     delete obs;
   }

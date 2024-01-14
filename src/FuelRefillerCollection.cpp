@@ -5,9 +5,14 @@
 #include <vector>
 
 FuelRefillerCollection::FuelRefillerCollection(Game &game) : generationTime(5) {
+  /* Load refillers textures */
   if(!LOXRefillerTexture.loadFromFile("./resources/textures/LOXRefiller.png")) { exit(1); }
   if(!CH4RefillerTexture.loadFromFile("./resources/textures/CH4Refiller.png")) { exit(1); }
+
+  /* Load collection sound */
   if(!collectionSoundFile.loadFromFile("./resources/sounds/collect.wav")) { exit(1); }
+
+  /* Set collection sound */
   collectionSound.setBuffer(collectionSoundFile);
   collectionSound.setVolume(game.getGameVolume());
 }
@@ -20,6 +25,7 @@ void FuelRefillerCollection::update(sf::View &mainView, Ship *playerShip, int ga
 }
 
 void FuelRefillerCollection::updateGenerationTime(int gameDifficulty) {
+  /* Increase the generation time based on altitude */
   switch (gameDifficulty){
     case 1:
       generationTime = 4;
@@ -39,6 +45,7 @@ void FuelRefillerCollection::updateGenerationTime(int gameDifficulty) {
 }
 
 void FuelRefillerCollection::handleRefillerGeneration(sf::View &mainView, Ship *playerShip) {
+  /* Generates a random refiller type when the generation time matches the generation clock elapsed time */
   if(playerShip->getAltitudeKm() < 0.5) { generationClock.restart(); }
   if(generationClock.getElapsedTime().asSeconds() > generationTime){
     int type = rand() % 2;
@@ -54,6 +61,7 @@ void FuelRefillerCollection::handleRefillerGeneration(sf::View &mainView, Ship *
 }
 
 void FuelRefillerCollection::handleRefillerCollision(Ship *playerShip) {
+  /* Remove the refiller and plays the collection sound don player collision */
   for (size_t i = 0; i < fuelRefillersVector.size(); i++) {
     if(fuelRefillersVector[i]->checkAndHandleCollision(playerShip)){
       collectionSound.play();
@@ -61,10 +69,10 @@ void FuelRefillerCollection::handleRefillerCollision(Ship *playerShip) {
       fuelRefillersVector.erase(fuelRefillersVector.begin() + i);
     }
   }
-  
 }
 
 void FuelRefillerCollection::handleRefillerRemove(sf::View &mainView) {
+  /* Remove the refillers that are out of the screen */
   for (size_t i = 0; i < fuelRefillersVector.size(); ++i) {
     if(fuelRefillersVector[i]->getCenter().y - fuelRefillersVector[i]->getSprite().getGlobalBounds().height > mainView.getCenter().y + mainView.getSize().y / 2.0f){
       delete fuelRefillersVector[i];
@@ -80,6 +88,7 @@ void FuelRefillerCollection::drawIn(sf::RenderWindow &window) {
 }
 
 FuelRefillerCollection::~FuelRefillerCollection() {
+  /* Delete the remaining refillers */
   for (FuelRefiller *refiller: fuelRefillersVector) {
     delete refiller;
   }
