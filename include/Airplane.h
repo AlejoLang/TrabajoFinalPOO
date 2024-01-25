@@ -5,6 +5,5 @@
 class Airplane : public Obstacle {
   public:
     Airplane(std::vector<sf::Texture> &planeTexures, sf::View &view);
-    void update();
     ~Airplane() {};
 };
