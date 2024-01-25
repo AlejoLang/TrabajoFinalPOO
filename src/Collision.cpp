@@ -149,9 +149,9 @@ namespace Collision
 			auto transform = sprite.getTransform();
 			auto local = sprite.getTextureRect();
 			points[0] = transform.transformPoint(0.f, 0.f);
-			points[1] = transform.transformPoint(local.width, 0.f);
-			points[2] = transform.transformPoint(local.width, local.height);
-			points[3] = transform.transformPoint(0.f, local.height);
+			points[1] = transform.transformPoint(float(local.width), 0.f);
+			points[2] = transform.transformPoint(float(local.width), float(local.height));
+			points[3] = transform.transformPoint(0.f, float(local.height));
 		}
 
         // Project all four points of the OBB onto the given axis and return the dot products of the two outermost points

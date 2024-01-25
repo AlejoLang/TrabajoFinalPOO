@@ -25,10 +25,10 @@ Highscore::Highscore(std::string filePath) {
     aux.close();
   } else {
     /* If the file exist, get all the data into the highscoreVector */
-    int size = highscoreFile.tellg() / sizeof(HighscoreStruct);
+    size_t size = highscoreFile.tellg() / sizeof(HighscoreStruct);
     highscoreFile.seekg(0);
     HighscoreStruct auxSt;
-    for(int i = 0; i < size; ++i) {
+    for(size_t i = 0; i < size; ++i) {
       highscoreFile.read(reinterpret_cast<char *>(&auxSt), sizeof(HighscoreStruct));
       highscoreVector.push_back(auxSt);
     }

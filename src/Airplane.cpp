@@ -10,8 +10,8 @@ Airplane::Airplane(std::vector<sf::Texture> &planeTexures, sf::View &view) : Obs
   int velocityMin = -7;
 
   /* Set generation range inside the screen */
-  int minX = view.getCenter().x - view.getSize().x / 2;
-  int maxX = view.getCenter().x + view.getSize().x / 2;
+  int minX = int(view.getCenter().x - view.getSize().x / 2.0f);
+  int maxX = int(view.getCenter().x + view.getSize().x / 2.0f);
 
   /* Set airplane position, and velocity (the velocity its only in the X anxis, the y velocity its 0) */
   entitySprite.setPosition(minX + rand()%(maxX - minX + 1), view.getCenter().y - view.getSize().y / 2 - entitySprite.getGlobalBounds().height - 100);

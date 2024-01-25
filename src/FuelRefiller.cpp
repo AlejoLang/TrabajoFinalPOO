@@ -12,7 +12,7 @@ FuelRefiller::FuelRefiller(sf::Texture &texture, std::string fuelType, sf::View 
   int maxX = int(view.getCenter().x + view.getSize().x / 2.0f);
 
   /* Place the refiller in a place between minX and maxX */
-  entitySprite.setPosition(minX + rand()%(maxX - minX + 1), view.getCenter().y - view.getSize().y / 2.0f - entitySprite.getGlobalBounds().height - 100.0f);
+  entitySprite.setPosition(float(minX + rand()%(maxX - minX + 1)), view.getCenter().y - view.getSize().y / 2.0f - entitySprite.getGlobalBounds().height - 100.0f);
 }
 
 bool FuelRefiller::checkAndHandleCollision(Ship *player){

@@ -15,7 +15,7 @@ Map::Map(sf::RenderWindow &window) {
   
   /* Set launchpad sprite */
   launchPad.setTexture(launchPadTexture);
-  launchPad.setOrigin(launchPadTexture.getSize().x / 2.0f, launchPadTexture.getSize().y);
+  launchPad.setOrigin(launchPad.getGlobalBounds().width / 2.0f, launchPad.getGlobalBounds().height);
   launchPad.setPosition(window.getSize().x / 2.0f, 0);
   
   /* Set launchpad tower */

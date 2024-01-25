@@ -10,14 +10,14 @@ Asteroid::Asteroid(std::vector<sf::Texture> &asteroidTexures, sf::View &view) : 
   int velocityMin = -7;
 
   /* Set generation range inside the screen */
-  int minX = view.getCenter().x - view.getSize().x / 2;
-  int maxX = view.getCenter().x + view.getSize().x / 2;
+  int minX = int(view.getCenter().x - view.getSize().x / 2.0f);
+  int maxX = int(view.getCenter().x + view.getSize().x / 2.0f);
 
   /* Choose a random scale between 2 and 4*/
   float scale = static_cast<float>(rand() % 3 + 2);
 
   /* Set asteroid scale, position and velocity */
   entitySprite.setScale(scale, scale);
-  entitySprite.setPosition(minX + rand()%(maxX - minX + 1), view.getCenter().y - view.getSize().y / 2 - entitySprite.getGlobalBounds().height - 100);
+  entitySprite.setPosition(float(minX + rand()%(maxX - minX + 1)), view.getCenter().y - view.getSize().y / 2 - entitySprite.getGlobalBounds().height - 100);
   obstacleVelocity = {float(velocityMin + rand()%(velocityMax - velocityMin + 1)), float(abs(velocityMin + rand()%(velocityMax - velocityMin + 1)))};
 }
