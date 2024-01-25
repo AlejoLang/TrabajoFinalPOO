@@ -1,5 +1,4 @@
-#ifndef FUELREFILLERCOLLECTION
-#define FUELREFILLERCOLLECTION
+#pragma once
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 class FuelRefiller;
@@ -25,6 +24,3 @@ class FuelRefillerCollection
     void drawIn(sf::RenderWindow &window);
     ~FuelRefillerCollection();
 };
-
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef SHIP_H
-#define SHIP_H
+#pragma once
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "Game.h"
@@ -49,5 +48,3 @@ class Ship : public Entity {
     void explode();
     ~Ship() {};
 };
-
-#endif

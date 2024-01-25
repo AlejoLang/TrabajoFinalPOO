@@ -1,5 +1,4 @@
-#ifndef MAP_H
-#define MAP_H
+#pragma once
 #include <SFML/Graphics.hpp>
 
 class Map
@@ -18,6 +17,3 @@ class Map
     sf::Sprite& getLaunchPadSprite();
     ~Map() {};
 };
-
-
-#endif

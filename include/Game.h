@@ -1,5 +1,4 @@
-#ifndef GAME_H
-#define GAME_H
+#pragma once
 #include <SFML/Graphics.hpp>
 #include "Highscore.h"
 class Scene;
@@ -44,5 +43,3 @@ class Game {
     void changeScene(Scene *newScene);
     ~Game();
 };
-
-#endif

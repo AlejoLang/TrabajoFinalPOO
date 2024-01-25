@@ -1,5 +1,4 @@
-#ifndef MENUSCENE_H
-#define MENUSCENE_H
+#pragma once
 #include <SFML/Graphics.hpp>
 #include "Button.h"
 #include "InputBox.h"
@@ -26,5 +25,3 @@ class MenuScene : public Scene{
     void drawIn(sf::RenderWindow &window) override;
     ~MenuScene() {};
 };
-
-#endif 

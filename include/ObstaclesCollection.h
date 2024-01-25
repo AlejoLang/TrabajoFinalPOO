@@ -1,5 +1,4 @@
-#ifndef ASTEROIDCOLLECTION_H
-#define ASTEROIDCOLLECTION_H
+#pragma once
 #include <SFML/Graphics.hpp>
 class Obstacle;
 class Ship;
@@ -21,5 +20,3 @@ class ObstaclesCollection {
     void drawIn(sf::RenderWindow &window);
     ~ObstaclesCollection();
 };
-
-#endif

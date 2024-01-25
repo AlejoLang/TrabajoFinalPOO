@@ -1,5 +1,4 @@
-#ifndef INDICATOR_H
-#define INDICATOR_H
+#pragma once
 #include <SFML/Graphics.hpp>
 
 class Indicator
@@ -22,5 +21,3 @@ class Indicator
     void draw(sf::RenderWindow &window);
     ~Indicator() {};
 };
-
-#endif

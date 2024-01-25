@@ -1,5 +1,4 @@
-#ifndef PLAYSCENE_H
-#define PLAYSCENE_H
+#pragma once
 #include <SFML/Graphics.hpp>
 #include "Hud.h"
 #include "Map.h"
@@ -31,5 +30,3 @@ class PlayScene : public Scene {
     void updateGameDifficulty(Game &game, float altitude);
     ~PlayScene();
 };
-
-#endif

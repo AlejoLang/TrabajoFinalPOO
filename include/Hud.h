@@ -1,5 +1,4 @@
-#ifndef HUD_H
-#define HUD_H
+#pragma once
 #include <SFML/Graphics.hpp>
 #include "Indicator.h"
 class Ship;
@@ -23,5 +22,3 @@ class Hud {
     void draw(sf::RenderWindow &window);
     ~Hud() {};
 };
-
-#endif

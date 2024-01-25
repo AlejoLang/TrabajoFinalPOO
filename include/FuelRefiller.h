@@ -1,5 +1,4 @@
-#ifndef FUELREFILLER_H
-#define FUELREFILLER_H
+#pragma once
 #include <SFML/Graphics.hpp>
 #include "Entity.h"
 class Ship;
@@ -12,5 +11,3 @@ class FuelRefiller : public Entity {
     bool checkAndHandleCollision(Ship *player);
     ~FuelRefiller() {};
 };
-
-#endif
