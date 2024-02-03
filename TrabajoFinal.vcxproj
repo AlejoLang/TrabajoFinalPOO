@@ -195,7 +195,7 @@
     <ClInclude Include="resource3.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="TrabajoFinal1.rc" />
+    <ResourceCompile Include="TrabajoFinal.rc" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="icon.ico" />
