@@ -6,7 +6,7 @@
 #include <ctime>
 
 Game::Game() 
-    : window(sf::VideoMode(1920, 1080), "Juego", sf::Style::Fullscreen )
+  : window(sf::VideoMode(1920, 1080), "Juego", sf::Style::Fullscreen)
     , nextScene(nullptr) 
     , gameVolume(100.0f)
     , gameHighscores ("./resources/Highscores.dat")
