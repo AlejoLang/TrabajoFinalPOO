@@ -79,7 +79,7 @@ void Ship::handleTrust(sf::RenderWindow& window) {
     fuelLOX -= 0.175f;
     fuelCH4 -= 0.05f;
 
-    /* Increase velocity physics related variables*/
+    /* Increase physics related variables*/
     acceleration += 0.3f;
     angularMomentum += velocity.x / acceleration * 0.25f;
 
