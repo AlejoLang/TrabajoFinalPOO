@@ -2,6 +2,7 @@
 #include "Scene.h"
 #include "HighscoresScene.h"
 #include "MenuScene.h"
+#include "GetGap.h"
 #include <vector>
 #include <string>
 #include <iomanip>
@@ -15,14 +16,14 @@ HighscoresScene::HighscoresScene(Game& game, sf::RenderWindow &window, sf::Font*
   titleText.setFont(*sceneFont);
   titleText.setString("Highscores");
   titleText.setCharacterSize(72);
-  titleText.setOrigin(getCenter(titleText));
+  titleText.setOrigin(GetGap::getCenter(titleText));
   titleText.setPosition({window.getSize().x / 2.0f, 100.0f});
 
   setUpHighscoresText(game, window);
 
   /* Set button positions */
   goToMenuButton.setPos({window.getSize().x / 2.0f, window.getSize().y - 100.0f});
-  cleanHighscoresButton.setPos(getPlaceRight(goToMenuButton.getBox(), cleanHighscoresButton.getBox(), 300));
+  cleanHighscoresButton.setPos(GetGap::getPlaceRight(goToMenuButton.getBox(), cleanHighscoresButton.getBox(), 300));
 }
 
 void HighscoresScene::setUpHighscoresText(Game& game, sf::RenderWindow &window) {

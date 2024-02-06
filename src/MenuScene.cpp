@@ -4,6 +4,7 @@
 #include "InstructionsScene.h"
 #include "HighscoresScene.h"
 #include "MenuScene.h"
+#include "GetGap.h"
 #include <string>
 
 MenuScene::MenuScene(Game &game, sf::RenderWindow &window, sf::Font* gameFont)
@@ -18,7 +19,7 @@ MenuScene::MenuScene(Game &game, sf::RenderWindow &window, sf::Font* gameFont)
   titleText.setFont(*sceneFont);
   titleText.setString("T-24:00:00");
   titleText.setCharacterSize(72);
-  titleText.setOrigin(getCenter(titleText));
+  titleText.setOrigin(GetGap::getCenter(titleText));
   titleText.setFillColor(sf::Color::White);
   titleText.setPosition({window.getSize().x / 2.0f, (window.getSize().y / 2.0f) - 150.0f});
 
@@ -26,14 +27,14 @@ MenuScene::MenuScene(Game &game, sf::RenderWindow &window, sf::Font* gameFont)
   nameInput.setMaxChars(20);
   nameInput.setValue(game.getUsername());
   nameInput.setString(game.getUsername());
-  nameInput.setOrigin(getCenter(nameInput));
-  nameInput.setPosition(getPlaceBelow(titleText, nameInput, 140));
+  nameInput.setOrigin(GetGap::getCenter(nameInput));
+  nameInput.setPosition(GetGap::getPlaceBelow(titleText, nameInput, 140));
   nameInput.setSingleWord(true);
 
   /* Place buttons */
-  goToPlayButton.setPos(getPlaceBelow(nameInput, goToPlayButton.getBox(), 80.f));
-  goToHighscoresButton.setPos(getPlaceBelow(goToPlayButton.getBox(), goToHighscoresButton.getBox(), 40.f));
-  exitButton.setPos(getPlaceBelow(goToHighscoresButton.getBox(), exitButton.getBox(), 40.f));
+  goToPlayButton.setPos(GetGap::getPlaceBelow(nameInput, goToPlayButton.getBox(), 80.f));
+  goToHighscoresButton.setPos(GetGap::getPlaceBelow(goToPlayButton.getBox(), goToHighscoresButton.getBox(), 40.f));
+  exitButton.setPos(GetGap::getPlaceBelow(goToHighscoresButton.getBox(), exitButton.getBox(), 40.f));
 
   /* Configure volume selector */
   volumeSelector.setSize({200, 20});

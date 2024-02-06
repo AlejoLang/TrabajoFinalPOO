@@ -2,6 +2,7 @@
 #include "InstructionsScene.h"
 #include "PlayScene.h"
 #include "MenuScene.h"
+#include "GetGap.h"
 
 InstructionsScene::InstructionsScene(sf::RenderWindow &window, sf::Font* gameFont) : Scene (gameFont) {
   setUpImages(window);
@@ -28,22 +29,22 @@ void InstructionsScene::setUpImages(sf::RenderWindow &window) {
   airplaneSprite.setTexture(airplaneTexture);
 
   /* Set sprites origin */
-  wKeypadSprite.setOrigin(getCenter(wKeypadSprite));
-  arrowKeypadsSprite.setOrigin(getCenter(arrowKeypadsSprite));
-  escKeypadSprite.setOrigin(getCenter(escKeypadSprite));
-  LOXRefillerSprite.setOrigin(getCenter(LOXRefillerSprite));
-  CH4RefillerSprite.setOrigin(getCenter(CH4RefillerSprite));
-  asteroidSprite.setOrigin(getCenter(asteroidSprite));
-  airplaneSprite.setOrigin(getCenter(airplaneSprite));
+  wKeypadSprite.setOrigin(GetGap::getCenter(wKeypadSprite));
+  arrowKeypadsSprite.setOrigin(GetGap::getCenter(arrowKeypadsSprite));
+  escKeypadSprite.setOrigin(GetGap::getCenter(escKeypadSprite));
+  LOXRefillerSprite.setOrigin(GetGap::getCenter(LOXRefillerSprite));
+  CH4RefillerSprite.setOrigin(GetGap::getCenter(CH4RefillerSprite));
+  asteroidSprite.setOrigin(GetGap::getCenter(asteroidSprite));
+  airplaneSprite.setOrigin(GetGap::getCenter(airplaneSprite));
 
   /* Set sprites position */
   wKeypadSprite.setPosition(200, 300);
-  arrowKeypadsSprite.setPosition(getPlaceBelow(wKeypadSprite, arrowKeypadsSprite, 100));
-  escKeypadSprite.setPosition(getPlaceBelow(arrowKeypadsSprite, escKeypadSprite,100));
+  arrowKeypadsSprite.setPosition(GetGap::getPlaceBelow(wKeypadSprite, arrowKeypadsSprite, 100));
+  escKeypadSprite.setPosition(GetGap::getPlaceBelow(arrowKeypadsSprite, escKeypadSprite,100));
   LOXRefillerSprite.setPosition((window.getSize().x / 2.0f) + 200, 300);
-  CH4RefillerSprite.setPosition(getPlaceRight(LOXRefillerSprite, CH4RefillerSprite, 20));
-  asteroidSprite.setPosition(getPlaceBelow(LOXRefillerSprite, asteroidSprite, 100));
-  airplaneSprite.setPosition(getPlaceRight(asteroidSprite, airplaneSprite, 20));
+  CH4RefillerSprite.setPosition(GetGap::getPlaceRight(LOXRefillerSprite, CH4RefillerSprite, 20));
+  asteroidSprite.setPosition(GetGap::getPlaceBelow(LOXRefillerSprite, asteroidSprite, 100));
+  airplaneSprite.setPosition(GetGap::getPlaceRight(asteroidSprite, airplaneSprite, 20));
 }
 
 void InstructionsScene::setUpText(sf::RenderWindow &window) {
@@ -85,11 +86,11 @@ void InstructionsScene::setUpText(sf::RenderWindow &window) {
 
   /* Set texts position */
   titleText.setPosition(window.getSize().x / 2.0f, 100);
-  accelerateInstructionText.setPosition(getPlaceRight(wKeypadSprite, 50));
-  rotateInstructionText.setPosition(getPlaceRight(arrowKeypadsSprite, 50));
-  quitInstructionText.setPosition(getPlaceRight(escKeypadSprite, 50));
-  avoidInstructionText.setPosition(getPlaceRight(airplaneSprite, 50));
-  collectInstructionText.setPosition(getPlaceRight(CH4RefillerSprite, 50));
+  accelerateInstructionText.setPosition(GetGap::getPlaceRight(wKeypadSprite, 50));
+  rotateInstructionText.setPosition(GetGap::getPlaceRight(arrowKeypadsSprite, 50));
+  quitInstructionText.setPosition(GetGap::getPlaceRight(escKeypadSprite, 50));
+  avoidInstructionText.setPosition(GetGap::getPlaceRight(airplaneSprite, 50));
+  collectInstructionText.setPosition(GetGap::getPlaceRight(CH4RefillerSprite, 50));
   continueText.setPosition(window.getSize().x / 2.0f, (window.getSize().y - 100.0f));
 }
 

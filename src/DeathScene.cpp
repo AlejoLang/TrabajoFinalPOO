@@ -3,6 +3,7 @@
 #include "DeathScene.h"
 #include "MenuScene.h"
 #include "PlayScene.h"
+#include "GetGap.h"
 #include <vector>
 #include <fstream>
 #include <cstring>
@@ -17,19 +18,19 @@ DeathScene::DeathScene(Game &game, sf::RenderWindow &window, int points, sf::Fon
   mainText.setFont(*sceneFont);
   mainText.setFillColor(sf::Color::Red);
   mainText.setCharacterSize(72);
-  mainText.setOrigin(getCenter(mainText));
+  mainText.setOrigin(GetGap::getCenter(mainText));
   mainText.setPosition(window.getSize().x / 2.0f, window.getSize().y / 2.0f  - 200);
 
   /* Set subtitle text */
   pointsText.setString("Total points: " + std::to_string(points));
   pointsText.setFont(*sceneFont);
   pointsText.setCharacterSize(42);
-  pointsText.setOrigin(getCenter(pointsText));
-  pointsText.setPosition(getPlaceBelow(mainText, pointsText, 50));
+  pointsText.setOrigin(GetGap::getCenter(pointsText));
+  pointsText.setPosition(GetGap::getPlaceBelow(mainText, pointsText, 50));
 
   /* Set buttons position */
-  backToMenu.setPos(getPlaceBelow(pointsText, backToMenu.getBox(), 100));
-  restartGame.setPos(getPlaceBelow(backToMenu.getBox(), restartGame.getBox(), 20));
+  backToMenu.setPos(GetGap::getPlaceBelow(pointsText, backToMenu.getBox(), 100));
+  restartGame.setPos(GetGap::getPlaceBelow(backToMenu.getBox(), restartGame.getBox(), 20));
 
   updateHighscores(game, points);
 }
