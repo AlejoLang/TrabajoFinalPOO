@@ -14,6 +14,14 @@ template <typename T, typename S> sf::Vector2f getPlaceRight(T& origin, S& toPla
   return { origin.getPosition().x + (origin.getGlobalBounds().width / 2.0f) + (toPlace.getGlobalBounds().width / 2.0f) + gap, origin.getPosition().y };
 };
 
+template <typename T, typename S> sf::Vector2f getPlaceAbove(T& origin, S& toPlace, float gap) {
+  return { origin.getPosition().x, origin.getPosition().y - (origin.getGlobalBounds().height / 2.0f) - (toPlace.getGlobalBounds().height / 2.0f) - gap };
+};
+
+template <typename T, typename S> sf::Vector2f getPlaceLeft(T& origin, S& toPlace, float gap) {
+  return { origin.getPosition().x - (origin.getGlobalBounds().width / 2.0f) - (toPlace.getGlobalBounds().width / 2.0f) - gap, origin.getPosition().y };
+};
+
 template <typename T> sf::Vector2f getPlaceRight(T& origin, float gap) {
   return { origin.getPosition().x + (origin.getGlobalBounds().getSize().x / 2.0f) + gap, origin.getPosition().y };
 };
