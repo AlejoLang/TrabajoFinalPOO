@@ -1,26 +1,13 @@
 #include "Selector.h"
 
-Selector::Selector(std::string text, sf::Font* gameFont) : Indicator(text, 200, gameFont) {
-  indicatorText.setOrigin({indicatorText.getGlobalBounds().getSize().x / 2.0f, indicatorText.getGlobalBounds().getSize().y / 2.0f});
+Selector::Selector(std::string text, std::string txtPos, sf::Font* gameFont) : Indicator(text, txtPos, 200, gameFont) {
+
 }
 
 void Selector::update(sf::RenderWindow &window) {
   if(sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && window.hasFocus()) {
     checkMousePositionInSelector(window);
   }
-}
-
-void Selector::setSize(sf::Vector2f newSize) {
-  indicatorRect.setSize({newSize.x, newSize.y});
-  indicatorRect.setOrigin({indicatorRect.getSize().x / 2.0f, indicatorRect.getSize().y / 2.0f});
-  indicatorRectOut.setSize({newSize.x, newSize.y});
-  indicatorRectOut.setOrigin({indicatorRectOut.getSize().x / 2.0f, indicatorRectOut.getSize().y / 2.0f});
-}
-
-void Selector::setPos(sf::Vector2f pos) {
-  indicatorText.setPosition(pos.x, pos.y - (indicatorText.getGlobalBounds().getSize().y / 2.0f) - 10);
-  indicatorRect.setPosition(pos.x, pos.y + (indicatorRect.getGlobalBounds().getSize().y / 2.0f) + 10);
-  indicatorRectOut.setPosition(indicatorRect.getPosition().x, indicatorRect.getPosition().y);
 }
 
 void Selector::setValue(float newValue) {

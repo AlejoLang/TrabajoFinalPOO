@@ -6,6 +6,7 @@ Indicator::Indicator(std::string text, std::string txtPos, float base, sf::Font*
   /* Set up text */
   indicatorText.setFont(*gameFont);
   indicatorText.setString(text);
+  indicatorText.setCharacterSize(24);
   indicatorText.setOrigin({indicatorText.getGlobalBounds().width / 2.0f, indicatorText.getGlobalBounds().height / 2.0f});
 
   /* Set up rectangles */
@@ -52,15 +53,17 @@ void Indicator::setPos(sf::Vector2f pos) {
   indicatorRectOut.setPosition(pos);
   indicatorRect.setPosition(pos);
   if (textPos == "above") {
-    indicatorText.setPosition(getPlaceBelow(indicatorRectOut, indicatorText, -20));
+    indicatorText.setPosition(getPlaceAbove(indicatorRectOut, indicatorText, 20));
   } else if (textPos == "below") {
     indicatorText.setPosition(getPlaceBelow(indicatorRectOut, indicatorText, 20));
   } else if (textPos == "right") {
     indicatorText.setPosition(getPlaceRight(indicatorRectOut, indicatorText, 20));
+    indicatorText.setPosition(indicatorText.getPosition().x, indicatorText.getPosition().y - (indicatorText.getCharacterSize() / 4));
   } else if (textPos == "left") {
-    indicatorText.setPosition(getPlaceBelow(indicatorRectOut, indicatorText, -20));
+    indicatorText.setPosition(getPlaceLeft(indicatorRectOut, indicatorText, 20));
+    indicatorText.setPosition(indicatorText.getPosition().x, indicatorText.getPosition().y - (indicatorText.getCharacterSize() / 4));
   } else {
-    indicatorText.setPosition(getPlaceBelow(indicatorRectOut, indicatorText, -20));
+    indicatorText.setPosition(getPlaceAbove(indicatorRectOut, indicatorText, 20));
   }
 }
 

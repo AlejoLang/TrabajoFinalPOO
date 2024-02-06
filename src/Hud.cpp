@@ -5,8 +5,8 @@
 #include <iomanip>
 
 Hud::Hud (sf::Font* gameFont)
-    : fuelLOXIndicator("LOX", 350, gameFont) 
-    , fuelCH4Indicator("CH4", 100, gameFont)
+    : fuelLOXIndicator("LOX", "right", 350, gameFont)
+    , fuelCH4Indicator("CH4", "right", 100, gameFont)
 {
   /* Set up altitude text */
   altitudeText.setString("Altitude: 0000.00");
@@ -50,9 +50,9 @@ void Hud::update(Ship *playerShip, sf::View &view) {
 void Hud::updateIndicators(float LOXLevel, float CH4Level, sf::View &view) {
   /* Update indicator using the player fuel levels */
   fuelCH4Indicator.update(CH4Level);
-  fuelCH4Indicator.setPos({view.getCenter().x + view.getSize().x / 2.0f - 100, view.getCenter().y + view.getSize().y / 2.0f - 100});
+  fuelCH4Indicator.setPos({view.getCenter().x + view.getSize().x / 2.0f - 200, view.getCenter().y + view.getSize().y / 2.0f - 100});
   fuelLOXIndicator.update(LOXLevel);
-  fuelLOXIndicator.setPos({view.getCenter().x + view.getSize().x / 2.0f - 100, view.getCenter().y + view.getSize().y / 2.0f - 150});
+  fuelLOXIndicator.setPos({view.getCenter().x + view.getSize().x / 2.0f - 200, view.getCenter().y + view.getSize().y / 2.0f - 150});
 }
 
 void Hud::updateAltitudeText(float altitude, sf::View &view) {
