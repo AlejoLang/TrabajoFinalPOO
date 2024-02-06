@@ -1,6 +1,6 @@
 #include "Selector.h"
 
-Selector::Selector(std::string text, std::string txtPos, sf::Font* gameFont) : Indicator(text, txtPos, 200, gameFont) {
+Selector::Selector(std::string text, std::string txtPos, sf::Font* gameFont) : Indicator(text, txtPos, 100, gameFont) {
 
 }
 
@@ -19,7 +19,7 @@ void Selector::setValue(float newValue) {
 
 void Selector::setValuePercentaje(float newValue) {
   /* Transform the porcentaje to a value and the adjust the indicator box */
-  newValue = (newValue * (indicatorRectOut.getGlobalBounds().getSize().x - indicatorRectOut.getOutlineThickness())) / 100;
+  newValue = (newValue * baseMagnitude) / 100;
   this->setValue(newValue);
 }
 
@@ -30,6 +30,6 @@ void Selector::checkMousePositionInSelector(sf::RenderWindow &window) {
   sf::Vector2f mousePosInView = window.mapPixelToCoords(mousePos);
   if(indicatorRectOut.getGlobalBounds().contains(mousePosInView)){
     mouseRelativePosition = mousePosInView.x - indicatorRectOut.getGlobalBounds().left;
+    this->setValue((mouseRelativePosition * baseMagnitude) / (indicatorRectOut.getGlobalBounds().getSize().x - indicatorRectOut.getOutlineThickness()));
   }
-  this->setValue(mouseRelativePosition);
 }
