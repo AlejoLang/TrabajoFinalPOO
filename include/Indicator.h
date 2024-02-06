@@ -7,10 +7,11 @@ class Indicator
     sf::Text indicatorText;
     sf::RectangleShape indicatorRect;
     sf::RectangleShape indicatorRectOut;
+    std::string textPos;
     float baseMagnitude;
     float value;
   public:
-    Indicator(std::string text, float base, sf::Font* gameFont);
+    Indicator(std::string text, std::string txtPos, float base, sf::Font* gameFont);
     void update(float newValue);
     void setSize(sf::Vector2f newSize);
     void setValue(float newValue);
