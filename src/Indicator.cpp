@@ -1,11 +1,12 @@
 #include "Indicator.h"
+#include "GetGap.h"
 #include <string>
 
-Indicator::Indicator(std::string text, float base, sf::Font* gameFont) {
+Indicator::Indicator(std::string text, std::string txtPos, float base, sf::Font* gameFont) {
   /* Set up text */
   indicatorText.setFont(*gameFont);
   indicatorText.setString(text);
-  indicatorText.setOrigin({0, indicatorText.getGlobalBounds().width / 2.0f});
+  indicatorText.setOrigin({indicatorText.getGlobalBounds().width / 2.0f, indicatorText.getGlobalBounds().height / 2.0f});
 
   /* Set up rectangles */
   indicatorRect.setFillColor(sf::Color::White);
@@ -16,6 +17,7 @@ Indicator::Indicator(std::string text, float base, sf::Font* gameFont) {
   /* Set up variables */
   baseMagnitude = base;
   value = 100;
+  textPos = txtPos;
 }
 
 void Indicator::update(float newValue) {
@@ -29,10 +31,10 @@ void Indicator::setValue(float newValue) {
 }
 
 void Indicator::setSize(sf::Vector2f newSize) {
-  indicatorRect.setSize({newSize.x, newSize.y});
-  indicatorRect.setOrigin({0, indicatorRect.getSize().y / 2.0f});
   indicatorRectOut.setSize({newSize.x, newSize.y});
-  indicatorRectOut.setOrigin({0, indicatorRectOut.getSize().y / 2.0f});
+  indicatorRectOut.setOrigin({newSize.x / 2.0f, newSize.y / 2.0f});
+  indicatorRect.setSize({ newSize.x, newSize.y });
+  indicatorRect.setOrigin(indicatorRectOut.getOrigin());
 }
 
 void Indicator::setInsideColor(sf::Color color) {
@@ -47,9 +49,19 @@ float Indicator::getValuePercentaje() {
 }
 
 void Indicator::setPos(sf::Vector2f pos) {
-  indicatorText.setPosition(pos);
-  indicatorRect.setPosition(pos.x -= 10, pos.y - indicatorText.getGlobalBounds().height / 2.0f - 2);
-  indicatorRectOut.setPosition(indicatorRect.getPosition().x, indicatorRect.getPosition().y);
+  indicatorRectOut.setPosition(pos);
+  indicatorRect.setPosition(pos);
+  if (textPos == "above") {
+    indicatorText.setPosition(getPlaceBelow(indicatorRectOut, indicatorText, -20));
+  } else if (textPos == "below") {
+    indicatorText.setPosition(getPlaceBelow(indicatorRectOut, indicatorText, 20));
+  } else if (textPos == "right") {
+    indicatorText.setPosition(getPlaceRight(indicatorRectOut, indicatorText, 20));
+  } else if (textPos == "left") {
+    indicatorText.setPosition(getPlaceBelow(indicatorRectOut, indicatorText, -20));
+  } else {
+    indicatorText.setPosition(getPlaceBelow(indicatorRectOut, indicatorText, -20));
+  }
 }
 
 void Indicator::draw(sf::RenderWindow &window) {
