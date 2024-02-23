@@ -1,5 +1,5 @@
 #include "Button.h"
-#include "iostream"
+#include "GetGap.h"
 #include <string>
 
 Button::Button(std::string btnText, sf::Font* gameFont, std::string size){
@@ -20,8 +20,8 @@ Button::Button(std::string btnText, sf::Font* gameFont, std::string size){
   this->buttonBox.setFillColor(sf::Color::Transparent);
   this->buttonBox.setOutlineThickness(2);
   this->buttonBox.setOutlineColor(sf::Color::White);
-  this->buttonBox.setOrigin(this->buttonBox.getSize().x / 2.0f, this->buttonBox.getSize().y / 2.0f);
-  this->buttonText.setOrigin(this->buttonText.getGlobalBounds().width / 2.0f, this->buttonText.getGlobalBounds().height / 2.0f);
+  this->buttonBox.setOrigin(getCenter(buttonBox));
+  this->buttonText.setOrigin(getCenter(buttonText));
 }
 
 void Button::update(sf::RenderWindow &window) {
