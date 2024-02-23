@@ -86,11 +86,11 @@ void InstructionsScene::setUpText(sf::RenderWindow &window) {
 
   /* Set texts position */
   titleText.setPosition(window.getSize().x / 2.0f, 100);
-  accelerateInstructionText.setPosition(getPlaceRight(wKeypadSprite, 50));
-  rotateInstructionText.setPosition(getPlaceRight(arrowKeypadsSprite, 50));
-  quitInstructionText.setPosition(getPlaceRight(escKeypadSprite, 50));
-  avoidInstructionText.setPosition(getPlaceRight(airplaneSprite, 50));
-  collectInstructionText.setPosition(getPlaceRight(CH4RefillerSprite, 50));
+  accelerateInstructionText.setPosition(getPlaceRight(wKeypadSprite, accelerateInstructionText, 50));
+  rotateInstructionText.setPosition(getPlaceRight(arrowKeypadsSprite, rotateInstructionText, 50));
+  quitInstructionText.setPosition(getPlaceRight(escKeypadSprite, quitInstructionText, 50));
+  avoidInstructionText.setPosition(getPlaceRight(airplaneSprite, avoidInstructionText, 50));
+  collectInstructionText.setPosition(getPlaceRight(CH4RefillerSprite, collectInstructionText, 50));
   continueText.setPosition(window.getSize().x / 2.0f, (window.getSize().y - 100.0f));
 }
 
