@@ -35,8 +35,8 @@ Hud::Hud (sf::Font* gameFont)
   velocityTextPadd = velocityText.getGlobalBounds().width;
 
   /* Set up indicators */
-  fuelCH4Indicator.setSize({-200, 10});
-  fuelLOXIndicator.setSize({-200, 10});
+  fuelCH4Indicator.setSize({200, 10});
+  fuelLOXIndicator.setSize({200, 10});
   fuelCH4Indicator.setBorderColor(sf::Color::Red);
   fuelLOXIndicator.setBorderColor(sf::Color::Red);
 }
@@ -50,9 +50,9 @@ void Hud::update(Ship *playerShip, sf::View &view) {
 void Hud::updateIndicators(float LOXLevel, float CH4Level, sf::View &view) {
   /* Update indicator using the player fuel levels */
   fuelCH4Indicator.update(CH4Level);
-  fuelCH4Indicator.setPos({view.getCenter().x + view.getSize().x / 2.0f - 200, view.getCenter().y + view.getSize().y / 2.0f - 100});
+  fuelCH4Indicator.setPos({view.getCenter().x + (view.getSize().x / 2.0f) - 200, view.getCenter().y + (view.getSize().y / 2.0f) - 100});
   fuelLOXIndicator.update(LOXLevel);
-  fuelLOXIndicator.setPos({view.getCenter().x + view.getSize().x / 2.0f - 200, view.getCenter().y + view.getSize().y / 2.0f - 150});
+  fuelLOXIndicator.setPos({view.getCenter().x + (view.getSize().x / 2.0f) - 200, view.getCenter().y + (view.getSize().y / 2.0f) - 150});
 }
 
 void Hud::updateAltitudeText(float altitude, sf::View &view) {

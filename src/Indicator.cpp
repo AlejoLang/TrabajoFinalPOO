@@ -27,13 +27,13 @@ void Indicator::update(float newValue) {
 
 void Indicator::setValue(float newValue) {
   newValue = std::max(0.0f, std::min(newValue, baseMagnitude));
-  indicatorRect.setSize({-(newValue * (indicatorRectOut.getGlobalBounds().getSize().x - indicatorRectOut.getOutlineThickness())) / baseMagnitude, indicatorRect.getGlobalBounds().getSize().y}); 
+  indicatorRect.setSize({(newValue * (indicatorRectOut.getGlobalBounds().getSize().x - indicatorRectOut.getOutlineThickness())) / baseMagnitude, indicatorRect.getGlobalBounds().getSize().y}); 
   value = newValue;
 }
 
 void Indicator::setSize(sf::Vector2f newSize) {
   indicatorRectOut.setSize({newSize.x, newSize.y});
-  indicatorRectOut.setOrigin({newSize.x / 2.0f, newSize.y / 2.0f});
+  indicatorRectOut.setOrigin({ newSize.x / 2.0f, newSize.y / 2.0f  });
   indicatorRect.setSize({ newSize.x, newSize.y });
   indicatorRect.setOrigin(indicatorRectOut.getOrigin());
 }
